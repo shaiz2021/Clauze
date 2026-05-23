@@ -1,0 +1,291 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Section backgrounds - dark mode */
+    --s0: #09090f;
+    --s1: #0f0f1c;
+    --s2: #141428;
+    --card: #1c1c32;
+    --card-hover: #232340;
+
+    /* Brand violet */
+    --violet: #7b6ef6;
+    --violet-light: #a89cf8;
+    --violet-dim: rgba(123, 110, 246, 0.1);
+    --violet-glow: rgba(123, 110, 246, 0.22);
+
+    /* Text hierarchy */
+    --text-1: #f0edf8;
+    --text-2: #b0aace;
+    --text-3: #6b6890;
+    --text-4: #3d3a60;
+
+    /* Borders */
+    --border: rgba(255, 255, 255, 0.06);
+    --border-violet: rgba(123, 110, 246, 0.3);
+    --nav-bg: rgba(9, 9, 15, 0.92);
+    --footer-bg: #07070e;
+    --card-inner: var(--s0);
+
+    /* Risk colors */
+    --risk-red: #f2546a;
+    --risk-amber: #f0a429;
+    --risk-green: #36c98a;
+  }
+
+  .light {
+    --s0: #ffffff;
+    --s1: #f8f8fa;
+    --s2: #f1f1f4;
+    --card: #ffffff;
+    --card-hover: #ffffff;
+    --text-1: #0a0a16;
+    --text-2: #3d3a60;
+    --text-3: #6b6890;
+    --text-4: #9491b0;
+    --border: rgba(0, 0, 0, 0.08);
+    --border-violet: rgba(123, 110, 246, 0.3);
+    --nav-bg: rgba(255, 255, 255, 0.9);
+    --footer-bg: #f8f8fa;
+    --card-inner: var(--s1);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-[var(--border)];
+  }
+  body {
+    @apply bg-[var(--s0)] text-[var(--text-1)];
+    font-family: var(--font-body), system-ui, sans-serif;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 1.75;
+  }
+}
+
+/* Typography classes */
+.font-display {
+  font-family: var(--font-display), system-ui, sans-serif;
+}
+.font-serif {
+  font-family: var(--font-serif), Georgia, serif;
+}
+.font-body {
+  font-family: var(--font-body), system-ui, sans-serif;
+}
+.font-mono {
+  font-family: var(--font-mono), monospace;
+}
+
+/* Section backgrounds */
+.bg-s0 { background-color: var(--s0); }
+.bg-s1 { background-color: var(--s1); }
+.bg-s2 { background-color: var(--s2); }
+.bg-card { background-color: var(--card); }
+.bg-card-hover { background-color: var(--card-hover); }
+.bg-card-inner { background-color: var(--card-inner); }
+
+.bg-card {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.light .bg-card {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+}
+
+.light .bg-card-inner {
+  border: 1px solid var(--border);
+}
+
+/* Text colors */
+.text-1 { color: var(--text-1); }
+.text-2 { color: var(--text-2); }
+.text-3 { color: var(--text-3); }
+.text-4 { color: var(--text-4); }
+
+/* Border colors */
+.border-violet { border-color: var(--border-violet); }
+.border-current { border-color: currentColor; }
+
+/* Violet */
+.text-violet { color: var(--violet); }
+.bg-violet { background-color: var(--violet); }
+.bg-violet-dim { background-color: var(--violet-dim); }
+
+/* Risk */
+.text-risk-red { color: var(--risk-red); }
+.text-risk-amber { color: var(--risk-amber); }
+.text-risk-green { color: var(--risk-green); }
+.bg-risk-red { background-color: var(--risk-red); }
+.bg-risk-amber { background-color: var(--risk-amber); }
+.bg-risk-green { background-color: var(--risk-green); }
+
+/* Section divider */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--border-violet),
+    transparent
+  );
+}
+
+/* Hero glow */
+.hero-glow {
+  background-image: radial-gradient(
+    ellipse 80% 55% at 50% -5%,
+    rgba(123, 110, 246, 0.14) 0%,
+    transparent 70%
+  );
+}
+
+/* Hero dots texture */
+.hero-dots::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.05) 1px,
+    transparent 1px
+  );
+  background-size: 30px 30px;
+  pointer-events: none;
+}
+
+/* Animations */
+@keyframes pulse-violet {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(123, 110, 246, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 6px rgba(123, 110, 246, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(123, 110, 246, 0);
+  }
+}
+
+.pulse-dot {
+  animation: pulse-violet 2s infinite;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 5s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 2s infinite;
+}
+
+/* Button base styles */
+.btn-primary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 50px;
+  padding: 0 32px;
+  background: var(--violet);
+  color: white;
+  border-radius: 10px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 15px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+  white-space: nowrap;
+}
+
+.btn-primary:hover {
+  background: var(--violet-light);
+  box-shadow: 0 8px 24px rgba(123, 110, 246, 0.35);
+  transform: translateY(-2px);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 50px;
+  padding: 0 32px;
+  background: transparent;
+  color: var(--text-2);
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 15px;
+  transition: border-color 0.2s, color 0.2s;
+  white-space: nowrap;
+}
+
+.btn-secondary:hover {
+  border-color: var(--border-violet);
+  color: var(--text-1);
+}
+
+/* Card hover effect */
+.card-hover {
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.25s,
+    box-shadow 0.25s;
+}
+
+.card-hover:hover {
+  transform: translateY(-6px);
+  border-color: var(--border-violet);
+  box-shadow: 0 20px 60px var(--violet-glow);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--s0);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--text-4);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-3);
+}
