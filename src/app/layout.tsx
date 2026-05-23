@@ -4,6 +4,10 @@ import { Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { SmoothScroll } from "@/components/smooth-scroll";
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000");
+
 const bricolage = Bricolage_Grotesque({
   weight: ["400", "500", "600", "700", "800"],
   subsets: ["latin"],
@@ -24,14 +28,14 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://clauze.org"),
+  metadataBase: new URL(siteUrl),
   title: "Clauze — Contract Reader That Explains the Fine Print",
   description:
     "Paste any contract. Clauze flags every risky clause and explains it in plain English. Free first scan. No account needed. Results in 30 seconds.",
   openGraph: {
     title: "Clauze — Read Any Contract in Plain English",
     description: "Know what you are signing. Clauze flags the risky parts before you sign.",
-    url: "https://clauze.org",
+    url: siteUrl,
     siteName: "Clauze",
     type: "website",
   },

@@ -6,6 +6,10 @@ import { FadeUp } from "@/components/fade-up";
 import { SectionDivider } from "@/components/section-divider";
 import { ArrowRight, Shield, FileText, Search, CheckCircle2 } from "lucide-react";
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000");
+
 export const metadata: Metadata = {
   title: "About Clauze — Read the Fine Print",
   description:
@@ -41,17 +45,17 @@ const ORG_JSON_LD = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: "Clauze",
-  url: "https://clauze.org",
+  url: siteUrl,
 };
 
 const WEBSITE_JSON_LD = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   name: "Clauze",
-  url: "https://clauze.org",
+  url: siteUrl,
   potentialAction: {
     "@type": "SearchAction",
-    target: "https://clauze.org/blog?query={search_term_string}",
+    target: `${siteUrl}/blog?query={search_term_string}`,
     "query-input": "required name=search_term_string",
   },
 };
@@ -64,13 +68,13 @@ const BREADCRUMB_JSON_LD = {
       "@type": "ListItem",
       position: 1,
       name: "Home",
-      item: "https://clauze.org/",
+      item: `${siteUrl}/`,
     },
     {
       "@type": "ListItem",
       position: 2,
       name: "About",
-      item: "https://clauze.org/about",
+      item: `${siteUrl}/about`,
     },
   ],
 };
@@ -296,4 +300,3 @@ export default function AboutPage() {
     </div>
   );
 }
-
