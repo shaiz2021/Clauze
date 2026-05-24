@@ -44,6 +44,7 @@ export default function UploadPage() {
   const [contractType, setContractType] = useState("NDA");
   const [isUploading, setIsUploading] = useState(false);
   const [loadingStep, setLoadingStep] = useState(0);
+  const [error, setError] = useState<string | null>(null);
 
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -65,6 +66,7 @@ export default function UploadPage() {
     if (!text) return;
     setIsAnalyzing(true);
     setResult(null);
+    setError(null);
 
     let step = 0;
     const stepInterval = setInterval(() => {
@@ -79,12 +81,19 @@ export default function UploadPage() {
         body: JSON.stringify({ text, type: contractType }),
       });
 
-      if (!response.ok) throw new Error("Analysis failed");
-      const data = await response.json();
+      const data = await response.json().catch(() => null);
+      if (!response.ok) {
+        const message =
+          (data && typeof data === "object" && "error" in data && typeof (data as any).error === "string"
+            ? (data as any).error
+            : "Analysis failed. Please try again.");
+        throw new Error(message);
+      }
       setResult(data);
     } catch (error) {
+      const message = error instanceof Error ? error.message : "Something went wrong during analysis.";
       console.error(error);
-      alert("Something went wrong during analysis.");
+      setError(message);
     } finally {
       clearInterval(stepInterval);
       setIsAnalyzing(false);
@@ -167,6 +176,12 @@ export default function UploadPage() {
                 {isAnalyzing ? "Analysing..." : "Analyse This Contract"}
               </button>
 
+              {error && (
+                <div className="bg-risk-red/10 border border-risk-red/20 rounded-[12px] p-4">
+                  <p className="font-body text-[14px] text-risk-red leading-[1.6]">{error}</p>
+                </div>
+              )}
+
               <p className="font-body font-light text-[12px] text-3 text-center">
                 Processed securely. Never stored without permission.
               </p>
@@ -194,7 +209,7 @@ export default function UploadPage() {
 
               <div className="space-y-4 max-w-xl mx-auto">
                 {[1, 2, 3].map((i) => (
-                  <div key={i} className="h-32 bg-card rounded-[12px] animate-shimmer overflow-hidden relative">
+                  <div key={i} className="h-32 bg-card rounded-[12px] overflow-hidden relative">
                     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-violet/5 to-transparent -translate-x-full animate-[shimmer_2s_infinite]" />
                   </div>
                 ))}

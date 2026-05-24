@@ -55,7 +55,7 @@ export const emailTemplates: Record<
   EmailTemplate
 > = {
   accountCreated: {
-    subject: "Account created — welcome to Clauze",
+    subject: "Account created | Welcome to Clauze",
     html: base(`
       <h1 style="margin:0 0 10px;font-size:28px;line-height:1.15;letter-spacing:-0.02em;">Your account is ready.</h1>
       <p style="margin:0 0 18px;font-size:16px;line-height:1.8;color:#3d3a60;">
@@ -117,4 +117,3 @@ export const emailTemplates: Record<
     `),
   },
 };
-

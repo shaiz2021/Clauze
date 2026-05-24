@@ -11,7 +11,7 @@ const siteUrl =
   (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000");
 
 export const metadata: Metadata = {
-  title: "About Clauze — Read the Fine Print",
+  title: "About Clauze | Read the Fine Print",
   description:
     "Clauze helps you understand contracts before you sign. Paste any agreement and Clauze flags risky clauses and explains them in plain English.",
   alternates: {

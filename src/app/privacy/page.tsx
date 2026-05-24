@@ -5,11 +5,11 @@ import { FadeUp } from "@/components/fade-up";
 import { SectionDivider } from "@/components/section-divider";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy — Clauze",
+  title: "Privacy Policy | Clauze",
   description:
     "Learn how Clauze handles contract text, account data, and analytics. Clarity first, minimal collection, and transparent controls.",
   alternates: { canonical: "/privacy" },
-  openGraph: { title: "Privacy Policy — Clauze", url: "/privacy" },
+  openGraph: { title: "Privacy Policy | Clauze", url: "/privacy" },
 };
 
 export default function PrivacyPage() {
@@ -28,8 +28,8 @@ export default function PrivacyPage() {
                 Privacy Policy
               </h1>
               <p className="font-body font-light text-[18px] text-2 leading-[1.9] mt-6">
-                This policy explains what Clauze collects, why, and how you control it. If you have questions, contact
-                us via the Contact page.
+                This policy explains what Clauze collects, why we collect it, and how you can control it. Clauze is a
+                contract review tool, so we keep data collection minimal and focused on providing your contract analysis.
               </p>
               <p className="font-body font-light text-[14px] text-3 mt-4">
                 Last updated: {new Date().getFullYear()}
@@ -44,28 +44,32 @@ export default function PrivacyPage() {
           <div className="max-w-3xl mx-auto space-y-10">
             {[
               {
-                title: "What we collect",
-                body: "Account email (if you create an account), basic authentication logs, and the information necessary to provide the product. Contract text is processed to generate your analysis. Avoid including unnecessary personal data.",
+                title: "Account data",
+                body: "If you create an account, we collect your email address and the minimum authentication data needed to keep you signed in. This is used to provide a dashboard experience and protect access to your analysis.",
               },
               {
-                title: "How contract text is used",
-                body: "Contract text is used to produce the Clauze Score and clause breakdown. Do not upload contracts you do not have the right to share. If you need stronger guarantees, use a redacted copy.",
+                title: "Contract text and analysis",
+                body: "When you run a scan, your contract text is processed to generate a Clauze Score, risk badges, and plain English clause explanations. Only upload contracts you have the right to share. For sensitive NDA review or employment contract review, consider redacting names, addresses, and account details before scanning.",
               },
               {
-                title: "Analytics",
-                body: "We may use basic analytics to understand performance and reliability. We avoid collecting sensitive contract content for analytics.",
+                title: "What we do not do",
+                body: "We do not sell contract data. We do not publish your documents. We do not ask for your full identity to run a basic scan. If you want extra privacy, use the tool without saving history.",
               },
               {
                 title: "Retention",
-                body: "Retention depends on your plan and settings. If you scan without an account, content is not intended to be stored beyond the active session. If you have an account, scan history may be stored for your convenience.",
+                body: "Retention depends on how you use the product. If you scan without saving history, content is intended to be kept only as long as necessary to return the result. If scan history is enabled for your account, past scan metadata may be kept so you can find your results again.",
               },
               {
                 title: "Security",
-                body: "We use standard security practices. No system is perfect; use Clauze as part of a broader review process for high-stakes agreements.",
+                body: "Data is encrypted in transit using TLS. Access to authenticated pages is protected by Supabase authentication. No system is perfect, so treat Clauze as a fast risk review layer and consult a qualified lawyer for high-stakes agreements.",
               },
               {
                 title: "Your choices",
-                body: "You can request deletion of your account data. You can also choose not to create an account and use the product without saving history.",
+                body: "You can choose not to create an account and still use Clauze. If you want to delete your account data, contact us and include the email address tied to your account.",
+              },
+              {
+                title: "Contact",
+                body: "For privacy questions, data deletion requests, or security concerns, contact our support inbox. If you are sharing a clause snippet, remove personal details first.",
               },
             ].map((item, i) => (
               <FadeUp key={item.title} delay={i * 0.05}>
@@ -83,4 +87,3 @@ export default function PrivacyPage() {
     </div>
   );
 }
-

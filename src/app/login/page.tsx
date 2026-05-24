@@ -35,7 +35,7 @@ export default function LoginPage() {
       return;
     }
 
-    router.push("/upload");
+    router.push("/dashboard");
   };
 
   const signInWithGoogle = async () => {
@@ -47,7 +47,7 @@ export default function LoginPage() {
     }
     setIsSubmitting(true);
     setError(null);
-    const redirectTo = `${window.location.origin}/auth/callback?next=/upload`;
+    const redirectTo = `${window.location.origin}/auth/callback?next=/dashboard`;
     const { error: oauthError } = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: { redirectTo },

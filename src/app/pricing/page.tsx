@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
@@ -12,7 +10,7 @@ const PLANS = [
     name: "Free",
     price: "$0",
     period: "month",
-    description: "For anyone who wants to try Clauze.",
+    description: "A fast contract check for NDAs, freelance agreements, and employment offers.",
     features: [
       { name: "1 scan per month", included: true },
       { name: "Risk badges", included: true },
@@ -34,7 +32,7 @@ const PLANS = [
     name: "Pro",
     price: "$19",
     period: "month",
-    description: "For freelancers and professionals who analyse contracts regularly.",
+    description: "For teams and professionals who review contracts weekly and want saved history.",
     features: [
       { name: "Unlimited scans", included: true },
       { name: "Full clause breakdown", included: true },
@@ -47,7 +45,7 @@ const PLANS = [
       { name: "Risk badges", included: false },
       { name: "Clauze Score", included: false },
     ],
-    cta: "Get Pro — Coming Soon",
+    cta: "Get Pro (coming soon)",
     href: "#",
     featured: true,
     comingSoon: true
@@ -56,7 +54,7 @@ const PLANS = [
     name: "One Scan",
     price: "$4",
     period: "scan",
-    description: "For a one-time full analysis when you need it most.",
+    description: "A one time deep scan for a high stakes agreement when you want more detail.",
     features: [
       { name: "Full Pro analysis", included: true },
       { name: "PDF report download", included: true },
@@ -69,7 +67,7 @@ const PLANS = [
       { name: "Risk badges", included: false },
       { name: "Clauze Score", included: false },
     ],
-    cta: "Buy a Scan — Coming Soon",
+    cta: "Buy a Scan (coming soon)",
     href: "#",
     featured: false,
     comingSoon: true
@@ -90,8 +88,9 @@ export default function PricingPage() {
               <h1 className="font-display font-extrabold text-[36px] md:text-[52px] text-1 mb-6">
                 Start free. Upgrade when ready.
               </h1>
-              <p className="font-body font-light text-[20px] text-2 max-w-2xl mx-auto">
-                Every plan includes our core contract analysis. Upgrade for unlimited access and advanced features.
+              <p className="font-body font-light text-[20px] text-2 max-w-2xl mx-auto leading-[1.9]">
+                Clauze is built for contract review in plain English. Use Free for quick checks, then upgrade when you
+                want scan history, exports, and deeper workflows.
               </p>
             </FadeUp>
           </div>
@@ -103,8 +102,8 @@ export default function PricingPage() {
         <section className="py-[120px] px-6 bg-s0">
           <div className="max-w-5xl mx-auto">
             <FadeUp delay={0.1}>
-              <p className="font-body font-light text-[14px] text-3 text-center mb-16">
-                Pro and One Scan launching soon. Start with Free today.
+              <p className="font-body font-light text-[16px] text-3 text-center mb-16 leading-[1.8]">
+                Pro and One Scan launch soon. Start with Free today and get a clean risk summary in minutes.
               </p>
             </FadeUp>
 
@@ -117,11 +116,11 @@ export default function PricingPage() {
                       {plan.price}
                       <span className="text-[18px] text-3 font-light">/{plan.period}</span>
                     </div>
-                    <p className="font-body font-light text-[14px] text-3 mb-8">{plan.description}</p>
+                    <p className="font-body font-light text-[16px] text-3 mb-8 leading-[1.8]">{plan.description}</p>
 
                     <ul className="space-y-4 mb-10">
                       {plan.features.map((feature, j) => (
-                        <li key={j} className="flex items-center gap-3 font-body text-[15px]">
+                        <li key={j} className="flex items-center gap-3 font-body text-[16px]">
                           {feature.included ? (
                             <Check size={18} className="text-violet shrink-0" />
                           ) : (
@@ -160,6 +159,9 @@ export default function PricingPage() {
                 <h2 className="font-display font-extrabold text-[32px] md:text-[40px] text-1">
                   Compare features
                 </h2>
+                <p className="font-body font-light text-[18px] text-2 leading-[1.85] mt-4 max-w-2xl mx-auto">
+                  A quick view of what you get today on Free, and what unlocks as paid plans roll out.
+                </p>
               </div>
             </FadeUp>
 
@@ -213,6 +215,62 @@ export default function PricingPage() {
                     ))}
                   </tbody>
                 </table>
+              </div>
+            </FadeUp>
+          </div>
+        </section>
+
+        <SectionDivider />
+
+        <section className="py-[120px] px-6 bg-s0">
+          <div className="max-w-4xl mx-auto">
+            <FadeUp>
+              <div className="text-center mb-16">
+                <span className="font-body font-medium text-[11px] uppercase tracking-[0.2em] text-violet mb-4 block">
+                  Pricing Questions
+                </span>
+                <h2 className="font-display font-extrabold text-[32px] md:text-[40px] text-1">
+                  What people ask before upgrading
+                </h2>
+              </div>
+            </FadeUp>
+
+            <div className="grid md:grid-cols-2 gap-6 items-stretch">
+              {[
+                {
+                  q: "Is Free enough for an NDA review or a freelance contract?",
+                  a: "Yes. Free is designed for a quick NDA review, a freelance contract check, or an employment offer scan. It flags the risky clauses and explains what they mean.",
+                },
+                {
+                  q: "When does Pro make sense?",
+                  a: "Pro is built for frequent contract review. If you are scanning weekly and want saved history, exports, and faster workflows, Pro is the right fit.",
+                },
+                {
+                  q: "Do I need an account?",
+                  a: "No for the first scan. Create an account if you want a dashboard and future features like scan history and saved reports.",
+                },
+                {
+                  q: "Is this legal advice?",
+                  a: "No. Clauze is a contract reading tool. Use it to understand language and spot risk early. For high stakes agreements, consult a qualified lawyer.",
+                },
+              ].map((item, i) => (
+                <FadeUp key={item.q} delay={i * 0.06}>
+                  <div className="bg-card border rounded-[16px] p-[28px]">
+                    <h3 className="font-display font-bold text-[22px] text-1 mb-3">{item.q}</h3>
+                    <p className="font-body font-light text-[18px] text-2 leading-[1.85]">{item.a}</p>
+                  </div>
+                </FadeUp>
+              ))}
+            </div>
+
+            <FadeUp delay={0.3}>
+              <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
+                <Link href="/upload" className="btn-primary">
+                  Start a free scan
+                </Link>
+                <Link href="/faq" className="btn-secondary">
+                  Read the FAQ
+                </Link>
               </div>
             </FadeUp>
           </div>

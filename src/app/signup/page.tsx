@@ -40,7 +40,7 @@ export default function SignupPage() {
       return;
     }
 
-    const emailRedirectTo = `${window.location.origin}/auth/callback?next=/upload`;
+    const emailRedirectTo = `${window.location.origin}/auth/callback?next=/dashboard`;
     const { error: signUpError } = await supabase.auth.signUp({
       email,
       password,
@@ -67,7 +67,7 @@ export default function SignupPage() {
     setIsSubmitting(true);
     setError(null);
     setSuccess(null);
-    const redirectTo = `${window.location.origin}/auth/callback?next=/upload`;
+    const redirectTo = `${window.location.origin}/auth/callback?next=/dashboard`;
     const { error: oauthError } = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: { redirectTo },

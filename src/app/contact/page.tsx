@@ -7,11 +7,11 @@ import { SectionDivider } from "@/components/section-divider";
 import { ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Contact — Clauze",
+  title: "Contact | Clauze",
   description:
     "Contact Clauze for support, feedback, or partnerships. We respond as quickly as possible.",
   alternates: { canonical: "/contact" },
-  openGraph: { title: "Contact — Clauze", url: "/contact" },
+  openGraph: { title: "Contact | Clauze", url: "/contact" },
 };
 
 export default function ContactPage() {
@@ -30,8 +30,8 @@ export default function ContactPage() {
                 Contact
               </h1>
               <p className="font-body font-light text-[18px] text-2 leading-[1.9] mt-6 max-w-2xl">
-                If you have a question about a scan, feedback on the product, or a partnership request, send a message
-                and we will get back to you.
+                Contact Clauze for support, feedback, or partnerships. If you are stuck on a clause, include the clause
+                text and the contract type so we can help faster.
               </p>
             </FadeUp>
           </div>
@@ -45,7 +45,7 @@ export default function ContactPage() {
               <div className="bg-card border rounded-[16px] p-[28px]">
                 <h2 className="font-display font-bold text-[22px] text-1 mb-3">Email</h2>
                 <p className="font-body font-light text-[18px] text-2 leading-[1.9]">
-                  Use email for support and account help.
+                  Use email for support, login issues, billing questions, and product feedback.
                 </p>
                 <div className="mt-6">
                   <a
@@ -55,21 +55,30 @@ export default function ContactPage() {
                     support@clauze.org <ArrowRight size={18} />
                   </a>
                 </div>
-                <p className="font-body font-light text-[14px] text-3 mt-6">
-                  Replace this email with your real support inbox if needed.
-                </p>
+                <div className="mt-6 space-y-2">
+                  <p className="font-body font-light text-[16px] text-3 leading-[1.8]">
+                    Typical response time: within 24 to 48 hours.
+                  </p>
+                  <p className="font-body font-light text-[16px] text-3 leading-[1.8]">
+                    For sensitive contracts, remove names and addresses before sending anything by email.
+                  </p>
+                </div>
               </div>
             </FadeUp>
 
             <FadeUp delay={0.1}>
               <div className="bg-card border rounded-[16px] p-[28px]">
                 <h2 className="font-display font-bold text-[22px] text-1 mb-3">Common links</h2>
+                <p className="font-body font-light text-[18px] text-2 leading-[1.9] mb-6">
+                  Quick paths to the pages people use most often.
+                </p>
                 <div className="space-y-3">
                   {[
                     { label: "Pricing", href: "/pricing" },
                     { label: "FAQ", href: "/faq" },
                     { label: "How It Works", href: "/how-it-works" },
                     { label: "Try Free", href: "/upload" },
+                    { label: "Privacy Policy", href: "/privacy" },
                   ].map((item) => (
                     <Link
                       key={item.href}
@@ -84,10 +93,50 @@ export default function ContactPage() {
             </FadeUp>
           </div>
         </section>
+
+        <SectionDivider />
+
+        <section className="py-[120px] px-6 bg-s2">
+          <div className="max-w-4xl mx-auto">
+            <FadeUp>
+              <div className="text-center mb-16">
+                <span className="font-body font-medium text-[11px] uppercase tracking-[0.2em] text-violet mb-4 block">
+                  What to include
+                </span>
+                <h2 className="font-display font-extrabold text-[32px] md:text-[40px] text-1">
+                  Get a faster answer
+                </h2>
+              </div>
+            </FadeUp>
+
+            <div className="grid md:grid-cols-3 gap-6 items-stretch">
+              {[
+                {
+                  title: "Contract type",
+                  body: "NDA review, freelance contract, employment offer, SaaS terms, or something else.",
+                },
+                {
+                  title: "Clause snippet",
+                  body: "Paste the exact clause text that confused you, plus the section heading if available.",
+                },
+                {
+                  title: "Your goal",
+                  body: "Are you trying to negotiate, understand risk, or decide whether to walk away?",
+                },
+              ].map((card, i) => (
+                <FadeUp key={card.title} delay={i * 0.06}>
+                  <div className="bg-card border rounded-[16px] p-[28px] h-full">
+                    <h3 className="font-display font-bold text-[22px] text-1 mb-3">{card.title}</h3>
+                    <p className="font-body font-light text-[18px] text-2 leading-[1.85]">{card.body}</p>
+                  </div>
+                </FadeUp>
+              ))}
+            </div>
+          </div>
+        </section>
       </main>
 
       <Footer />
     </div>
   );
 }
-

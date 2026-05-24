@@ -63,7 +63,7 @@ const DEMO_CLAUSES = [
 
 const FEATURES = [
   { icon: <Lock size={36} />, title: "NDAs and Confidentiality", body: "Clauze checks how broadly the NDA is written, what counts as confidential and how long the obligation runs." },
-  { icon: <FileText size={36} />, title: "Freelance Agreements", body: "Payment terms, revision limits, kill fees and scope creep protections — all checked and explained." },
+  { icon: <FileText size={36} />, title: "Freelance Agreements", body: "Payment terms, revision limits, kill fees, and scope creep protections. All checked and explained." },
   { icon: <Scale size={36} />, title: "Employment Contracts", body: "Salary, equity, non-competes, termination conditions and garden leave clauses." },
   { icon: <Zap size={36} />, title: "SaaS and Software Terms", body: "Auto-renewal traps, data ownership, uptime guarantees and liability caps in software agreements." },
   { icon: <Gavel size={36} />, title: "Intellectual Property", body: "Who owns what you create and when. Clauze flags anything that goes beyond what is normal in your industry." },
@@ -423,7 +423,7 @@ export default function Home() {
                     <li>PDF reports</li>
                   </ul>
                   <button disabled className="btn-secondary w-full opacity-50 cursor-not-allowed">
-                    Get Pro — Coming Soon
+                    Get Pro (coming soon)
                   </button>
                 </div>
               </FadeUp>
@@ -441,7 +441,7 @@ export default function Home() {
                     <li>Single document</li>
                   </ul>
                   <button disabled className="btn-secondary w-full opacity-50 cursor-not-allowed">
-                    Buy a Scan — Coming Soon
+                    Buy a Scan (coming soon)
                   </button>
                 </div>
               </FadeUp>

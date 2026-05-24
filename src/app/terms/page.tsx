@@ -5,11 +5,11 @@ import { FadeUp } from "@/components/fade-up";
 import { SectionDivider } from "@/components/section-divider";
 
 export const metadata: Metadata = {
-  title: "Terms of Service — Clauze",
+  title: "Terms of Service | Clauze",
   description:
     "Clauze Terms of Service covering acceptable use, limitations, and account responsibilities.",
   alternates: { canonical: "/terms" },
-  openGraph: { title: "Terms of Service — Clauze", url: "/terms" },
+  openGraph: { title: "Terms of Service | Clauze", url: "/terms" },
 };
 
 export default function TermsPage() {
@@ -28,7 +28,8 @@ export default function TermsPage() {
                 Terms of Service
               </h1>
               <p className="font-body font-light text-[18px] text-2 leading-[1.9] mt-6">
-                By using Clauze, you agree to these terms. If you do not agree, do not use the service.
+                By using Clauze, you agree to these terms. If you do not agree, do not use the service. These terms
+                exist to keep usage clear and fair for everyone.
               </p>
               <p className="font-body font-light text-[14px] text-3 mt-4">
                 Last updated: {new Date().getFullYear()}
@@ -44,7 +45,7 @@ export default function TermsPage() {
             {[
               {
                 title: "What Clauze provides",
-                body: "Clauze provides a contract-reading and summarisation experience that highlights clause risk and explains language in plain English. It is a productivity tool for understanding documents.",
+                body: "Clauze provides contract review in plain English. You can paste contract text or upload a PDF, and Clauze returns a risk score and a clause breakdown with practical explanations. It is a productivity tool for understanding documents.",
               },
               {
                 title: "Acceptable use",
@@ -55,16 +56,36 @@ export default function TermsPage() {
                 body: "Clauze is not a law firm and does not provide legal advice. You are responsible for your decisions. For high-stakes matters, consult a qualified lawyer.",
               },
               {
+                title: "Your content",
+                body: "You are responsible for the text you upload or paste. You should remove personal or confidential details that are not needed for contract review. Do not submit documents that contain sensitive identifiers unless you have a clear reason to do so.",
+              },
+              {
                 title: "Accounts",
                 body: "If you create an account, you are responsible for maintaining the confidentiality of your login credentials and for activity under your account.",
+              },
+              {
+                title: "Plans, limits, and billing",
+                body: "Some features may have usage limits depending on your plan. If you purchase a paid plan in the future, pricing, renewal, and cancellation rules will be shown at checkout and inside your account settings.",
+              },
+              {
+                title: "Service availability",
+                body: "We aim to keep Clauze reliable and fast, but we do not guarantee that the service will always be available. Maintenance, provider outages, or network issues can interrupt access.",
               },
               {
                 title: "Limitations",
                 body: "Outputs may be incomplete or incorrect. Use Clauze as a first pass to find issues and questions to raise, not as a substitute for professional review.",
               },
               {
+                title: "Termination",
+                body: "We may suspend or terminate access if we believe the service is being abused, used unlawfully, or used in a way that risks harm to others or to the platform.",
+              },
+              {
                 title: "Changes",
                 body: "We may update these terms as the product evolves. Continued use after updates means you accept the updated terms.",
+              },
+              {
+                title: "Contact",
+                body: "For support or legal questions about these terms, use the Contact page. If you request account deletion, include the email address associated with your account.",
               },
             ].map((item, i) => (
               <FadeUp key={item.title} delay={i * 0.05}>
@@ -82,4 +103,3 @@ export default function TermsPage() {
     </div>
   );
 }
-

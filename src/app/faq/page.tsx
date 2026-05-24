@@ -13,15 +13,15 @@ const FAQ_SECTIONS = [
     questions: [
       {
         q: "What is Clauze?",
-        a: "Clauze is a contract reading tool that explains legal jargon in plain English. Paste any contract and Clauze will flag risky clauses, give them a risk score, and tell you what to do next. Clauze is not a law firm and does not provide legal advice."
+        a: "Clauze is a contract review tool that reads your agreement and explains the key clauses in plain English. You paste a contract or upload a PDF, and Clauze highlights risk areas like liability, IP ownership, payment terms, termination, and non-competes. It is designed to help you understand what you are signing, not to replace a lawyer."
       },
       {
         q: "What contract types can Clauze read?",
-        a: "Clauze reads NDAs, freelance contracts, employment agreements, SaaS terms, partnership agreements, rental agreements and most standard commercial contracts. Clauze works best with English-language contracts from the US, UK, Canada and Australia."
+        a: "Clauze works well for NDA review, freelance contract review, employment contract review, and SaaS terms. It can also handle most standard commercial agreements written in English. If a contract is highly specialized, scan it anyway and treat the output as a structured first pass."
       },
       {
         q: "Is this legal advice?",
-        a: "No. Clauze is not a law firm and does not provide legal advice. Clauze is a reading and summarisation tool that helps you understand what a contract says before you decide whether to sign it or consult a professional."
+        a: "No. Clauze is not a law firm and does not provide legal advice. Use it to understand the language, spot risk early, and prepare better questions for negotiation or professional review."
       }
     ]
   },
@@ -30,15 +30,15 @@ const FAQ_SECTIONS = [
     questions: [
       {
         q: "Is my contract stored or shared?",
-        a: "Clauze does not store your contract text beyond your active session. Free users have no data saved after they close the tab. Users with an account get a private scan history. We do not sell or share contract data."
+        a: "Your contract text is sent for analysis to generate your results. Clauze does not sell or share contract data. If you use the product without saving history, the platform is designed to avoid long-term storage of your contract text beyond what is needed to generate the analysis."
       },
       {
         q: "How is my data protected?",
-        a: "All uploads are encrypted using industry-standard TLS encryption. Contract text is processed in memory and is never written to disk. We use Firebase's secure infrastructure for any stored data."
+        a: "Traffic is encrypted in transit using TLS. Authentication is handled through Supabase. For sensitive contracts, use a redacted copy and avoid including unnecessary personal data."
       },
       {
         q: "Who can see my contracts?",
-        a: "Only you. Your contracts are processed privately and are never shared with third parties. We do not use your contract data to train any machine learning models."
+        a: "Only you can view your results inside your account. Do not paste contracts you do not have the right to share. If you want extra caution, remove names, addresses, and bank details before scanning."
       }
     ]
   },
@@ -47,7 +47,7 @@ const FAQ_SECTIONS = [
     questions: [
       {
         q: "How accurate is the analysis?",
-        a: "Clauze identifies clauses that deviate from standard practices with high consistency. The system has been trained on thousands of contracts and legal documents. For high-stakes contracts always pair a Clauze scan with professional legal review."
+        a: "Clauze is best for identifying common contract red flags and summarising clauses in plain English. Accuracy depends on contract quality and how clearly clauses are written. For high-stakes agreements, treat the output as a first pass and consult a qualified lawyer."
       },
       {
         q: "What does the Clauze Score mean?",
@@ -55,7 +55,7 @@ const FAQ_SECTIONS = [
       },
       {
         q: "Can Clauze replace a lawyer?",
-        a: "No. While Clauze can identify many common issues and risky clauses, it cannot replace the judgement of a qualified legal professional. For complex contracts, high-stakes decisions, or anything with significant financial implications, always consult a lawyer."
+        a: "No. Clauze helps you read and understand a contract. A lawyer helps you apply law to your situation, negotiate strategy, and assess risk in context."
       }
     ]
   },
@@ -64,11 +64,11 @@ const FAQ_SECTIONS = [
     questions: [
       {
         q: "How long does an analysis take?",
-        a: "Most contracts are fully analysed in under 30 seconds. Contracts over 15,000 words may take up to 90 seconds. Pro users get priority processing speed."
+        a: "Most contracts complete in under a minute. Longer documents can take more time, depending on length and complexity."
       },
       {
         q: "Can I download my report?",
-        a: "Pro users and one-time scan purchasers receive a formatted PDF report with the full analysis, scores and recommendations. PDF download is coming soon for all users."
+        a: "Report export is planned. For now, you can copy key clauses and recommendations, and keep your contract text in your own notes. If you want PDF exports first, tell me your preferred report layout and I will prioritize it."
       },
       {
         q: "What happens when my free scan limit is reached?",
@@ -83,7 +83,7 @@ const FAQ_SECTIONS = [
 ];
 
 export default function FAQPage() {
-  const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [openFaq, setOpenFaq] = useState<string | null>(null);
 
   return (
     <div className="bg-s0 text-1 min-h-screen">
@@ -109,7 +109,7 @@ export default function FAQPage() {
 
         {/* FAQ Sections */}
         {FAQ_SECTIONS.map((section, sectionIndex) => (
-          <section key={section.title} className={`py-[100px] px-6 ${sectionIndex % 2 === 0 ? "bg-s0" : "bg-s2"}`}>
+          <section key={section.title} className={`py-[120px] px-6 ${sectionIndex % 2 === 0 ? "bg-s0" : "bg-s2"}`}>
             <div className="max-w-[740px] mx-auto">
               <FadeUp>
                 <h2 className="font-display font-bold text-[24px] text-1 mb-10 pb-4 border-b border-[var(--border)]">
@@ -119,28 +119,28 @@ export default function FAQPage() {
 
               <div className="space-y-4">
                 {section.questions.map((item, questionIndex) => {
-                  const globalIndex = sectionIndex * 3 + questionIndex;
+                  const id = `${sectionIndex}:${questionIndex}`;
                   return (
                     <FadeUp key={item.q} delay={questionIndex * 0.05}>
                       <div className="border rounded-[16px] overflow-hidden">
                         <button
-                          onClick={() => setOpenFaq(openFaq === globalIndex ? null : globalIndex)}
+                          onClick={() => setOpenFaq(openFaq === id ? null : id)}
                           className="w-full flex items-center justify-between p-6 text-left hover:bg-[var(--card-hover)] transition-colors"
                         >
                           <span className={cn(
                             "font-display font-bold text-[18px] transition-colors pr-4",
-                            openFaq === globalIndex ? "text-violet" : "text-1"
+                            openFaq === id ? "text-violet" : "text-1"
                           )}>
                             {item.q}
                           </span>
                           <div className={cn(
                             "w-8 h-8 rounded-full border flex items-center justify-center transition-all shrink-0",
-                            openFaq === globalIndex ? "bg-violet border-violet rotate-45" : "border-[var(--border)]"
+                            openFaq === id ? "bg-violet border-violet rotate-45" : "border-[var(--border)]"
                           )}>
-                            <span className={cn("text-[18px]", openFaq === globalIndex ? "text-white" : "text-3")}>+</span>
+                            <span className={cn("text-[18px]", openFaq === id ? "text-white" : "text-3")}>+</span>
                           </div>
                         </button>
-                        {openFaq === globalIndex && (
+                        {openFaq === id && (
                           <div className="px-6 pb-6 font-body font-light text-[17px] text-2 leading-[1.8]">
                             {item.a}
                           </div>
@@ -157,14 +157,14 @@ export default function FAQPage() {
         <SectionDivider />
 
         {/* Still have questions CTA */}
-        <section className="py-[100px] px-6 bg-s1">
+        <section className="py-[120px] px-6 bg-s1">
           <div className="max-w-2xl mx-auto text-center">
             <FadeUp>
               <h2 className="font-display font-extrabold text-[32px] text-1 mb-6">
                 Still have questions?
               </h2>
               <p className="font-body font-light text-[18px] text-2 mb-8">
-                Can not find what you are looking for? Reach out and we will get back to you.
+                If you cannot find what you are looking for, reach out and we will get back to you.
               </p>
               <a
                 href="mailto:hello@clauze.org"

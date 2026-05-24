@@ -29,11 +29,11 @@ const dmSans = DM_Sans({
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "Clauze — Contract Reader That Explains the Fine Print",
+  title: "Clauze | Contract Reader That Explains the Fine Print",
   description:
     "Paste any contract. Clauze flags every risky clause and explains it in plain English. Free first scan. No account needed. Results in 30 seconds.",
   openGraph: {
-    title: "Clauze — Read Any Contract in Plain English",
+    title: "Clauze | Read Any Contract in Plain English",
     description: "Know what you are signing. Clauze flags the risky parts before you sign.",
     url: siteUrl,
     siteName: "Clauze",

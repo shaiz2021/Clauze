@@ -1,15 +1,15 @@
-"use client";
-
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { CheckCircle2, Info, Download, ChevronRight } from "lucide-react";
+import Link from "next/link";
+import { FadeUp } from "@/components/fade-up";
+import { SectionDivider } from "@/components/section-divider";
+import { ArrowRight, CheckCircle2, Info, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const MOCK_RESULT = {
   score: 64,
-  summary: "This employment agreement contains standard terms but includes several highly restrictive clauses regarding non-compete and intellectual property that are more favorable to the employer than is typical for this role.",
+  summary:
+    "This employment agreement looks standard at first glance, but it contains a broad non-compete and a sweeping IP assignment. Those two clauses increase risk and should be negotiated before signing.",
   risks: {
     high: 2,
     medium: 3,
@@ -45,114 +45,177 @@ const MOCK_RESULT = {
 
 export default function ExampleReportPage() {
   return (
-    <div className="min-h-screen bg-black text-cream">
+    <div className="min-h-screen bg-s0 text-1">
       <Navbar />
       
-      <main className="pt-32 pb-20 px-6 max-w-4xl mx-auto">
-        <div className="mb-12 text-center">
-          <div className="inline-flex items-center px-3 py-1 rounded-full bg-violet/10 text-violet text-xs font-medium mb-4">
-            Example Analysis
+      <main className="pt-[68px]">
+        <section className="pt-32 pb-24 px-6 bg-s1">
+          <div className="max-w-4xl mx-auto text-center">
+            <FadeUp>
+              <span className="font-body font-medium text-[11px] uppercase tracking-[0.2em] text-violet mb-6 block">
+                Example report
+              </span>
+              <h1 className="font-serif italic font-normal text-[44px] md:text-[64px] text-1 leading-[0.98] tracking-[-0.02em]">
+                Employment contract review example
+              </h1>
+              <p className="font-body font-light text-[18px] md:text-[20px] text-2 leading-[1.85] mt-6 max-w-2xl mx-auto">
+                This is what a Clauze scan looks like. It highlights risky clauses and explains them in plain English,
+                so you can negotiate with clarity.
+              </p>
+            </FadeUp>
           </div>
-          <h1 className="text-4xl md:text-5xl font-serif mb-4">Software Engineer Agreement</h1>
-          <p className="text-cream/50">A typical employment contract analysis by Clauze.</p>
-        </div>
+        </section>
 
-        <div className="space-y-8">
-          {/* Score Section */}
-          <Card className="bg-violet/5 border-violet/20">
-            <CardContent className="p-8 md:p-12">
-              <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
-                <div className="flex items-end gap-4">
-                  <div className="text-8xl font-serif text-violet leading-none">{MOCK_RESULT.score}</div>
-                  <div className="pb-2">
-                    <div className="text-lg font-medium">Risk Score</div>
-                    <div className="text-sm text-cream/50">Moderately Risky</div>
-                  </div>
-                </div>
-                <div className="flex gap-4 w-full md:w-auto">
-                  <div className="flex-1 md:w-24 p-4 rounded-2xl bg-red-400/5 border border-red-400/10 text-center">
-                    <div className="text-2xl font-bold text-red-400">{MOCK_RESULT.risks.high}</div>
-                    <div className="text-[10px] uppercase tracking-wider text-red-400/50">High</div>
-                  </div>
-                  <div className="flex-1 md:w-24 p-4 rounded-2xl bg-yellow-400/5 border border-yellow-400/10 text-center">
-                    <div className="text-2xl font-bold text-yellow-400">{MOCK_RESULT.risks.medium}</div>
-                    <div className="text-[10px] uppercase tracking-wider text-yellow-400/50">Medium</div>
-                  </div>
-                  <div className="flex-1 md:w-24 p-4 rounded-2xl bg-green-400/5 border border-green-400/10 text-center">
-                    <div className="text-2xl font-bold text-green-400">{MOCK_RESULT.risks.low}</div>
-                    <div className="text-[10px] uppercase tracking-wider text-green-400/50">Low</div>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="mt-10 pt-10 border-t border-violet/10">
-                <h3 className="text-sm font-medium uppercase tracking-widest text-cream/30 mb-4">Executive Summary</h3>
-                <p className="text-lg text-cream/80 leading-relaxed italic">
-                  &quot;{MOCK_RESULT.summary}&quot;
-                </p>
-              </div>
-            </CardContent>
-          </Card>
+        <SectionDivider />
 
-          {/* Clauses */}
-          <div className="space-y-6">
-            <h3 className="text-sm font-medium uppercase tracking-widest text-cream/30 flex items-center gap-2 px-2">
-              Detailed Findings <ChevronRight className="w-3 h-3" />
-            </h3>
-            {MOCK_RESULT.clauses.map((clause, idx) => (
-              <Card key={idx} className="bg-white/[0.02] border-white/5 hover:border-violet/20 transition-all">
-                <CardContent className="p-8">
-                  <div className="flex justify-between items-start mb-6">
-                    <span className="text-xs font-bold uppercase tracking-[0.2em] text-violet">{clause.tag}</span>
-                    <span className={cn(
-                      "text-[10px] px-3 py-1 rounded-full border font-bold uppercase tracking-wider",
-                      clause.risk === "high" ? "text-red-400 bg-red-400/10 border-red-400/20" : "text-yellow-400 bg-yellow-400/10 border-yellow-400/20"
-                    )}>
-                      {clause.risk} risk
-                    </span>
-                  </div>
-                  <div className="mb-6 p-4 rounded-xl bg-black/40 border border-white/5">
-                    <p className="text-sm text-cream/40 italic leading-relaxed">
-                      &quot;{clause.original}&quot;
-                    </p>
-                  </div>
-                  <div className="flex gap-4">
-                    <div className="mt-1 shrink-0"><Info className="w-5 h-5 text-violet" /></div>
-                    <div>
-                      <h4 className="text-sm font-medium text-violet mb-1">Plain English Explanation</h4>
-                      <p className="text-cream/80 leading-relaxed">{clause.explanation}</p>
+        <section className="py-[120px] px-6 bg-s0">
+          <div className="max-w-4xl mx-auto space-y-8">
+            <FadeUp>
+              <div className="bg-card border border-[var(--border)] rounded-[16px] p-[28px]">
+                <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+                  <div className="flex items-end gap-4">
+                    <div className="font-display font-extrabold text-[72px] md:text-[96px] text-violet leading-none">
+                      {MOCK_RESULT.score}
+                    </div>
+                    <div className="pb-2">
+                      <div className="font-body font-medium text-[12px] uppercase tracking-[0.2em] text-3">
+                        Clauze Score
+                      </div>
+                      <div className="font-body font-light text-[16px] text-2 mt-2">
+                        Review recommended
+                      </div>
                     </div>
                   </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
 
-          {/* Next Steps */}
-          <Card className="bg-white/[0.02] border-white/5">
-            <CardContent className="p-8">
-              <h3 className="text-lg font-serif mb-6 flex items-center gap-2">
-                <CheckCircle2 className="w-5 h-5 text-green-400" />
-                Negotiation Strategy
-              </h3>
-              <div className="grid sm:grid-cols-2 gap-4">
-                {MOCK_RESULT.recommendations.map((rec, idx) => (
-                  <div key={idx} className="p-4 rounded-xl bg-white/5 border border-white/5 text-sm text-cream/70 flex gap-3">
-                    <div className="w-1.5 h-1.5 rounded-full bg-violet mt-1.5 shrink-0" />
-                    {rec}
+                  <div className="grid grid-cols-3 gap-3 w-full md:w-auto">
+                    <div className="p-4 rounded-[16px] bg-risk-red/10 border border-risk-red/20 text-center">
+                      <div className="font-display font-extrabold text-[28px] text-risk-red leading-none">
+                        {MOCK_RESULT.risks.high}
+                      </div>
+                      <div className="font-body font-medium text-[11px] uppercase tracking-[0.2em] text-risk-red mt-2">
+                        High
+                      </div>
+                    </div>
+                    <div className="p-4 rounded-[16px] bg-risk-amber/10 border border-risk-amber/20 text-center">
+                      <div className="font-display font-extrabold text-[28px] text-risk-amber leading-none">
+                        {MOCK_RESULT.risks.medium}
+                      </div>
+                      <div className="font-body font-medium text-[11px] uppercase tracking-[0.2em] text-risk-amber mt-2">
+                        Review
+                      </div>
+                    </div>
+                    <div className="p-4 rounded-[16px] bg-risk-green/10 border border-risk-green/20 text-center">
+                      <div className="font-display font-extrabold text-[28px] text-risk-green leading-none">
+                        {MOCK_RESULT.risks.low}
+                      </div>
+                      <div className="font-body font-medium text-[11px] uppercase tracking-[0.2em] text-risk-green mt-2">
+                        Safe
+                      </div>
+                    </div>
                   </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
+                </div>
 
-          <div className="flex justify-center pt-8">
-            <Button size="lg" className="rounded-full px-12">
-              <Download className="w-4 h-4 mr-2" />
-              Download Full Report (PDF)
-            </Button>
+                <div className="mt-10 pt-10 border-t border-[var(--border)]">
+                  <h2 className="font-body font-medium text-[11px] uppercase tracking-[0.2em] text-3 mb-4">
+                    Summary
+                  </h2>
+                  <p className="font-body font-light text-[18px] text-2 leading-[1.9]">
+                    {MOCK_RESULT.summary}
+                  </p>
+                </div>
+              </div>
+            </FadeUp>
+
+            <FadeUp delay={0.08}>
+              <div className="flex items-center gap-2 font-body font-medium text-[11px] uppercase tracking-[0.2em] text-3">
+                Detailed findings <ChevronRight className="w-4 h-4" />
+              </div>
+            </FadeUp>
+
+            <div className="space-y-6">
+              {MOCK_RESULT.clauses.map((clause, idx) => (
+                <FadeUp key={idx} delay={0.12 + idx * 0.06}>
+                  <div className="bg-card border border-[var(--border)] rounded-[16px] p-[28px]">
+                    <div className="flex items-start justify-between gap-4 mb-6">
+                      <div>
+                        <p className="font-body font-medium text-[11px] uppercase tracking-[0.2em] text-violet">
+                          {clause.tag}
+                        </p>
+                        <h3 className="font-display font-bold text-[22px] text-1 mt-2">
+                          {clause.tag.replace(/_/g, " ").toLowerCase().replace(/(^\\w|\\s\\w)/g, (m) => m.toUpperCase())}
+                        </h3>
+                      </div>
+                      <span
+                        className={cn(
+                          "inline-flex items-center px-3 h-8 rounded-full text-[12px] font-body font-medium text-white",
+                          clause.risk === "high"
+                            ? "bg-risk-red"
+                            : clause.risk === "medium"
+                              ? "bg-risk-amber"
+                              : "bg-risk-green"
+                        )}
+                      >
+                        {clause.risk === "medium" ? "review" : clause.risk} risk
+                      </span>
+                    </div>
+
+                    <div className="mb-6 p-5 rounded-[12px] bg-card-inner border border-[var(--border)]">
+                      <p className="font-mono text-[13px] text-2 leading-[1.9]">
+                        &quot;{clause.original}&quot;
+                      </p>
+                    </div>
+
+                    <div className="flex gap-4">
+                      <div className="mt-1 shrink-0">
+                        <Info className="w-5 h-5 text-violet" />
+                      </div>
+                      <div>
+                        <p className="font-body font-medium text-[12px] uppercase tracking-[0.2em] text-3 mb-2">
+                          Plain English
+                        </p>
+                        <p className="font-body font-light text-[18px] text-2 leading-[1.85]">
+                          {clause.explanation}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </FadeUp>
+              ))}
+            </div>
+
+            <FadeUp delay={0.4}>
+              <div className="bg-card border border-[var(--border)] rounded-[16px] p-[28px]">
+                <h2 className="font-display font-bold text-[22px] text-1 mb-3 flex items-center gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-risk-green" />
+                  Negotiation checklist
+                </h2>
+                <p className="font-body font-light text-[18px] text-2 leading-[1.85]">
+                  These are example next steps based on the flagged clauses above. Use them as a starting point for
+                  questions and edits.
+                </p>
+                <div className="grid sm:grid-cols-2 gap-4 mt-8">
+                  {MOCK_RESULT.recommendations.map((rec, idx) => (
+                    <div
+                      key={idx}
+                      className="p-5 rounded-[12px] bg-card-inner border border-[var(--border)] text-[16px] text-2 flex gap-3 font-body font-light"
+                    >
+                      <div className="w-1.5 h-1.5 rounded-full bg-violet mt-2.5 shrink-0" />
+                      {rec}
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
+                  <Link href="/upload" className="btn-primary">
+                    Analyse my contract <ArrowRight size={18} />
+                  </Link>
+                  <Link href="/how-it-works" className="btn-secondary">
+                    How it works
+                  </Link>
+                </div>
+              </div>
+            </FadeUp>
           </div>
-        </div>
+        </section>
       </main>
 
       <Footer />

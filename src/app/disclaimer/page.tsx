@@ -5,11 +5,11 @@ import { FadeUp } from "@/components/fade-up";
 import { SectionDivider } from "@/components/section-divider";
 
 export const metadata: Metadata = {
-  title: "Not Legal Advice — Clauze",
+  title: "Not Legal Advice | Clauze",
   description:
     "Clauze is a contract reading tool and does not provide legal advice. Understand the limits and when to consult a lawyer.",
   alternates: { canonical: "/disclaimer" },
-  openGraph: { title: "Not Legal Advice — Clauze", url: "/disclaimer" },
+  openGraph: { title: "Not Legal Advice | Clauze", url: "/disclaimer" },
 };
 
 export default function DisclaimerPage() {
@@ -42,7 +42,7 @@ export default function DisclaimerPage() {
             {[
               {
                 title: "Clauze is a reading tool",
-                body: "Clauze highlights clauses and explains language in plain English. It is designed to help you ask better questions and notice risk earlier.",
+                body: "Clauze is a contract review tool that highlights clauses and explains language in plain English. It is designed to help you understand a contract faster and notice risk earlier.",
               },
               {
                 title: "No lawyer-client relationship",
@@ -53,8 +53,20 @@ export default function DisclaimerPage() {
                 body: "Automated analysis can be wrong or incomplete. You should independently verify important terms and consult counsel when needed.",
               },
               {
+                title: "What Clauze is good for",
+                body: "A fast first pass on NDA review, freelance contract review, and employment contract review. It helps you identify liability caps, termination clauses, IP assignment, and payment terms that deserve attention.",
+              },
+              {
+                title: "What Clauze is not",
+                body: "Clauze does not interpret laws for your jurisdiction, negotiate on your behalf, or assess your full business context. It cannot guarantee that a clause is enforceable or invalid.",
+              },
+              {
                 title: "When to consult a lawyer",
                 body: "If the contract involves high financial risk, employment disputes, equity, litigation exposure, regulatory requirements, or you are unsure what a clause means, consult a qualified lawyer.",
+              },
+              {
+                title: "How to use Clauze responsibly",
+                body: "Use the output to build a list of questions, propose safer wording, and decide whether to sign. For important contracts, treat Clauze as a checklist and pair it with professional review.",
               },
             ].map((item, i) => (
               <FadeUp key={item.title} delay={i * 0.05}>
@@ -72,4 +84,3 @@ export default function DisclaimerPage() {
     </div>
   );
 }
-
