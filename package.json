@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "postinstall": "mkdir -p public && cp node_modules/pdfjs-dist/build/pdf.worker.min.mjs public/"
   },
   "dependencies": {
     "@fontsource/playfair-display": "^5.2.8",
