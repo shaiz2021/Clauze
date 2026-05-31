@@ -52,13 +52,48 @@ export default function UploadPage() {
 
     setIsUploading(true);
     try {
+      setError(null);
+      setResult(null);
+
+      if (file.size > 10 * 1024 * 1024) {
+        throw new Error("File is too large. Please upload a file under 10MB.");
+      }
+
+      const name = file.name.toLowerCase();
+      const isPdf = file.type === "application/pdf" || name.endsWith(".pdf");
+      const isText = file.type === "text/plain" || name.endsWith(".txt");
+      const isDocx =
+        file.type === "application/vnd.openxmlformats-officedocument.wordprocessingml.document" ||
+        name.endsWith(".docx");
+
+      if (isText) {
+        const content = await file.text();
+        setText(content);
+        return;
+      }
+
+      if (isDocx) {
+        throw new Error("DOCX upload is not supported yet. Please upload a PDF or paste the text.");
+      }
+
+      if (!isPdf) {
+        throw new Error("Unsupported file type. Please upload a PDF or a plain text file.");
+      }
+
       const extractedText = await extractTextFromPdf(file);
       setText(extractedText);
     } catch (error) {
-      console.error("PDF extraction error:", error);
-      alert("Failed to extract text from PDF.");
+      const message =
+        error instanceof Error
+          ? error.message
+          : typeof error === "string"
+            ? error
+            : "Unable to extract text from the file.";
+      console.error("File upload error:", error);
+      setError(message);
     } finally {
       setIsUploading(false);
+      e.target.value = "";
     }
   };
 
@@ -117,7 +152,7 @@ export default function UploadPage() {
               <label className="block border-2 border-dashed border-[var(--border)] rounded-[16px] p-10 text-center cursor-pointer hover:border-violet hover:bg-violet-dim transition-all">
                 <input
                   type="file"
-                  accept=".pdf,.docx,text/plain"
+                  accept=".pdf,.txt,text/plain"
                   onChange={handleFileUpload}
                   className="hidden"
                   disabled={isUploading}
@@ -133,7 +168,7 @@ export default function UploadPage() {
                   Drag your PDF here or click to browse
                 </p>
                 <p className="font-body font-light text-[13px] text-3">
-                  PDF, DOCX or plain text · Max 10MB
+                  PDF or plain text · Max 10MB
                 </p>
               </label>
 

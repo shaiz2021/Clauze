@@ -66,7 +66,19 @@ export async function POST(req: Request) {
     return NextResponse.json(analysis);
   } catch (error) {
     console.error("Analysis error:", error);
-    const message = error instanceof Error ? error.message : "Failed to analyze contract";
-    return NextResponse.json({ error: message }, { status: 500 });
+    const rawMessage = error instanceof Error ? error.message : "Failed to analyze contract";
+    const msg = rawMessage.toLowerCase();
+
+    if (msg.includes("api_key_invalid") || msg.includes("api key expired") || msg.includes("api key invalid")) {
+      return NextResponse.json(
+        {
+          error:
+            "GEMINI_API_KEY is invalid or expired. Create a new Google AI Studio key and update GEMINI_API_KEY in Vercel environment variables, then redeploy.",
+        },
+        { status: 401 }
+      );
+    }
+
+    return NextResponse.json({ error: rawMessage }, { status: 500 });
   }
 }
