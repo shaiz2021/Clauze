@@ -279,7 +279,7 @@ export function Navbar() {
                   className="btn-primary"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  {user ? "Go to App" : "Try Free"}
+                  {user ? "Scan Now" : "Try Free"}
                 </Link>
               </motion.div>
             </div>
