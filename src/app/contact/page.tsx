@@ -50,9 +50,9 @@ export default function ContactPage() {
                 <div className="mt-6">
                   <a
                     className="btn-primary"
-                    href="mailto:support@clauze.org"
+                    href="mailto:support@clauze.xyz"
                   >
-                    support@clauze.org <ArrowRight size={18} />
+                    support@clauze.xyz <ArrowRight size={18} />
                   </a>
                 </div>
                 <div className="mt-6 space-y-2">

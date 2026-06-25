@@ -3,11 +3,6 @@
 export const extractTextFromPdf = async (file: File): Promise<string> => {
   const pdfjsLib: any = await import("pdfjs-dist");
 
-  try {
-    pdfjsLib.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.mjs";
-  } catch {
-  }
-
   const arrayBuffer = await file.arrayBuffer();
 
   const toMessage = (err: unknown) => {
@@ -38,34 +33,16 @@ export const extractTextFromPdf = async (file: File): Promise<string> => {
     return err instanceof Error ? err : new Error("Unable to extract text from the PDF.");
   };
 
-  const load = async (disableWorker: boolean) => {
-    const loadingTask = pdfjsLib.getDocument({ data: arrayBuffer, disableWorker });
+  const load = async () => {
+    const loadingTask = pdfjsLib.getDocument({ data: arrayBuffer, disableWorker: true });
     return await loadingTask.promise;
-  };
-
-  const isWorkerRelatedError = (err: unknown) => {
-    const msg = toMessage(err).toLowerCase();
-    return (
-      msg.includes("worker") ||
-      msg.includes("cannot load script") ||
-      msg.includes("failed to fetch dynamically imported module") ||
-      msg.includes("setting up fake worker failed")
-    );
   };
 
   let pdf: any;
   try {
-    pdf = await load(false);
+    pdf = await load();
   } catch (err) {
-    if (isWorkerRelatedError(err)) {
-      try {
-        pdf = await load(true);
-      } catch (inner) {
-        throw toFriendlyError(inner);
-      }
-    } else {
-      throw toFriendlyError(err);
-    }
+    throw toFriendlyError(err);
   }
 
   let fullText = "";

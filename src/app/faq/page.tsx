@@ -167,7 +167,7 @@ export default function FAQPage() {
                 If you cannot find what you are looking for, reach out and we will get back to you.
               </p>
               <a
-                href="mailto:hello@clauze.org"
+                href="mailto:hello@clauze.xyz"
                 className="btn-primary inline-flex"
               >
                 Contact Us

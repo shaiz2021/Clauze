@@ -19,7 +19,7 @@ export async function POST(req: Request) {
     }
 
     const prompt = `
-      You are a contract analysis tool for Clauze (clauze.org). 
+      You are a contract analysis tool for Clauze (clauze.xyz). 
       Return ONLY raw JSON. No markdown. No code fences. 
 
       {
