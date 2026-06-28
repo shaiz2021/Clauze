@@ -7,7 +7,7 @@ import { FadeUp } from "@/components/fade-up";
 import { SectionDivider } from "@/components/section-divider";
 import { ArrowLeft, Clock, Calendar } from "lucide-react";
 
-const BLOG_POSTS: Record<string, {
+export const BLOG_POSTS: Record<string, {
   title: string;
   excerpt: string;
   category: string;
