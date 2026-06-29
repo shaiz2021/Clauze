@@ -5,10 +5,7 @@ import { Footer } from "@/components/footer";
 import { FadeUp } from "@/components/fade-up";
 import { SectionDivider } from "@/components/section-divider";
 import { ArrowRight, Shield, FileText, Search, CheckCircle2 } from "lucide-react";
-
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ??
-  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000");
+import { siteUrl } from "@/lib/site-url";
 
 export const metadata: Metadata = {
   title: "About Clauze | Read the Fine Print",
