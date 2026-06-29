@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { BLOG_POSTS } from "@/app/blog/[slug]/page";
+import { BLOG_POSTS } from "@/lib/blog-posts";
 
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ??
