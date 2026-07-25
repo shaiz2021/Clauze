@@ -6,6 +6,8 @@ import { Footer } from "@/components/footer";
 import { FadeUp } from "@/components/fade-up";
 import { SectionDivider } from "@/components/section-divider";
 import { ArrowLeft, Clock, Calendar } from "lucide-react";
+import { AuthorBio } from "@/components/author-bio";
+import Script from "next/script";
 
 import { BLOG_POSTS } from "@/lib/blog-posts";
 export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
@@ -29,9 +31,36 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
   const post = BLOG_POSTS[params.slug];
   if (!post) notFound();
 
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": post.title,
+    "description": post.excerpt,
+    "datePublished": post.date,
+    "dateModified": post.date,
+    "author": {
+      "@type": "Person",
+      "name": "Shahzaib Khan",
+      "url": "https://clauze.xyz/about"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Clauze",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://clauze.xyz/icon.svg"
+      }
+    }
+  };
+
   return (
     <div className="bg-s0 text-1 min-h-screen">
       <Navbar />
+      <Script
+        id="article-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
       
       <main className="pt-[68px]">
         <section className="pt-32 pb-24 px-6 bg-s0">
@@ -56,13 +85,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
             <p className="font-body font-light text-[18px] text-2 leading-[1.9] max-w-2xl">
               {post.excerpt}
             </p>
-            <div className="flex flex-wrap items-center gap-6 pb-8 mt-10 border-b border-[var(--border)]">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-card border border-[var(--border)] flex items-center justify-center">
-                  <span className="text-violet font-display font-bold">C</span>
-                </div>
-                <span className="text-2 font-body font-medium">{post.author}</span>
-              </div>
+            <div className="flex flex-wrap items-center gap-6 pb-4 mt-10">
               <div className="flex items-center gap-2 text-3 text-[14px] font-body">
                 <Calendar size={14} />
                 {post.date}
@@ -72,6 +95,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                 {post.readTime}
               </div>
             </div>
+            <AuthorBio />
           </FadeUp>
 
           <FadeUp delay={0.2}>
