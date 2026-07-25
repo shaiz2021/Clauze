@@ -32,7 +32,7 @@ export function AuthorBio() {
       <div className="flex-1">
         <div className="flex items-center gap-2 mb-2">
           <Link 
-            href="/about" 
+            href="https://www.linkedin.com/in/shahzaib-khan-114b16235/"
             className="font-display font-bold text-[18px] text-1 hover:text-violet transition-colors"
           >
             Shahzaib Khan
