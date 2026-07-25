@@ -15,7 +15,7 @@ export const BLOG_POSTS: Record<string, BlogPost> = {
       "If a contract says “force majeure,” it is describing what happens when life disrupts performance. Here is what it really means and what to negotiate.",
     category: "Legal Basics",
     author: "Clauze Team",
-    date: "May 19, 2026",
+    date: "July 20, 2026",
     readTime: "7 min read",
     content: `
 Force majeure clauses are the contract's way of answering one question: what happens if something outside either party's control makes performance impossible or unrealistic?
@@ -94,7 +94,7 @@ If you are unsure how the clause applies to your situation, paste the section in
       "This clause decides where disputes happen and which rules apply. In many contracts, it matters more than the payment section.",
     category: "Legal Basics",
     author: "Clauze Team",
-    date: "May 18, 2026",
+    date: "July 17, 2026",
     readTime: "8 min read",
     content: `
 Governing law, venue, and jurisdiction are often bundled into one paragraph near the end of a contract. Most people skip it. That is a mistake.
@@ -169,7 +169,7 @@ If you want to sanity-check a dispute clause fast, paste it into Clauze and Clau
       "A liability cap can save you from catastrophic risk. Here is how to spot missing caps, hidden carve-outs, and one-sided limits.",
     category: "Legal Basics",
     author: "Clauze Team",
-    date: "May 17, 2026",
+    date: "July 14, 2026",
     readTime: "9 min read",
     content: `
 Limitation of liability is where contracts decide the worst-case scenario. If something goes wrong, how bad can it get?
@@ -234,7 +234,7 @@ If you are unsure whether the cap is real protection or just a paragraph that lo
       "Indemnities are where contracts quietly move legal risk onto you. Here is what “defend, indemnify, hold harmless” actually requires.",
     category: "Legal Basics",
     author: "Clauze Team",
-    date: "May 16, 2026",
+    date: "July 11, 2026",
     readTime: "10 min read",
     content: `
 Indemnification is one of the most misunderstood parts of a contract. It is also one of the most expensive if you get it wrong.
@@ -313,7 +313,7 @@ If you want a fast read on whether the indemnity is standard or dangerous, paste
       "Not every offer letter is a full contract. Here is what parts typically bind you, what can change, and what to get in writing.",
     category: "Employment",
     author: "Clauze Team",
-    date: "May 15, 2026",
+    date: "July 8, 2026",
     readTime: "7 min read",
     content: `
 Offer letters are often written like a friendly summary. Employment contracts read like legal documents. But the line between them is not always clear.
@@ -381,7 +381,7 @@ If you want a quick check, paste your offer letter into Clauze and Clauze reads 
       "Non‑solicits look small but can restrict your next move. Learn how they work, what to narrow, and how to spot hidden non‑compete language.",
     category: "Employment",
     author: "Clauze Team",
-    date: "May 14, 2026",
+    date: "July 5, 2026",
     readTime: "9 min read",
     content: `
 Non-solicitation clauses are often presented as a "reasonable" alternative to a non-compete. In practice, they can still meaningfully restrict your career.
@@ -440,7 +440,7 @@ If you are signing an employment contract and see a non-solicit, paste it into C
       "IP clauses can claim your side projects and future work. Here is what to carve out, what “works made for hire” means, and what to negotiate.",
     category: "Employment",
     author: "Clauze Team",
-    date: "May 13, 2026",
+    date: "July 2, 2026",
     readTime: "10 min read",
     content: `
 IP assignment clauses matter most when you create things: code, designs, writing, inventions, product ideas, processes.
@@ -499,7 +499,7 @@ If you are unsure whether a clause captures your side projects, paste it into Cl
       "A kill fee protects freelancers when a client ends a project midstream. Here is a practical, negotiation-friendly approach.",
     category: "Freelance",
     author: "Clauze Team",
-    date: "May 12, 2026",
+    date: "June 29, 2026",
     readTime: "8 min read",
     content: `
 Freelance projects get cancelled. Budgets change. Priorities shift. Sometimes the client simply disappears.
@@ -558,7 +558,7 @@ If you are unsure how your termination clause behaves, paste it into Clauze and 
       "Payment terms decide your cash flow. Learn how to negotiate net terms, late fees, milestones, and a simple “pay on receipt” fallback.",
     category: "Freelance",
     author: "Clauze Team",
-    date: "May 11, 2026",
+    date: "June 26, 2026",
     readTime: "9 min read",
     content: `
 Payment terms are not just accounting details. They are risk allocation.
@@ -614,7 +614,7 @@ If you want to see whether your contract gives you real leverage to get paid, pa
       "A strong SOW prevents vague deliverables, endless revisions, and “just one more thing.” Here is a structure you can actually use.",
     category: "Freelance",
     author: "Clauze Team",
-    date: "May 10, 2026",
+    date: "June 23, 2026",
     readTime: "10 min read",
     content: `
 Scope creep is rarely malicious. It is usually the product of a vague scope and unclear boundaries.
@@ -672,7 +672,7 @@ If you want to check whether your SOW protects you, paste it into Clauze and Cla
       "Most NDA fights happen because the carve‑outs are missing. Here are the exceptions you should insist on, with simple examples.",
     category: "NDAs",
     author: "Clauze Team",
-    date: "May 9, 2026",
+    date: "June 20, 2026",
     readTime: "8 min read",
     content: `
 An NDA is not just about what you cannot say. It is also about what you are allowed to do.
@@ -739,7 +739,7 @@ If you want to quickly check whether an NDA has the right carve-outs, paste it i
       "The definition of “Confidential Information” determines how risky an NDA is. Here is how to spot overly broad definitions and fix them.",
     category: "NDAs",
     author: "Clauze Team",
-    date: "May 8, 2026",
+    date: "June 17, 2026",
     readTime: "9 min read",
     content: `
 In most NDAs, the single most important paragraph is the definition of "Confidential Information."
@@ -795,7 +795,7 @@ If you want to see whether a definition is tight or dangerously broad, paste it 
       "Mutual NDAs sound fair, but they often hide one-sided terms. Here are the red flags to look for before you sign.",
     category: "NDAs",
     author: "Clauze Team",
-    date: "May 7, 2026",
+    date: "June 14, 2026",
     readTime: "8 min read",
     content: `
 "Mutual NDA" sounds balanced. In reality, many "mutual" NDAs are mutual in name only.
@@ -848,7 +848,7 @@ If you want a fast checklist-style review, paste the NDA into Clauze and Clauze 
     excerpt: "After scanning thousands of contracts, these are the clauses that consistently hurt freelancers the most.",
     category: "Freelance",
     author: "Clauze Team",
-    date: "January 15, 2024",
+    date: "June 11, 2026",
     readTime: "8 min read",
     content: `
 When you are just starting out as a freelancer, it is easy to get excited about a new client and sign whatever contract they put in front of you. But some clauses hide in the fine print that can cost you thousands of dollars, your intellectual property, or even your ability to work in your field.
@@ -915,7 +915,7 @@ Before you sign your next contract, run it through Clauze. We will flag these cl
     excerpt: "Non-disclosure agreements are everywhere in the creative industry. But are you signing away more than you realise?",
     category: "NDAs",
     author: "Clauze Team",
-    date: "January 8, 2024",
+    date: "June 8, 2026",
     readTime: "6 min read",
     content: `
 You have probably signed dozens of NDAs. They pop up in the creative industry all the time. Before discussing a project, when visiting a client office, or even just to hear a pitch. But here is the thing: not all NDAs are created equal, and some of them are far more restrictive than they appear.
@@ -995,7 +995,7 @@ Before you sign your next NDA, read it carefully. And if you are not sure what i
     excerpt: "Non-competes can ruin your career if they are too broad. Here is how to tell the difference.",
     category: "Employment",
     author: "Clauze Team",
-    date: "January 1, 2024",
+    date: "June 5, 2026",
     readTime: "10 min read",
     content: `
 Non-compete agreements have been getting a lot of attention lately. Several states have banned them entirely, the FTC is moving to restrict them nationally, and more workers are pushing back against clauses that feel like they are trapping them in a job.

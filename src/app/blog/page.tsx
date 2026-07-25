@@ -1,4 +1,4 @@
-"use client";
+/"use client";
 
 import { useState } from "react";
 import Link from "next/link";
@@ -7,152 +7,12 @@ import { Footer } from "@/components/footer";
 import { FadeUp } from "@/components/fade-up";
 import { SectionDivider } from "@/components/section-divider";
 import { ArrowUpRight } from "lucide-react";
+import { BLOG_POSTS } from "@/lib/blog-posts";
 
-const BLOG_POSTS = [
-  {
-    slug: "force-majeure-clause-explained",
-    title: "Force Majeure Clauses Explained (Plain English + Negotiation Tips)",
-    excerpt:
-      "If a contract says “force majeure,” it is describing what happens when life disrupts performance. Here is what it really means and what to negotiate.",
-    category: "Legal Basics",
-    date: "May 19, 2026",
-    readTime: "7 min read",
-  },
-  {
-    slug: "governing-law-venue-jurisdiction",
-    title: "Governing Law vs Venue vs Jurisdiction: The Clause People Ignore",
-    excerpt:
-      "This clause decides where disputes happen and which rules apply. In many contracts, it matters more than the payment section.",
-    category: "Legal Basics",
-    date: "May 18, 2026",
-    readTime: "8 min read",
-  },
-  {
-    slug: "limitation-of-liability-cap-explained",
-    title: "Limitation of Liability Caps: What’s Fair (and What’s Dangerous)",
-    excerpt:
-      "A liability cap can save you from catastrophic risk. Here is how to spot missing caps, hidden carve-outs, and one-sided limits.",
-    category: "Legal Basics",
-    date: "May 17, 2026",
-    readTime: "9 min read",
-  },
-  {
-    slug: "indemnification-clause-explained",
-    title: "Indemnification Clauses Explained: “Hold Harmless” in Plain English",
-    excerpt:
-      "Indemnities are where contracts quietly move legal risk onto you. Here is what “defend, indemnify, hold harmless” actually requires.",
-    category: "Legal Basics",
-    date: "May 16, 2026",
-    readTime: "10 min read",
-  },
-  {
-    slug: "offer-letter-vs-employment-contract",
-    title: "Offer Letter vs Employment Contract: What’s Binding (and What Isn’t)",
-    excerpt:
-      "Not every offer letter is a full contract. Here is what parts typically bind you, what can change, and what to get in writing.",
-    category: "Employment",
-    date: "May 15, 2026",
-    readTime: "7 min read",
-  },
-  {
-    slug: "employment-non-solicitation-clause",
-    title: "Non‑Solicit Clauses Explained: Clients, Coworkers, and Common Traps",
-    excerpt:
-      "Non‑solicits look small but can restrict your next move. Learn how they work, what to narrow, and how to spot hidden non‑compete language.",
-    category: "Employment",
-    date: "May 14, 2026",
-    readTime: "9 min read",
-  },
-  {
-    slug: "employment-ip-assignment-clause",
-    title: "IP Assignment in Employment Contracts: What You Actually Give Up",
-    excerpt:
-      "IP clauses can claim your side projects and future work. Here is what to carve out, what “works made for hire” means, and what to negotiate.",
-    category: "Employment",
-    date: "May 13, 2026",
-    readTime: "10 min read",
-  },
-  {
-    slug: "freelance-kill-fee-termination",
-    title: "Kill Fee Clauses: The Fair Way to Handle Client Cancellations",
-    excerpt:
-      "A kill fee protects freelancers when a client ends a project midstream. Here is a practical, negotiation-friendly approach.",
-    category: "Freelance",
-    date: "May 12, 2026",
-    readTime: "8 min read",
-  },
-  {
-    slug: "freelance-payment-terms-net-30",
-    title: "Net 30, Net 60, Net 90: Payment Terms Freelancers Should Avoid",
-    excerpt:
-      "Payment terms decide your cash flow. Learn how to negotiate net terms, late fees, milestones, and a simple “pay on receipt” fallback.",
-    category: "Freelance",
-    date: "May 11, 2026",
-    readTime: "9 min read",
-  },
-  {
-    slug: "freelance-sow-scope-creep",
-    title: "Statement of Work for Freelancers: Stop Scope Creep Before It Starts",
-    excerpt:
-      "A strong SOW prevents vague deliverables, endless revisions, and “just one more thing.” Here is a structure you can actually use.",
-    category: "Freelance",
-    date: "May 10, 2026",
-    readTime: "10 min read",
-  },
-  {
-    slug: "nda-permitted-disclosures-carveouts",
-    title: "Permitted Disclosures and Carve‑Outs in NDAs: What to Always Ask For",
-    excerpt:
-      "Most NDA fights happen because the carve‑outs are missing. Here are the exceptions you should insist on, with simple examples.",
-    category: "NDAs",
-    date: "May 9, 2026",
-    readTime: "8 min read",
-  },
-  {
-    slug: "nda-confidential-information-definition",
-    title: "Confidential Information Definition in an NDA (Plain English + Examples)",
-    excerpt:
-      "The definition of “Confidential Information” determines how risky an NDA is. Here is how to spot overly broad definitions and fix them.",
-    category: "NDAs",
-    date: "May 8, 2026",
-    readTime: "9 min read",
-  },
-  {
-    slug: "mutual-nda-red-flags",
-    title: "Mutual NDA Red Flags: 7 Clauses That Quietly Trap You",
-    excerpt:
-      "Mutual NDAs sound fair, but they often hide one-sided terms. Here are the red flags to look for before you sign.",
-    category: "NDAs",
-    date: "May 7, 2026",
-    readTime: "8 min read",
-  },
-  {
-    slug: "five-contract-clauses-cost-freelancers",
-    title: "Five Contract Clauses That Cost Freelancers the Most",
-    excerpt:
-      "After scanning thousands of contracts, these are the clauses that consistently hurt freelancers the most. Learn what to watch for before you sign.",
-    category: "Freelance",
-    date: "January 15, 2024",
-    readTime: "8 min read",
-  },
-  {
-    slug: "what-nda-actually-means",
-    title: "What an NDA Actually Means and What to Watch For",
-    excerpt:
-      "Non-disclosure agreements are everywhere in the creative industry. But are you signing away more than you realise?",
-    category: "NDAs",
-    date: "January 8, 2024",
-    readTime: "6 min read",
-  },
-  {
-    slug: "fair-vs-unfair-non-compete",
-    title: "The Difference Between a Fair Non-Compete and an Unfair One",
-    excerpt: "Non-competes can ruin your career if they are too broad. Here is how to tell the difference.",
-    category: "Employment",
-    date: "January 1, 2024",
-    readTime: "10 min read",
-  },
-];
+const BLOG_POSTS_LIST = Object.entries(BLOG_POSTS).map(([slug, post]) => ({
+  slug,
+  ...post,
+}));
 
 const CATEGORIES = ["All", "NDAs", "Freelance", "Employment", "Legal Basics"];
 
@@ -160,8 +20,8 @@ export default function BlogPage() {
   const [activeCategory, setActiveCategory] = useState("All");
 
   const filteredPosts = activeCategory === "All" 
-    ? BLOG_POSTS 
-    : BLOG_POSTS.filter(post => post.category === activeCategory);
+    ? BLOG_POSTS_LIST 
+    : BLOG_POSTS_LIST.filter(post => post.category === activeCategory);
 
   return (
     <div className="bg-s0 text-1 min-h-screen">
