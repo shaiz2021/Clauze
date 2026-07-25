@@ -85,11 +85,30 @@ const FAQ_SECTIONS = [
 export default function FAQPage() {
   const [openFaq, setOpenFaq] = useState<string | null>(null);
 
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": FAQ_SECTIONS.flatMap(section => 
+      section.questions.map(item => ({
+        "@type": "Question",
+        "name": item.q,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": item.a
+        }
+      }))
+    )
+  };
+
   return (
     <div className="bg-s0 text-1 min-h-screen">
       <Navbar />
 
       <main>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        />
         {/* Hero */}
         <section className="pt-32 pb-24 px-6 bg-s1">
           <div className="max-w-4xl mx-auto text-center">
@@ -125,6 +144,7 @@ export default function FAQPage() {
                       <div className="border rounded-[16px] overflow-hidden">
                         <button
                           onClick={() => setOpenFaq(openFaq === id ? null : id)}
+                          aria-expanded={openFaq === id}
                           className="w-full flex items-center justify-between p-6 text-left hover:bg-[var(--card-hover)] transition-colors"
                         >
                           <span className={cn(
@@ -140,11 +160,18 @@ export default function FAQPage() {
                             <span className={cn("text-[18px]", openFaq === id ? "text-white" : "text-3")}>+</span>
                           </div>
                         </button>
-                        {openFaq === id && (
-                          <div className="px-6 pb-6 font-body font-light text-[17px] text-2 leading-[1.8]">
-                            {item.a}
+                        <div 
+                          className={cn(
+                            "grid transition-all duration-300 ease-in-out",
+                            openFaq === id ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                          )}
+                        >
+                          <div className="overflow-hidden">
+                            <div className="px-6 pb-6 font-body font-light text-[17px] text-2 leading-[1.8]">
+                              {item.a}
+                            </div>
                           </div>
-                        )}
+                        </div>
                       </div>
                     </FadeUp>
                   );
