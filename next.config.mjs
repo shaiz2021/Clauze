@@ -12,6 +12,21 @@ const nextConfig = {
     };
     return config;
   },
+  async redirects() {
+    return [
+      {
+        source: "/:path*",
+        has: [
+          {
+            type: "host",
+            value: "www.clauze.xyz",
+          },
+        ],
+        destination: "https://clauze.xyz/:path*",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

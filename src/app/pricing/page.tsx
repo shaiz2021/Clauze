@@ -1,9 +1,17 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { FadeUp } from "@/components/fade-up";
 import { SectionDivider } from "@/components/section-divider";
 import { Check, X } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "Pricing | Clauze",
+  description: "Start free. Upgrade when ready. Simple pricing for contract review.",
+  alternates: { canonical: "/pricing" },
+  openGraph: { title: "Pricing | Clauze", url: "/pricing" },
+};
 
 const PLANS = [
   {

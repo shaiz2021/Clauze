@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import Link from "next/link";
@@ -5,6 +6,13 @@ import { FadeUp } from "@/components/fade-up";
 import { SectionDivider } from "@/components/section-divider";
 import { ArrowRight, CheckCircle2, Info, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+
+export const metadata: Metadata = {
+  title: "Example Report | Clauze",
+  description: "See what a Clauze contract analysis looks like. Plain English, risk scores, and actionable tips.",
+  alternates: { canonical: "/example-report" },
+  openGraph: { title: "Example Report | Clauze", url: "/example-report" },
+};
 
 const MOCK_RESULT = {
   score: 64,
