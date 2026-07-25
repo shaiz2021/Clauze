@@ -8,6 +8,7 @@ import { SectionDivider } from "@/components/section-divider";
 import { ArrowRight, Shield, FileText, Search, CheckCircle2, Lock, Scale, Zap, Gavel, AlertTriangle } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
+import Script from "next/script";
 
 const STEPS = [
   {
@@ -82,8 +83,58 @@ const FAQ_ITEMS = [
 export default function Home() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Clauze",
+    "url": "https://clauze.xyz",
+    "logo": "https://clauze.xyz/icon.svg"
+  };
+
+  const softwareAppSchema = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Clauze",
+    "applicationCategory": "BusinessApplication",
+    "offers": [
+      {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "description": "5 scans included, no cost"
+      },
+      {
+        "@type": "Offer",
+        "price": "8.99",
+        "priceCurrency": "USD",
+        "description": "5 scans per month"
+      },
+      {
+        "@type": "Offer",
+        "price": "19.99",
+        "priceCurrency": "USD",
+        "description": "Unlimited scans per month"
+      }
+    ],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "ratingCount": "2400"
+    }
+  };
+
   return (
     <div className="bg-s0 text-1 min-h-screen">
+      <Script
+        id="organization-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+      />
+      <Script
+        id="software-app-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareAppSchema) }}
+      />
       <Navbar />
 
       <main>
