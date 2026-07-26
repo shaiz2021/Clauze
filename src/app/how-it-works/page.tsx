@@ -147,7 +147,7 @@ export default function HowItWorksPage() {
                 Ready to understand your contracts?
               </h2>
               <p className="font-body font-light text-[18px] text-2 mb-10">
-                Your first scan is free. No account needed.
+                Paste your contract text or upload a PDF. 1 scan per month included for free.
               </p>
               <Link href="/upload" className="btn-primary inline-flex">
                 Analyse My Contract <ArrowRight size={18} />

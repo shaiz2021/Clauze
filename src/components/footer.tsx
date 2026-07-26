@@ -18,7 +18,7 @@ export function Footer() {
             href="/upload"
             className="btn-primary h-[44px]"
           >
-            Try Clauze Free
+            Try Clauze for Free
           </Link>
         </div>
 
@@ -52,7 +52,7 @@ export function Footer() {
               </li>
               <li>
                 <Link href="/upload" className="font-body text-[16px] text-2 hover:text-1 transition-colors">
-                  Try Free
+                  Sign up free
                 </Link>
               </li>
             </ul>

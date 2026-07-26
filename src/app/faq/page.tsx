@@ -68,11 +68,11 @@ const FAQ_SECTIONS = [
       },
       {
         q: "Can I download my report?",
-        a: "Report export is planned. For now, you can copy key clauses and recommendations, and keep your contract text in your own notes. If you want PDF exports first, tell me your preferred report layout and I will prioritize it."
+        a: "Starter and Pro users can download a formatted PDF report with the full analysis, risk scores, and recommendations. This feature is perfect for sharing findings with colleagues or keeping a record for negotiation."
       },
       {
         q: "What happens when my free scan limit is reached?",
-        a: "Free accounts are limited to 1 scan per month. When you reach your limit, you can upgrade to Pro for unlimited scans, wait until your monthly reset, or purchase a one-time scan."
+        a: "Free accounts are limited to 1 scan per month and are restricted to paste-text only. When you reach your limit, you can upgrade to Pro for unlimited scans or purchase a one-time deep scan with the Starter plan."
       },
       {
         q: "Can I cancel my Pro subscription at any time?",

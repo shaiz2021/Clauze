@@ -112,11 +112,11 @@ export default function AboutPage() {
                   </p>
                 </div>
                 <div className="mt-10 flex flex-col sm:flex-row items-start gap-4">
-                  <Link href="/upload" className="btn-primary">
-                    Try Clauze Free <ArrowRight size={18} />
+                  <Link href="/signup" className="btn-primary">
+                    Sign up for free <ArrowRight size={18} />
                   </Link>
-                  <Link href="/how-it-works" className="btn-secondary">
-                    How it works
+                  <Link href="/pricing" className="btn-secondary">
+                    View pricing
                   </Link>
                 </div>
               </div>
@@ -277,7 +277,7 @@ export default function AboutPage() {
             <FadeUp delay={0.1}>
               <div className="bg-card border rounded-[16px] p-[28px]">
                 <p className="font-body font-light text-[18px] text-2 leading-[1.9]">
-                  Try a free scan and see what changes when your contract is explained in plain English.
+                  Sign up for free and see what changes when your contract is explained in plain English.
                 </p>
                 <div className="mt-8 flex flex-col sm:flex-row items-start gap-4">
                   <Link href="/upload" className="btn-primary">

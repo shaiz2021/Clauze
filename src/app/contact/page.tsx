@@ -77,7 +77,7 @@ export default function ContactPage() {
                     { label: "Pricing", href: "/pricing" },
                     { label: "FAQ", href: "/faq" },
                     { label: "How It Works", href: "/how-it-works" },
-                    { label: "Try Free", href: "/upload" },
+                    { label: "Sign up free", href: "/signup" },
                     { label: "Privacy Policy", href: "/privacy" },
                   ].map((item) => (
                     <Link

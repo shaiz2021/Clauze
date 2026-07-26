@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: "Clauze | Contract Reader That Explains the Fine Print",
   description:
-    "Paste any contract. Clauze flags every risky clause and explains it in plain English. Free first scan. No account needed. Results in 30 seconds.",
+    "Paste any contract. Clauze flags every risky clause and explains it in plain English. 1 scan per month included for free. Results in 30 seconds.",
   verification: {
     google: "OpYCC2Qo7DOsIg_6rrhxEAMOB3_T6UkcN6lDfyijm1E",
   },

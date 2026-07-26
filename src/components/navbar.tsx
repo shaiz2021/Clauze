@@ -151,7 +151,7 @@ export function Navbar() {
               href="/upload"
               className="hidden md:flex h-[38px] items-center px-5 bg-violet text-white font-display font-semibold rounded-[8px] hover:bg-violet-light transition-colors"
             >
-              {user ? "Go to App" : "Try Free"}
+              {user ? "Go to App" : "Sign up free"}
             </Link>
             <button
               className="md:hidden text-2"
@@ -279,7 +279,7 @@ export function Navbar() {
                   className="btn-primary"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  {user ? "Scan Now" : "Try Free"}
+                  {user ? "Scan Now" : "Sign up free"}
                 </Link>
               </motion.div>
             </div>

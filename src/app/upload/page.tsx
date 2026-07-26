@@ -218,7 +218,7 @@ export default function UploadPage() {
               )}
 
               <p className="font-body font-light text-[12px] text-3 text-center">
-                Processed securely. Never stored without permission.
+                Paste your text or upload a PDF. 1 scan per month included for Free.
               </p>
             </div>
           </div>

@@ -5,7 +5,7 @@ import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { FadeUp } from "@/components/fade-up";
 import { SectionDivider } from "@/components/section-divider";
-import { ArrowRight, Shield, FileText, Search, CheckCircle2, Lock, Scale, Zap, Gavel, AlertTriangle } from "lucide-react";
+import { ArrowRight, Shield, FileText, Search, CheckCircle2, Lock, Scale, Zap, Gavel, AlertTriangle, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 import Script from "next/script";
@@ -158,25 +158,25 @@ export default function Home() {
             </FadeUp>
 
             <FadeUp delay={0.2}>
-              <p className="font-body font-light text-[20px] text-2 leading-[1.75] max-w-[520px] mx-auto mt-7 mb-10">
-                Paste any contract. Clauze flags every risky clause and explains it in plain English before you sign.
+              <p className="font-body font-light text-[18px] md:text-[20px] text-2 mb-10 leading-[1.8] max-w-[600px] mx-auto">
+                Paste any contract. Clauze flags every risky clause and explains it in plain English. Results in 30 seconds.
               </p>
             </FadeUp>
 
             <FadeUp delay={0.3}>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <Link href="/upload" className="btn-primary">
-                  Analyse My Contract <ArrowRight size={18} />
+              <div className="flex flex-wrap items-center justify-center gap-3 mb-12">
+                <Link href="/upload" className="btn-primary px-8">
+                  Try it for free
                 </Link>
-                <Link href="#demo" className="btn-secondary">
-                  See a live example
+                <Link href="/pricing" className="btn-secondary px-8">
+                  View pricing
                 </Link>
               </div>
             </FadeUp>
 
             <FadeUp delay={0.4}>
-              <p className="font-body font-light text-[14px] text-3 mt-6">
-                Free first scan · No account needed · Results in 30 seconds
+              <p className="font-body text-[13px] text-4 tracking-wide uppercase">
+                1 scan per month · Account required · No credit card
               </p>
             </FadeUp>
 
@@ -438,62 +438,55 @@ export default function Home() {
             </FadeUp>
 
             <FadeUp delay={0.1}>
-              <p className="font-body font-light text-[14px] text-3 text-center mb-12">
-                Pro and One Scan launching soon. Start with Free today.
+              <p className="font-body font-light text-[18px] text-2 text-center mb-16 leading-[1.8] max-w-2xl mx-auto">
+                Start with a Free scan today or upgrade for PDF uploads, report downloads, and unlimited access.
               </p>
             </FadeUp>
 
-            <div className="grid md:grid-cols-3 gap-8 items-start max-w-5xl mx-auto">
+            <div className="grid md:grid-cols-3 gap-8 items-start">
               {/* Free */}
               <FadeUp delay={0.2}>
-                <div className="p-[28px] bg-card border-2 border-violet rounded-[16px] shadow-[0_0_40px_rgba(123,110,246,0.15)]">
+                <div className="p-[28px] bg-card border rounded-[16px]">
                   <h3 className="font-display font-bold text-[24px] text-1 mb-2">Free</h3>
-                  <div className="font-display font-bold text-[40px] text-1 mb-6">$0<span className="text-[18px] text-3 font-light">/month</span></div>
-                  <ul className="space-y-4 mb-10 font-body font-light text-[18px] text-2">
-                    <li>1 scan per month</li>
-                    <li>Risk badges</li>
-                    <li>Clauze Score</li>
-                    <li>No account required</li>
+                  <div className="font-display font-bold text-[40px] text-1 mb-1">$0<span className="text-[18px] text-3 font-light">/month</span></div>
+                  <p className="font-body font-light text-[16px] text-3 mb-8 leading-[1.8]">1 scan per month. Paste text only. Essential risk summary.</p>
+                  <ul className="space-y-4 mb-10">
+                    <li className="flex items-center gap-3 font-body text-[16px] text-2"><CheckCircle2 size={18} className="text-violet shrink-0" /> 1 scan per month</li>
+                    <li className="flex items-center gap-3 font-body text-[16px] text-2"><CheckCircle2 size={18} className="text-violet shrink-0" /> Paste-text only</li>
+                    <li className="flex items-center gap-3 font-body text-[16px] text-3"><X size={18} className="text-4 shrink-0" /> PDF upload</li>
                   </ul>
-                  <Link href="/upload" className="btn-primary w-full">
-                    Start Free
-                  </Link>
+                  <Link href="/signup" className="btn-secondary w-full">Sign up free</Link>
+                </div>
+              </FadeUp>
+
+              {/* Starter */}
+              <FadeUp delay={0.3}>
+                <div className="p-[28px] bg-card border-2 border-violet rounded-[16px] shadow-[0_0_40px_rgba(123,110,246,0.15)] relative">
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-violet text-white text-[11px] font-bold uppercase tracking-widest px-4 py-1.5 rounded-full">Best Value</div>
+                  <h3 className="font-display font-bold text-[24px] text-1 mb-2">Starter</h3>
+                  <div className="font-display font-bold text-[40px] text-1 mb-1">$2.99<span className="text-[18px] text-3 font-light">/scan</span></div>
+                  <p className="font-body font-light text-[16px] text-3 mb-8 leading-[1.8]">Pay-per-use deep scan. Includes PDF upload and report download.</p>
+                  <ul className="space-y-4 mb-10">
+                    <li className="flex items-center gap-3 font-body text-[16px] text-2"><CheckCircle2 size={18} className="text-violet shrink-0" /> PDF upload</li>
+                    <li className="flex items-center gap-3 font-body text-[16px] text-2"><CheckCircle2 size={18} className="text-violet shrink-0" /> PDF report download</li>
+                    <li className="flex items-center gap-3 font-body text-[16px] text-2"><CheckCircle2 size={18} className="text-violet shrink-0" /> Pay-per-use</li>
+                  </ul>
+                  <Link href="/signup" className="btn-primary w-full">Buy a Scan</Link>
                 </div>
               </FadeUp>
 
               {/* Pro */}
-              <FadeUp delay={0.3}>
-                <div className="p-[28px] bg-card border rounded-[16px] opacity-75">
-                  <h3 className="font-display font-bold text-[24px] text-1 mb-2">Pro</h3>
-                  <div className="font-display font-bold text-[40px] text-1 mb-6">$19<span className="text-[18px] text-3 font-light">/month</span></div>
-                  <ul className="space-y-4 mb-10 font-body font-light text-[18px] text-2">
-                    <li>Unlimited scans</li>
-                    <li>Full clause breakdown</li>
-                    <li>Negotiation tips</li>
-                    <li>Scan history</li>
-                    <li>PDF reports</li>
-                  </ul>
-                  <button disabled className="btn-secondary w-full opacity-50 cursor-not-allowed">
-                    Get Pro (coming soon)
-                  </button>
-                </div>
-              </FadeUp>
-
-              {/* One Scan */}
               <FadeUp delay={0.4}>
-                <div className="p-[28px] bg-card border rounded-[16px] opacity-75">
-                  <div className="inline-block px-3 py-1 bg-risk-green text-white text-[11px] font-bold uppercase rounded mb-4">Best Value</div>
-                  <h3 className="font-display font-bold text-[24px] text-1 mb-2">One Scan</h3>
-                  <div className="font-display font-bold text-[40px] text-1 mb-6">$4<span className="text-[18px] text-3 font-light">/scan</span></div>
-                  <ul className="space-y-4 mb-10 font-body font-light text-[18px] text-2">
-                    <li>Full Pro analysis</li>
-                    <li>No subscription</li>
-                    <li>PDF report</li>
-                    <li>Single document</li>
+                <div className="p-[28px] bg-card border rounded-[16px]">
+                  <h3 className="font-display font-bold text-[24px] text-1 mb-2">Pro</h3>
+                  <div className="font-display font-bold text-[40px] text-1 mb-1">$15.99<span className="text-[18px] text-3 font-light">/month</span></div>
+                  <p className="font-body font-light text-[16px] text-3 mb-8 leading-[1.8]">Unlimited scans and history. For professionals who review frequently.</p>
+                  <ul className="space-y-4 mb-10">
+                    <li className="flex items-center gap-3 font-body text-[16px] text-2"><CheckCircle2 size={18} className="text-violet shrink-0" /> Unlimited scans</li>
+                    <li className="flex items-center gap-3 font-body text-[16px] text-2"><CheckCircle2 size={18} className="text-violet shrink-0" /> Scan history</li>
+                    <li className="flex items-center gap-3 font-body text-[16px] text-2"><CheckCircle2 size={18} className="text-violet shrink-0" /> Priority support</li>
                   </ul>
-                  <button disabled className="btn-secondary w-full opacity-50 cursor-not-allowed">
-                    Buy a Scan (coming soon)
-                  </button>
+                  <Link href="/signup" className="btn-secondary w-full">Get Pro</Link>
                 </div>
               </FadeUp>
             </div>
