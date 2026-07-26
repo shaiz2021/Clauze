@@ -18,67 +18,61 @@ const PLANS = [
     name: "Free",
     price: "$0",
     period: "month",
-    description: "A fast contract check for NDAs, freelance agreements, and employment offers.",
+    description: "Essential tools for occasional contract review. Paste your text and get a risk summary.",
     features: [
       { name: "1 scan per month", included: true },
-      { name: "Risk badges", included: true },
+      { name: "Paste-text only", included: true },
+      { name: "Risk summary", included: true },
       { name: "Clauze Score", included: true },
-      { name: "PDF and text upload", included: true },
-      { name: "No account required", included: true },
-      { name: "Unlimited scans", included: false },
-      { name: "Full clause breakdown", included: false },
-      { name: "Negotiation tips", included: false },
-      { name: "Scan history", included: false },
+      { name: "Requires account", included: true },
+      { name: "PDF upload", included: false },
       { name: "PDF report download", included: false },
+      { name: "Scan history", included: false },
     ],
-    cta: "Start Free",
-    href: "/upload",
+    cta: "Sign up free",
+    href: "/signup",
     featured: false,
     comingSoon: false
   },
   {
-    name: "Pro",
-    price: "$19",
-    period: "month",
-    description: "For teams and professionals who review contracts weekly and want saved history.",
+    name: "Starter",
+    price: "$2.99",
+    period: "scan",
+    description: "Perfect for one-off deep dives into high-stakes agreements. Pay only for what you need.",
     features: [
-      { name: "Unlimited scans", included: true },
+      { name: "PDF upload", included: true },
+      { name: "PDF report download", included: true },
       { name: "Full clause breakdown", included: true },
       { name: "Negotiation tips", included: true },
-      { name: "Scan history", included: true },
-      { name: "PDF report download", included: true },
-      { name: "Priority analysis speed", included: true },
-      { name: "No account required", included: false },
-      { name: "1 scan per month", included: false },
-      { name: "Risk badges", included: false },
-      { name: "Clauze Score", included: false },
-    ],
-    cta: "Get Pro (coming soon)",
-    href: "#",
-    featured: true,
-    comingSoon: true
-  },
-  {
-    name: "One Scan",
-    price: "$4",
-    period: "scan",
-    description: "A one time deep scan for a high stakes agreement when you want more detail.",
-    features: [
-      { name: "Full Pro analysis", included: true },
-      { name: "PDF report download", included: true },
-      { name: "No subscription", included: true },
+      { name: "Pay-per-use", included: true },
+      { name: "Requires account", included: true },
       { name: "Unlimited scans", included: false },
       { name: "Scan history", included: false },
-      { name: "Negotiation tips", included: false },
-      { name: "1 scan per month", included: false },
-      { name: "No account required", included: false },
-      { name: "Risk badges", included: false },
-      { name: "Clauze Score", included: false },
     ],
-    cta: "Buy a Scan (coming soon)",
-    href: "#",
+    cta: "Buy a Scan",
+    href: "/signup",
+    featured: true,
+    comingSoon: false
+  },
+  {
+    name: "Pro",
+    price: "$15.99",
+    period: "month",
+    description: "For professionals who review contracts frequently and need saved history.",
+    features: [
+      { name: "Unlimited scans", included: true },
+      { name: "Scan history", included: true },
+      { name: "PDF upload", included: true },
+      { name: "PDF report download", included: true },
+      { name: "Full clause breakdown", included: true },
+      { name: "Negotiation tips", included: true },
+      { name: "Requires account", included: true },
+      { name: "Priority support", included: true },
+    ],
+    cta: "Get Pro",
+    href: "/signup",
     featured: false,
-    comingSoon: true
+    comingSoon: false
   }
 ];
 
@@ -111,7 +105,7 @@ export default function PricingPage() {
           <div className="max-w-5xl mx-auto">
             <FadeUp delay={0.1}>
               <p className="font-body font-light text-[16px] text-3 text-center mb-16 leading-[1.8]">
-                Pro and One Scan launch soon. Start with Free today and get a clean risk summary in minutes.
+                Start with a Free scan today or upgrade for PDF uploads, exports, and unlimited access.
               </p>
             </FadeUp>
 
@@ -130,9 +124,17 @@ export default function PricingPage() {
                       {plan.features.map((feature, j) => (
                         <li key={j} className="flex items-center gap-3 font-body text-[16px]">
                           {feature.included ? (
-                            <Check size={18} className="text-violet shrink-0" />
+                            <Check 
+                              size={18} 
+                              className="text-violet shrink-0" 
+                              aria-label="Included"
+                            />
                           ) : (
-                            <X size={18} className="text-4 shrink-0" />
+                            <X 
+                              size={18} 
+                              className="text-4 shrink-0" 
+                              aria-label="Not included"
+                            />
                           )}
                           <span className={feature.included ? "text-2" : "text-3"}>
                             {feature.name}
@@ -180,41 +182,40 @@ export default function PricingPage() {
                     <tr className="border-b border-[var(--border)]">
                       <th className="text-left py-4 px-4 font-display font-bold text-[14px] text-3 uppercase tracking-wider">Feature</th>
                       <th className="text-center py-4 px-4 font-display font-bold text-[14px] text-3 uppercase tracking-wider">Free</th>
+                      <th className="text-center py-4 px-4 font-display font-bold text-[14px] text-3 uppercase tracking-wider">Starter</th>
                       <th className="text-center py-4 px-4 font-display font-bold text-[14px] text-3 uppercase tracking-wider">Pro</th>
-                      <th className="text-center py-4 px-4 font-display font-bold text-[14px] text-3 uppercase tracking-wider">One Scan</th>
                     </tr>
                   </thead>
                   <tbody>
                     {[
-                      ["Monthly scans", "1", "Unlimited", "1 (one-time)"],
-                      ["Clauze Score", true, true, true],
-                      ["Risk badges", true, true, true],
-                      ["Plain English explanations", true, true, true],
-                      ["Full clause breakdown", false, true, true],
-                      ["Negotiation tips", false, true, true],
-                      ["Scan history", false, true, false],
+                      ["Monthly scans", "1", "Pay-per-use", "Unlimited"],
+                      ["Paste-text only", true, false, false],
+                      ["PDF upload", false, true, true],
                       ["PDF report download", false, true, true],
-                      ["Priority speed", false, true, false],
+                      ["Scan history", false, false, true],
+                      ["Full clause breakdown", true, true, true],
+                      ["Negotiation tips", true, true, true],
+                      ["Requires sign-in", true, true, true],
                     ].map((row, i) => (
                       <tr key={i} className="border-b border-[var(--border)]">
                         <td className="py-4 px-4 font-body text-[15px] text-2">{row[0]}</td>
                         <td className="py-4 px-4 text-center">
                           {typeof row[1] === "boolean" ? (
-                            row[1] ? <Check size={18} className="mx-auto text-violet" /> : <X size={18} className="mx-auto text-4" />
+                            row[1] ? <Check size={18} className="mx-auto text-violet" aria-label="Included" /> : <X size={18} className="mx-auto text-4" aria-label="Not included" />
                           ) : (
                             <span className="font-body text-[14px] text-1">{row[1]}</span>
                           )}
                         </td>
                         <td className="py-4 px-4 text-center">
                           {typeof row[2] === "boolean" ? (
-                            row[2] ? <Check size={18} className="mx-auto text-violet" /> : <X size={18} className="mx-auto text-4" />
+                            row[2] ? <Check size={18} className="mx-auto text-violet" aria-label="Included" /> : <X size={18} className="mx-auto text-4" aria-label="Not included" />
                           ) : (
                             <span className="font-body text-[14px] text-1">{row[2]}</span>
                           )}
                         </td>
                         <td className="py-4 px-4 text-center">
                           {typeof row[3] === "boolean" ? (
-                            row[3] ? <Check size={18} className="mx-auto text-violet" /> : <X size={18} className="mx-auto text-4" />
+                            row[3] ? <Check size={18} className="mx-auto text-violet" aria-label="Included" /> : <X size={18} className="mx-auto text-4" aria-label="Not included" />
                           ) : (
                             <span className="font-body text-[14px] text-1">{row[3]}</span>
                           )}
@@ -247,19 +248,19 @@ export default function PricingPage() {
               {[
                 {
                   q: "Is Free enough for an NDA review or a freelance contract?",
-                  a: "Yes. Free is designed for a quick NDA review, a freelance contract check, or an employment offer scan. It flags the risky clauses and explains what they mean.",
+                  a: "Yes. Free is designed for a quick risk summary of pasted text. It flags risky clauses and explains what they mean so you can spot red flags in minutes.",
                 },
                 {
-                  q: "When does Pro make sense?",
-                  a: "Pro is built for frequent contract review. If you are scanning weekly and want saved history, exports, and faster workflows, Pro is the right fit.",
+                  q: "What is the difference between Starter and Pro?",
+                  a: "Starter is a pay-per-use deep scan, perfect for one-off PDF reviews. Pro is a monthly subscription that unlocks unlimited scans and saved history.",
                 },
                 {
                   q: "Do I need an account?",
-                  a: "No for the first scan. Create an account if you want a dashboard and future features like scan history and saved reports.",
+                  a: "Yes. All tiers, including Free, require a Clauze account to process scans and ensure your data remains secure and accessible to you.",
                 },
                 {
                   q: "Is this legal advice?",
-                  a: "No. Clauze is a contract reading tool. Use it to understand language and spot risk early. For high stakes agreements, consult a qualified lawyer.",
+                  a: "No. Clauze is a contract reading tool. Use it to understand language and spot risk early. For high stakes agreements, always consult a qualified lawyer.",
                 },
               ].map((item, i) => (
                 <FadeUp key={item.q} delay={i * 0.06}>

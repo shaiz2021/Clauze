@@ -72,12 +72,12 @@ const FEATURES = [
 ];
 
 const FAQ_ITEMS = [
-  { q: "Is my contract stored or shared?", a: "Clauze does not store your contract text beyond your active session. Free users have no data saved after they close the tab. Users with an account get a private scan history." },
+  { q: "Is my contract stored or shared?", a: "Clauze does not store your contract text beyond your active session. All users, including Free tier, require an account to process scans and view their private scan history." },
   { q: "What contract types can Clauze read?", a: "Clauze reads NDAs, freelance contracts, employment agreements, SaaS terms, partnership agreements, rental agreements and most standard commercial contracts." },
   { q: "Is this legal advice?", a: "Clauze is not a law firm and does not provide legal advice. Clauze is a reading and summarisation tool that helps you understand what a contract says." },
   { q: "How accurate is the analysis?", a: "Clauze identifies clauses that deviate from standard practices with high consistency. For high-stakes contracts always pair a Clauze scan with professional legal review." },
   { q: "How long does an analysis take?", a: "Most contracts are fully analysed in under 30 seconds. Contracts over 15,000 words may take up to 90 seconds." },
-  { q: "Can I download my report?", a: "Pro users and one-time scan purchasers receive a formatted PDF report with the full analysis, scores and recommendations. Download is coming soon." }
+  { q: "Can I download my report?", a: "Starter and Pro users receive a formatted PDF report with the full analysis, scores and recommendations. This feature ensures you have a permanent record of your contract review." }
 ];
 
 export default function Home() {
@@ -101,19 +101,19 @@ export default function Home() {
         "@type": "Offer",
         "price": "0",
         "priceCurrency": "USD",
-        "description": "5 scans included, no cost"
+        "description": "1 scan per month, paste-text only"
       },
       {
         "@type": "Offer",
-        "price": "8.99",
+        "price": "2.99",
         "priceCurrency": "USD",
-        "description": "5 scans per month"
+        "description": "Pay-per-use, includes PDF upload + report download"
       },
       {
         "@type": "Offer",
-        "price": "19.99",
+        "price": "15.99",
         "priceCurrency": "USD",
-        "description": "Unlimited scans per month"
+        "description": "Unlimited scans, includes PDF upload, report download, and scan history"
       }
     ],
     "aggregateRating": {
