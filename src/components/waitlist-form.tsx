@@ -48,9 +48,9 @@ export function WaitlistForm({ defaultPlan }: WaitlistFormProps) {
       <FadeUp>
         <div className="bg-violet/10 border border-violet/20 rounded-[16px] p-8 text-center max-w-md mx-auto">
           <CheckCircle2 className="w-12 h-12 text-violet mx-auto mb-4" />
-          <h3 className="font-display font-bold text-[24px] text-1 mb-2">You're on the list!</h3>
+          <h3 className="font-display font-bold text-[24px] text-1 mb-2">You&apos;re on the list!</h3>
           <p className="font-body text-2 leading-[1.6]">
-            We'll notify you at <strong>{email}</strong> as soon as {plan} is ready for launch.
+            We&apos;ll notify you at <strong>{email}</strong> as soon as {plan} is ready for launch.
           </p>
           <button 
             onClick={() => setStatus("idle")}
@@ -69,7 +69,7 @@ export function WaitlistForm({ defaultPlan }: WaitlistFormProps) {
         <div className="text-center mb-8">
           <h2 className="font-display font-bold text-[32px] text-1 mb-4">Join the Waitlist</h2>
           <p className="font-body text-3 text-[18px] leading-[1.7]">
-            Payments aren't live yet — leave your email and we'll notify you the moment <strong>{plan}</strong> is ready.
+            Payments aren&apos;t live yet — leave your email and we&apos;ll notify you the moment <strong>{plan}</strong> is ready.
           </p>
         </div>
 
