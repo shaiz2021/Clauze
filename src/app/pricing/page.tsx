@@ -4,7 +4,8 @@ import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { FadeUp } from "@/components/fade-up";
 import { SectionDivider } from "@/components/section-divider";
-import { Check, X } from "lucide-react";
+import { Check, X, ArrowRight } from "lucide-react";
+import { WaitlistForm } from "@/components/waitlist-form";
 
 export const metadata: Metadata = {
   title: "Pricing | Clauze",
@@ -50,9 +51,9 @@ const PLANS = [
       { name: "Scan history", included: false },
     ],
     cta: "Buy a Scan",
-    href: "/signup",
+    href: "#waitlist",
     featured: true,
-    comingSoon: false
+    comingSoon: true
   },
   {
     name: "Pro",
@@ -70,9 +71,9 @@ const PLANS = [
       { name: "Priority support", included: true },
     ],
     cta: "Get Pro",
-    href: "/signup",
+    href: "#waitlist",
     featured: false,
-    comingSoon: false
+    comingSoon: true
   }
 ];
 
@@ -189,7 +190,7 @@ export default function PricingPage() {
                   <tbody>
                     {[
                       ["Monthly scans", "1", "Pay-per-use", "Unlimited"],
-                      ["Paste-text only", true, false, false],
+                      ["Paste-text only", true, false, true],
                       ["PDF upload", false, true, true],
                       ["PDF report download", false, true, true],
                       ["Scan history", false, false, true],
@@ -231,6 +232,16 @@ export default function PricingPage() {
 
         <SectionDivider />
 
+        {/* Waitlist Section */}
+        <section id="waitlist" className="py-[120px] bg-s0 border-y border-[var(--border)]">
+          <div className="max-w-[1400px] mx-auto px-6">
+            <WaitlistForm />
+          </div>
+        </section>
+
+        <SectionDivider />
+
+        {/* FAQ Section */}
         <section className="py-[120px] px-6 bg-s0">
           <div className="max-w-4xl mx-auto">
             <FadeUp>
