@@ -139,7 +139,7 @@ export default function Home() {
 
       <main>
         {/* HERO SECTION */}
-        <section className="relative min-h-screen flex items-center justify-center pt-32 pb-24 px-6 hero-dots overflow-hidden">
+        <section className="relative min-h-screen flex items-center justify-center pt-24 md:pt-32 pb-16 md:pb-24 px-5 sm:px-6 hero-dots overflow-hidden">
           <div className="absolute inset-0 hero-glow pointer-events-none" />
 
           <div className="max-w-[800px] w-full text-center relative z-10">
@@ -151,64 +151,64 @@ export default function Home() {
             </FadeUp>
 
             <FadeUp delay={0.1}>
-              <h1 className="font-serif italic text-[48px] md:text-[80px] leading-[0.95] tracking-[-0.02em] mb-0">
+              <h1 className="font-serif italic text-[36px] sm:text-[48px] md:text-[80px] leading-[0.95] tracking-[-0.02em] mb-0">
                 Read the fine print.<br />
                 <span className="text-violet">Finally.</span>
               </h1>
             </FadeUp>
 
             <FadeUp delay={0.2}>
-              <p className="font-body font-light text-[18px] md:text-[20px] text-2 mb-10 leading-[1.8] max-w-[600px] mx-auto">
+              <p className="font-body font-light text-[17px] md:text-[20px] text-2 mb-10 leading-[1.8] max-w-[600px] mx-auto">
                 Paste any contract. Clauze flags every risky clause and explains it in plain English. Results in 30 seconds.
               </p>
             </FadeUp>
 
             <FadeUp delay={0.3}>
               <div className="flex flex-wrap items-center justify-center gap-3 mb-12">
-                <Link href="/upload" className="btn-primary px-8">
+                <Link href="/upload" className="btn-primary w-full sm:w-auto justify-center px-8">
                   Try it for free
                 </Link>
-                <Link href="/pricing" className="btn-secondary px-8">
+                <Link href="/pricing" className="btn-secondary w-full sm:w-auto justify-center px-8">
                   View pricing
                 </Link>
               </div>
             </FadeUp>
 
             <FadeUp delay={0.4}>
-              <p className="font-body text-[13px] text-4 tracking-wide uppercase">
+              <p className="font-body text-[12px] sm:text-[13px] text-4 tracking-wide uppercase">
                 1 scan per month · Account required · No credit card
               </p>
             </FadeUp>
 
-            {/* Hero Card */}
+              {/* Hero Card */}
             <FadeUp delay={0.5}>
-              <div className="max-w-[560px] mx-auto mt-16 bg-card border border-violet rounded-[16px] p-7 shadow-[0_0_80px_rgba(123,110,246,0.12),0_32px_64px_rgba(0,0,0,0.4)] animate-float">
+              <div className="max-w-[560px] mx-auto mt-12 md:mt-16 bg-card border border-violet rounded-[16px] p-5 sm:p-7 shadow-[0_0_80px_rgba(123,110,246,0.12),0_32px_64px_rgba(0,0,0,0.4)] animate-float overflow-hidden">
                 <div className="flex justify-between items-center mb-6">
                   <div className="flex gap-2">
                     <div className="w-3 h-3 rounded-full bg-[var(--card-hover)]" />
                     <div className="w-3 h-3 rounded-full bg-[var(--card-hover)]" />
                     <div className="w-3 h-3 rounded-full bg-[var(--card-hover)]" />
                   </div>
-                  <div className="px-3 py-1 bg-risk-amber/10 border border-risk-amber/20 rounded-full text-risk-amber text-[12px] font-bold">
+                  <div className="px-3 py-1 bg-risk-amber/10 border border-risk-amber/20 rounded-full text-risk-amber text-[11px] sm:text-[12px] font-bold">
                     Clauze Score: 41
                   </div>
                 </div>
-                <div className="space-y-4 font-mono text-[13px]">
+                <div className="space-y-4 font-mono text-[12px] sm:text-[13px]">
                   <div className="flex gap-4">
                     <span className="text-4 shrink-0">12</span>
-                    <span className="text-2 leading-relaxed">
+                    <span className="text-2 leading-relaxed text-left">
                       The Company reserves the <span className="bg-risk-red/15 text-risk-red border-b-2 border-risk-red">right to terminate</span> this agreement...
                     </span>
                   </div>
                   <div className="flex gap-4">
                     <span className="text-4 shrink-0">13</span>
-                    <span className="text-2 leading-relaxed">
+                    <span className="text-2 leading-relaxed text-left">
                       Employee shall not engage in any <span className="bg-risk-amber/15 text-risk-amber border-b-2 border-risk-amber">competing activity</span> for 24 months...
                     </span>
                   </div>
                   <div className="flex gap-4">
                     <span className="text-4 shrink-0">14</span>
-                    <span className="text-2 leading-relaxed">
+                    <span className="text-2 leading-relaxed text-left">
                       All <span className="bg-risk-green/15 text-risk-green border-b-2 border-risk-green">Intellectual Property</span> created during employment...
                     </span>
                   </div>
@@ -221,10 +221,10 @@ export default function Home() {
         <SectionDivider />
 
         {/* SOCIAL PROOF */}
-        <section className="h-[72px] flex items-center justify-center bg-s1">
-          <div className="flex items-center gap-3">
-            <Shield size={16} className="text-violet" />
-            <p className="font-body text-[14px] text-3">
+        <section className="py-6 md:h-[72px] flex items-center justify-center bg-s1 px-5">
+          <div className="flex flex-col sm:flex-row items-center gap-3 text-center">
+            <Shield size={16} className="text-violet shrink-0" />
+            <p className="font-body text-[13px] md:text-[14px] text-3">
               Used by freelancers, founders and remote workers in 40 countries
             </p>
           </div>
@@ -233,23 +233,23 @@ export default function Home() {
         <SectionDivider />
 
         {/* HOW IT WORKS */}
-        <section className="py-[120px] px-6 bg-s2">
+        <section className="py-16 md:py-[120px] px-5 sm:px-6 bg-s2">
           <div className="max-w-7xl mx-auto">
             <FadeUp>
-              <div className="text-center mb-20">
+              <div className="text-center mb-12 md:mb-20">
                 <span className="font-body font-medium text-[11px] uppercase tracking-[0.2em] text-violet mb-4 block">The Process</span>
-                <h2 className="font-display font-extrabold text-[36px] md:text-[52px] text-1">Three steps. No confusion.</h2>
+                <h2 className="font-display font-extrabold text-[28px] sm:text-[36px] md:text-[52px] text-1">Three steps. No confusion.</h2>
               </div>
             </FadeUp>
 
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid md:grid-cols-3 gap-6 md:gap-8">
               {STEPS.map((item, i) => (
                 <FadeUp key={item.step} delay={i * 0.15}>
-                  <div className="group relative min-h-[280px] p-[28px] bg-card border rounded-[16px] card-hover">
-                    <span className="absolute top-[28px] right-[28px] text-[96px] font-display font-extrabold text-violet/5 select-none leading-none">{item.step}</span>
+                  <div className="group relative min-h-[260px] md:min-h-[280px] p-6 sm:p-[28px] bg-card border rounded-[16px] card-hover">
+                    <span className="absolute top-[28px] right-[28px] text-[64px] sm:text-[96px] font-display font-extrabold text-violet/5 select-none leading-none">{item.step}</span>
                     <div className="text-violet mb-8">{item.icon}</div>
-                    <h3 className="font-display font-bold text-[22px] text-1 mb-4">{item.title}</h3>
-                    <p className="font-body font-light text-[18px] text-2 leading-[1.8]">{item.body}</p>
+                    <h3 className="font-display font-bold text-[20px] md:text-[22px] text-1 mb-4">{item.title}</h3>
+                    <p className="font-body font-light text-[16px] md:text-[18px] text-2 leading-[1.8]">{item.body}</p>
                   </div>
                 </FadeUp>
               ))}
@@ -260,17 +260,17 @@ export default function Home() {
         <SectionDivider />
 
         {/* DEMO SECTION */}
-        <section id="demo" className="py-[120px] px-6 bg-s1">
+        <section id="demo" className="py-16 md:py-[120px] px-5 sm:px-6 bg-s1">
           <div className="max-w-7xl mx-auto">
             <FadeUp>
-              <div className="text-center mb-16">
+              <div className="text-center mb-10 md:mb-16">
                 <span className="font-body font-medium text-[11px] uppercase tracking-[0.2em] text-violet mb-4 block">See It In Action</span>
-                <h2 className="font-display font-extrabold text-[36px] md:text-[52px] text-1">A real contract. A real analysis.</h2>
+                <h2 className="font-display font-extrabold text-[28px] sm:text-[36px] md:text-[52px] text-1">A real contract. A real analysis.</h2>
               </div>
             </FadeUp>
 
             {/* Column labels */}
-            <div className="grid md:grid-cols-2 gap-6 max-w-[1100px] mx-auto mb-6">
+            <div className="hidden md:grid md:grid-cols-2 gap-6 max-w-[1100px] mx-auto mb-6">
               <div className="text-center">
                 <span className="font-body font-medium text-[12px] uppercase tracking-widest text-3 flex items-center justify-center gap-2">
                   <FileText size={14} /> The Contract
@@ -285,15 +285,15 @@ export default function Home() {
 
             <div className="grid md:grid-cols-2 gap-6 max-w-[1100px] mx-auto items-start">
               {/* LEFT - Contract */}
-              <FadeUp delay={0.1} className="md:sticky md:top-24">
-                <div className="bg-card border rounded-[16px] p-[28px]">
-                  <div className="flex items-center gap-3 mb-6 pb-6 border-b border-[var(--border)]">
+              <FadeUp delay={0.1} className="md:sticky md:top-24 order-2 md:order-1">
+                <div className="bg-card border rounded-[16px] p-5 sm:p-[28px] overflow-hidden">
+                  <div className="flex flex-wrap items-center gap-3 mb-6 pb-6 border-b border-[var(--border)]">
                     <FileText size={20} className="text-violet" />
                     <span className="font-body font-medium text-[14px] text-2">Non-Disclosure Agreement</span>
                     <span className="ml-auto px-2 py-0.5 bg-violet-dim text-violet text-[10px] font-bold uppercase rounded">NDA</span>
                   </div>
                   <p className="text-[10px] text-3 mb-4">Client · Freelancer · 2025</p>
-                  <div className="space-y-3 font-mono text-[13px] leading-[1.8]">
+                  <div className="space-y-3 font-mono text-[12px] sm:text-[13px] leading-[1.8]">
                     {[
                       { n: 1, t: "This Non-Disclosure Agreement (&quot;Agreement&quot;) is entered into...", h: null },
                       { n: 2, t: "between the Disclosing Party and the Receiving Party.", h: null },
@@ -317,7 +317,7 @@ export default function Home() {
                       <div key={line.n} className="flex gap-4">
                         <span className="text-4 w-5 shrink-0 text-right">{line.n}</span>
                         <span className={cn(
-                          "leading-relaxed",
+                          "leading-relaxed text-left",
                           line.h === "red" && "bg-risk-red/15 text-risk-red border-b-2 border-risk-red",
                           line.h === "amber" && "bg-risk-amber/15 text-risk-amber border-b-2 border-risk-amber",
                           line.h === "green" && "bg-risk-green/15 text-risk-green border-b-2 border-risk-green"
@@ -329,23 +329,23 @@ export default function Home() {
               </FadeUp>
 
               {/* RIGHT - Analysis */}
-              <FadeUp delay={0.2}>
-                <div className="bg-card border rounded-[16px] p-[28px] flex flex-col gap-4">
+              <FadeUp delay={0.2} className="order-1 md:order-2">
+                <div className="bg-card border rounded-[16px] p-5 sm:p-[28px] flex flex-col gap-4">
                   {/* Score */}
-                  <div className="flex items-center gap-5">
-                    <div className="relative w-[100px] h-[100px] shrink-0">
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-5">
+                    <div className="relative w-[80px] h-[80px] sm:w-[100px] sm:h-[100px] shrink-0 mx-auto sm:mx-0">
                       <svg className="w-full h-full -rotate-90">
                         <circle cx="50" cy="50" r="42" className="fill-none stroke-[var(--border)]" strokeWidth="8" />
                         <circle cx="50" cy="50" r="42" className="fill-none stroke-risk-amber" strokeWidth="8" strokeLinecap="round" strokeDasharray="264" strokeDashoffset="156" />
                       </svg>
                       <div className="absolute inset-0 flex flex-col items-center justify-center">
-                        <span className="text-[28px] font-display font-extrabold text-1 leading-none">41</span>
+                        <span className="text-[24px] sm:text-[28px] font-display font-extrabold text-1 leading-none">41</span>
                       </div>
                     </div>
-                    <div>
-                      <p className="font-body font-medium text-[12px] uppercase tracking-widest text-3 mb-1">Clauze Score</p>
-                      <p className="font-display font-extrabold text-[48px] text-1 leading-none">41</p>
-                      <p className="font-body font-light text-[14px] text-3">2 high risk · 1 review · 1 safe</p>
+                    <div className="text-center sm:text-left">
+                      <p className="font-body font-medium text-[11px] sm:text-[12px] uppercase tracking-widest text-3 mb-1">Clauze Score</p>
+                      <p className="font-display font-extrabold text-[36px] sm:text-[48px] text-1 leading-none">41</p>
+                      <p className="font-body font-light text-[13px] sm:text-[14px] text-3">2 high risk · 1 review · 1 safe</p>
                     </div>
                   </div>
 
@@ -360,16 +360,16 @@ export default function Home() {
                         )}>{clause.risk}</span>
                         <span className="font-display font-bold text-[16px] text-1">{clause.name}</span>
                       </div>
-                      <p className="font-mono text-[12px] text-3 line-clamp-1 mb-2">&quot;{clause.excerpt}&quot;</p>
-                      <p className="font-body font-light text-[15px] text-2 line-clamp-2 mb-2">{clause.explanation}</p>
-                      <p className="font-body font-medium text-[14px] text-1 flex items-center gap-2">
+                      <p className="font-mono text-[11px] sm:text-[12px] text-3 line-clamp-1 mb-2">&quot;{clause.excerpt}&quot;</p>
+                      <p className="font-body font-light text-[14px] sm:text-[15px] text-2 line-clamp-2 mb-2">{clause.explanation}</p>
+                      <p className="font-body font-medium text-[13px] sm:text-[14px] text-1 flex items-center gap-2 text-left">
                         <span className="w-1.5 h-1.5 rounded-full bg-violet shrink-0" />
                         {clause.recommendation}
                       </p>
                     </div>
                   ))}
 
-                  <Link href="/upload" className="btn-primary h-[48px] mt-2">
+                  <Link href="/upload" className="btn-primary h-[48px] mt-2 w-full justify-center">
                     Analyse Your Own Contract <ArrowRight size={16} />
                   </Link>
                 </div>
@@ -381,22 +381,22 @@ export default function Home() {
         <SectionDivider />
 
         {/* FEATURES */}
-        <section className="py-[120px] px-6 bg-s2">
+        <section className="py-16 md:py-[120px] px-5 sm:px-6 bg-s2">
           <div className="max-w-7xl mx-auto">
             <FadeUp>
-              <div className="text-center mb-20">
+              <div className="text-center mb-12 md:mb-20">
                 <span className="font-body font-medium text-[11px] uppercase tracking-[0.2em] text-violet mb-4 block">What Clauze Covers</span>
-                <h2 className="font-display font-extrabold text-[36px] md:text-[52px] text-1">Every clause type. Every contract.</h2>
+                <h2 className="font-display font-extrabold text-[28px] sm:text-[36px] md:text-[52px] text-1">Every clause type. Every contract.</h2>
               </div>
             </FadeUp>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {FEATURES.map((feature, i) => (
                 <FadeUp key={feature.title} delay={i * 0.1}>
-                  <div className="group min-h-[200px] p-[28px] bg-card border rounded-[16px] card-hover">
+                  <div className="group min-h-[180px] md:min-h-[200px] p-6 sm:p-[28px] bg-card border rounded-[16px] card-hover">
                     <div className="text-violet mb-6">{feature.icon}</div>
-                    <h3 className="font-display font-bold text-[22px] text-1 mb-3">{feature.title}</h3>
-                    <p className="font-body font-light text-[18px] text-2 leading-relaxed">{feature.body}</p>
+                    <h3 className="font-display font-bold text-[20px] md:text-[22px] text-1 mb-3">{feature.title}</h3>
+                    <p className="font-body font-light text-[17px] md:text-[18px] text-2 leading-relaxed">{feature.body}</p>
                   </div>
                 </FadeUp>
               ))}
@@ -407,7 +407,7 @@ export default function Home() {
         <SectionDivider />
 
         {/* STATS */}
-        <section className="py-[120px] px-6 bg-s0">
+        <section className="py-16 md:py-[120px] px-5 sm:px-6 bg-s0">
           <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
               { val: "40+", label: "Countries" },
@@ -417,8 +417,8 @@ export default function Home() {
             ].map((stat, i) => (
               <FadeUp key={i} delay={i * 0.1}>
                 <div className="text-center relative md:border-r last:border-0 border-[var(--border)]">
-                  <div className="font-display font-extrabold text-[48px] md:text-[72px] text-violet leading-none mb-2">{stat.val}</div>
-                  <div className="font-body text-[16px] text-3">{stat.label}</div>
+                  <div className="font-display font-extrabold text-[40px] md:text-[72px] text-violet leading-none mb-2">{stat.val}</div>
+                  <div className="font-body text-[14px] md:text-[16px] text-3">{stat.label}</div>
                 </div>
               </FadeUp>
             ))}
@@ -428,65 +428,65 @@ export default function Home() {
         <SectionDivider />
 
         {/* PRICING */}
-        <section className="py-[120px] px-6 bg-s2">
+        <section className="py-16 md:py-[120px] px-5 sm:px-6 bg-s2">
           <div className="max-w-7xl mx-auto">
             <FadeUp>
-              <div className="text-center mb-12">
+              <div className="text-center mb-10 md:mb-12">
                 <span className="font-body font-medium text-[11px] uppercase tracking-[0.2em] text-violet mb-4 block">Simple Pricing</span>
-                <h2 className="font-display font-extrabold text-[36px] md:text-[52px] text-1">Start free. Upgrade when ready.</h2>
+                <h2 className="font-display font-extrabold text-[28px] sm:text-[36px] md:text-[52px] text-1">Start free. Upgrade when ready.</h2>
               </div>
             </FadeUp>
 
             <FadeUp delay={0.1}>
-              <p className="font-body font-light text-[18px] text-2 text-center mb-16 leading-[1.8] max-w-2xl mx-auto">
+              <p className="font-body font-light text-[17px] md:text-[18px] text-2 text-center mb-12 md:mb-16 leading-[1.8] max-w-2xl mx-auto">
                 Start with a Free scan today or upgrade for PDF uploads, report downloads, and unlimited access.
               </p>
             </FadeUp>
 
-            <div className="grid md:grid-cols-3 gap-8 items-start">
+            <div className="grid md:grid-cols-3 gap-6 md:gap-8 items-start">
               {/* Free */}
               <FadeUp delay={0.2}>
-                <div className="p-[28px] bg-card border rounded-[16px]">
-                  <h3 className="font-display font-bold text-[24px] text-1 mb-2">Free</h3>
-                  <div className="font-display font-bold text-[40px] text-1 mb-1">$0<span className="text-[18px] text-3 font-light">/month</span></div>
-                  <p className="font-body font-light text-[16px] text-3 mb-8 leading-[1.8]">1 scan per month. Paste text only. Essential risk summary.</p>
+                <div className="p-6 sm:p-[28px] bg-card border rounded-[16px]">
+                  <h3 className="font-display font-bold text-[22px] md:text-[24px] text-1 mb-2">Free</h3>
+                  <div className="font-display font-bold text-[36px] md:text-[40px] text-1 mb-1">$0<span className="text-[18px] text-3 font-light">/month</span></div>
+                  <p className="font-body font-light text-[15px] md:text-[16px] text-3 mb-8 leading-[1.8]">1 scan per month. Paste text only. Essential risk summary.</p>
                   <ul className="space-y-4 mb-10">
-                    <li className="flex items-center gap-3 font-body text-[16px] text-2"><CheckCircle2 size={18} className="text-violet shrink-0" /> 1 scan per month</li>
-                    <li className="flex items-center gap-3 font-body text-[16px] text-2"><CheckCircle2 size={18} className="text-violet shrink-0" /> Paste-text only</li>
-                    <li className="flex items-center gap-3 font-body text-[16px] text-3"><X size={18} className="text-4 shrink-0" /> PDF upload</li>
+                    <li className="flex items-center gap-3 font-body text-[15px] md:text-[16px] text-2"><CheckCircle2 size={18} className="text-violet shrink-0" aria-label="Included" /> 1 scan per month</li>
+                    <li className="flex items-center gap-3 font-body text-[15px] md:text-[16px] text-2"><CheckCircle2 size={18} className="text-violet shrink-0" aria-label="Included" /> Paste-text only</li>
+                    <li className="flex items-center gap-3 font-body text-[15px] md:text-[16px] text-3"><X size={18} className="text-4 shrink-0" aria-label="Not included" /> PDF upload</li>
                   </ul>
-                  <Link href="/signup" className="btn-secondary w-full">Sign up free</Link>
+                  <Link href="/signup" className="btn-secondary w-full justify-center">Sign up free</Link>
                 </div>
               </FadeUp>
 
               {/* Starter */}
               <FadeUp delay={0.3}>
-                <div className="p-[28px] bg-card border-2 border-violet rounded-[16px] shadow-[0_0_40px_rgba(123,110,246,0.15)] relative">
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-violet text-white text-[11px] font-bold uppercase tracking-widest px-4 py-1.5 rounded-full">Best Value</div>
-                  <h3 className="font-display font-bold text-[24px] text-1 mb-2">Starter</h3>
-                  <div className="font-display font-bold text-[40px] text-1 mb-1">$2.99<span className="text-[18px] text-3 font-light">/scan</span></div>
-                  <p className="font-body font-light text-[16px] text-3 mb-8 leading-[1.8]">Pay-per-use deep scan. Includes PDF upload and report download.</p>
+                <div className="p-6 sm:p-[28px] bg-card border-2 border-violet rounded-[16px] shadow-[0_0_40px_rgba(123,110,246,0.15)] relative">
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-violet text-white text-[10px] md:text-[11px] font-bold uppercase tracking-widest px-4 py-1.5 rounded-full whitespace-nowrap">Best Value</div>
+                  <h3 className="font-display font-bold text-[22px] md:text-[24px] text-1 mb-2">Starter</h3>
+                  <div className="font-display font-bold text-[36px] md:text-[40px] text-1 mb-1">$2.99<span className="text-[18px] text-3 font-light">/scan</span></div>
+                  <p className="font-body font-light text-[15px] md:text-[16px] text-3 mb-8 leading-[1.8]">Pay-per-use deep scan. Includes PDF upload and report download.</p>
                   <ul className="space-y-4 mb-10">
-                    <li className="flex items-center gap-3 font-body text-[16px] text-2"><CheckCircle2 size={18} className="text-violet shrink-0" /> PDF upload</li>
-                    <li className="flex items-center gap-3 font-body text-[16px] text-2"><CheckCircle2 size={18} className="text-violet shrink-0" /> PDF report download</li>
-                    <li className="flex items-center gap-3 font-body text-[16px] text-2"><CheckCircle2 size={18} className="text-violet shrink-0" /> Pay-per-use</li>
+                    <li className="flex items-center gap-3 font-body text-[15px] md:text-[16px] text-2"><CheckCircle2 size={18} className="text-violet shrink-0" aria-label="Included" /> PDF upload</li>
+                    <li className="flex items-center gap-3 font-body text-[15px] md:text-[16px] text-2"><CheckCircle2 size={18} className="text-violet shrink-0" aria-label="Included" /> PDF report download</li>
+                    <li className="flex items-center gap-3 font-body text-[15px] md:text-[16px] text-2"><CheckCircle2 size={18} className="text-violet shrink-0" aria-label="Included" /> Pay-per-use</li>
                   </ul>
-                  <Link href="/signup" className="btn-primary w-full">Buy a Scan</Link>
+                  <Link href="/signup" className="btn-primary w-full justify-center">Buy a Scan</Link>
                 </div>
               </FadeUp>
 
               {/* Pro */}
               <FadeUp delay={0.4}>
-                <div className="p-[28px] bg-card border rounded-[16px]">
-                  <h3 className="font-display font-bold text-[24px] text-1 mb-2">Pro</h3>
-                  <div className="font-display font-bold text-[40px] text-1 mb-1">$15.99<span className="text-[18px] text-3 font-light">/month</span></div>
-                  <p className="font-body font-light text-[16px] text-3 mb-8 leading-[1.8]">Unlimited scans and history. For professionals who review frequently.</p>
+                <div className="p-6 sm:p-[28px] bg-card border rounded-[16px]">
+                  <h3 className="font-display font-bold text-[22px] md:text-[24px] text-1 mb-2">Pro</h3>
+                  <div className="font-display font-bold text-[36px] md:text-[40px] text-1 mb-1">$15.99<span className="text-[18px] text-3 font-light">/month</span></div>
+                  <p className="font-body font-light text-[15px] md:text-[16px] text-3 mb-8 leading-[1.8]">Unlimited scans and history. For professionals who review frequently.</p>
                   <ul className="space-y-4 mb-10">
-                    <li className="flex items-center gap-3 font-body text-[16px] text-2"><CheckCircle2 size={18} className="text-violet shrink-0" /> Unlimited scans</li>
-                    <li className="flex items-center gap-3 font-body text-[16px] text-2"><CheckCircle2 size={18} className="text-violet shrink-0" /> Scan history</li>
-                    <li className="flex items-center gap-3 font-body text-[16px] text-2"><CheckCircle2 size={18} className="text-violet shrink-0" /> Priority support</li>
+                    <li className="flex items-center gap-3 font-body text-[15px] md:text-[16px] text-2"><CheckCircle2 size={18} className="text-violet shrink-0" aria-label="Included" /> Unlimited scans</li>
+                    <li className="flex items-center gap-3 font-body text-[15px] md:text-[16px] text-2"><CheckCircle2 size={18} className="text-violet shrink-0" aria-label="Included" /> Scan history</li>
+                    <li className="flex items-center gap-3 font-body text-[15px] md:text-[16px] text-2"><CheckCircle2 size={18} className="text-violet shrink-0" aria-label="Included" /> Priority support</li>
                   </ul>
-                  <Link href="/signup" className="btn-secondary w-full">Get Pro</Link>
+                  <Link href="/signup" className="btn-secondary w-full justify-center">Get Pro</Link>
                 </div>
               </FadeUp>
             </div>
@@ -496,12 +496,12 @@ export default function Home() {
         <SectionDivider />
 
         {/* FAQ */}
-        <section className="py-[120px] px-6 bg-s0">
+        <section className="py-16 md:py-[120px] px-5 sm:px-6 bg-s0">
           <div className="max-w-[740px] mx-auto">
             <FadeUp>
-              <div className="text-center mb-20">
+              <div className="text-center mb-12 md:mb-20">
                 <span className="font-body font-medium text-[11px] uppercase tracking-[0.2em] text-violet mb-4 block">Common Questions</span>
-                <h2 className="font-display font-extrabold text-[36px] md:text-[52px] text-1">The questions people actually ask.</h2>
+                <h2 className="font-display font-extrabold text-[28px] sm:text-[36px] md:text-[52px] text-1">The questions people actually ask.</h2>
               </div>
             </FadeUp>
 
@@ -511,10 +511,10 @@ export default function Home() {
                   <div className="border rounded-[16px] overflow-hidden">
                     <button
                       onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                      className="w-full flex items-center justify-between p-6 text-left hover:bg-[var(--card-hover)] transition-colors"
+                      className="w-full flex items-center justify-between p-5 sm:p-6 text-left hover:bg-[var(--card-hover)] transition-colors"
                     >
                       <span className={cn(
-                        "font-display font-bold text-[20px] transition-colors pr-4",
+                        "font-display font-bold text-[18px] md:text-[20px] transition-colors pr-4",
                         openFaq === i ? "text-violet" : "text-1"
                       )}>
                         {item.q}
@@ -527,7 +527,7 @@ export default function Home() {
                       </div>
                     </button>
                     {openFaq === i && (
-                      <div className="px-6 pb-6 font-body font-light text-[17px] text-2 leading-[1.8]">
+                      <div className="px-5 sm:px-6 pb-5 sm:pb-6 font-body font-light text-[16px] md:text-[17px] text-2 leading-[1.8]">
                         {item.a}
                       </div>
                     )}
@@ -541,21 +541,21 @@ export default function Home() {
         <SectionDivider />
 
         {/* FINAL CTA */}
-        <section className="py-[140px] px-6 bg-s2 relative overflow-hidden">
+        <section className="py-20 md:py-[140px] px-5 sm:px-6 bg-s2 relative overflow-hidden">
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-[600px] h-[600px] bg-violet/10 rounded-full blur-[120px]" />
+            <div className="w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-violet/10 rounded-full blur-[60px] md:blur-[120px]" />
           </div>
           <div className="max-w-[700px] mx-auto text-center relative z-10">
             <FadeUp>
               <span className="font-body font-medium text-[11px] uppercase tracking-[0.2em] text-violet mb-6 block">Start Today</span>
-              <h2 className="font-serif italic text-[48px] md:text-[72px] text-1 mb-6 leading-none">Know what you are signing.</h2>
-              <p className="font-body font-light text-[20px] text-2 mb-10">Your first scan is free. No account needed.</p>
-              <Link href="/upload" className="btn-primary h-[56px] px-12 text-[16px] rounded-full">
+              <h2 className="font-serif italic text-[36px] sm:text-[48px] md:text-[72px] text-1 mb-6 leading-none">Know what you are signing.</h2>
+              <p className="font-body font-light text-[17px] md:text-[20px] text-2 mb-10">Your first scan is free. No account needed.</p>
+              <Link href="/upload" className="btn-primary h-[56px] px-10 md:px-12 text-[15px] md:text-[16px] rounded-full w-full sm:w-auto justify-center">
                 Analyse My Contract <ArrowRight size={18} />
               </Link>
               <div className="mt-8 flex flex-col items-center gap-3">
                 <div className="flex text-risk-amber text-[20px]">★★★★★</div>
-                <p className="font-body font-light text-[13px] text-3">4.9 from 2,400 scans</p>
+                <p className="font-body font-light text-[12px] sm:text-[13px] text-3">4.9 from 2,400 scans</p>
               </div>
             </FadeUp>
           </div>

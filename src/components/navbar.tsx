@@ -85,7 +85,7 @@ export function Navbar() {
           </Link>
 
           {/* Nav Links - Desktop */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden lg:flex items-center gap-8">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.name}
@@ -110,7 +110,7 @@ export function Navbar() {
           {/* Right side: Theme + CTA */}
           <div className="flex items-center gap-4">
             {user ? (
-              <div className="hidden md:flex items-center gap-4">
+              <div className="hidden lg:flex items-center gap-4">
                 <Link
                   href="/dashboard"
                   className={`relative font-body text-[15px] transition-colors duration-150 ${
@@ -136,7 +136,7 @@ export function Navbar() {
             ) : (
               <Link
                 href="/login"
-                className="hidden md:block font-body text-[15px] text-2 hover:text-1 transition-colors"
+                className="hidden lg:block font-body text-[15px] text-2 hover:text-1 transition-colors"
               >
                 Sign in
               </Link>
@@ -149,12 +149,12 @@ export function Navbar() {
             </button>
             <Link
               href="/upload"
-              className="hidden md:flex h-[38px] items-center px-5 bg-violet text-white font-display font-semibold rounded-[8px] hover:bg-violet-light transition-colors"
+              className="hidden lg:flex h-[38px] items-center px-5 bg-violet text-white font-display font-semibold rounded-[8px] hover:bg-violet-light transition-colors"
             >
               {user ? "Go to App" : "Sign up free"}
             </Link>
             <button
-              className="md:hidden text-2"
+              className="lg:hidden text-2"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
               <Menu size={24} />

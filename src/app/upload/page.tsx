@@ -174,15 +174,15 @@ export default function UploadPage() {
 
       <main className="pt-[68px] flex flex-col md:flex-row min-h-[calc(100vh-68px)]">
         {/* LEFT PANEL */}
-        <div className="w-full md:w-[44%] bg-s1 p-8 md:p-12 border-r border-[var(--border)]">
-          <div className="max-w-xl ml-auto">
+        <div className="w-full md:w-[44%] bg-s1 p-6 sm:p-8 md:p-12 border-b md:border-b-0 md:border-r border-[var(--border)]">
+          <div className="max-w-xl md:ml-auto">
             <span className="font-body font-medium text-[12px] uppercase tracking-widest text-violet mb-6 block">
               Upload Your Contract
             </span>
 
             <div className="space-y-6">
               {/* Drag and Drop */}
-              <label className="block border-2 border-dashed border-[var(--border)] rounded-[16px] p-10 text-center cursor-pointer hover:border-violet hover:bg-violet-dim transition-all">
+              <label className="block border-2 border-dashed border-[var(--border)] rounded-[16px] p-6 sm:p-10 text-center cursor-pointer hover:border-violet hover:bg-violet-dim transition-all">
                 <input
                   type="file"
                   accept=".pdf,.txt,text/plain"
@@ -197,7 +197,7 @@ export default function UploadPage() {
                     <UploadIcon className="text-violet" size={24} />
                   )}
                 </div>
-                <p className="font-body font-medium text-[16px] text-2 mb-1">
+                <p className="font-body font-medium text-[15px] sm:text-[16px] text-2 mb-1 leading-snug">
                   Drag your PDF here or click to browse
                 </p>
                 <p className="font-body font-light text-[13px] text-3">
@@ -216,7 +216,7 @@ export default function UploadPage() {
                 value={text}
                 onChange={(e) => setText(e.target.value)}
                 placeholder="Paste your contract text here..."
-                className="w-full h-[220px] bg-[var(--s0)] border border-[var(--border)] rounded-[10px] p-6 font-mono text-[14px] text-2 focus:outline-none focus:border-violet transition-all resize-y"
+                className="w-full h-[180px] sm:h-[220px] bg-[var(--s0)] border border-[var(--border)] rounded-[10px] p-5 sm:p-6 font-mono text-[14px] text-2 focus:outline-none focus:border-violet transition-all resize-y"
               />
 
               {/* Contract Type */}
@@ -258,9 +258,9 @@ export default function UploadPage() {
         </div>
 
         {/* RIGHT PANEL */}
-        <div className="w-full md:w-[56%] bg-s2 p-8 md:p-12">
+        <div className="w-full md:w-[56%] bg-s2 p-6 sm:p-8 md:p-12">
           {!isAnalyzing && !result && (
-            <div className="h-full flex flex-col items-center justify-center text-center">
+            <div className="h-full min-h-[300px] flex flex-col items-center justify-center text-center">
               <FileSearch size={56} className="text-4 mb-4 opacity-50" />
               <p className="font-body text-[16px] text-3">Your analysis will appear here</p>
             </div>
@@ -268,16 +268,16 @@ export default function UploadPage() {
 
           {isAnalyzing && (
             <div className="h-full space-y-6">
-              <div className="pt-20 text-center">
-                <div className="w-16 h-16 border-4 border-violet/20 border-t-violet rounded-full animate-spin mx-auto mb-6" />
-                <p className="font-display font-bold text-[20px] text-1 animate-pulse">
+              <div className="pt-12 md:pt-20 text-center">
+                <div className="w-12 h-12 md:w-16 md:h-16 border-4 border-violet/20 border-t-violet rounded-full animate-spin mx-auto mb-6" />
+                <p className="font-display font-bold text-[18px] md:text-[20px] text-1 animate-pulse px-4">
                   {LOADING_STEPS[loadingStep]}
                 </p>
               </div>
 
               <div className="space-y-4 max-w-xl mx-auto">
                 {[1, 2, 3].map((i) => (
-                  <div key={i} className="h-32 bg-card rounded-[12px] overflow-hidden relative">
+                  <div key={i} className="h-28 md:h-32 bg-card rounded-[12px] overflow-hidden relative">
                     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-violet/5 to-transparent -translate-x-full animate-[shimmer_2s_infinite]" />
                   </div>
                 ))}
@@ -294,8 +294,8 @@ export default function UploadPage() {
               )}>
                 {/* Score */}
                 <FadeUp>
-                  <div className="p-[28px] bg-card border border-[var(--border)] rounded-[16px]">
-                    <div className="flex items-center gap-6">
+                  <div className="p-6 sm:p-[28px] bg-card border border-[var(--border)] rounded-[16px]">
+                    <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6">
                       <div className="relative w-[100px] h-[100px] shrink-0">
                         <svg className="w-full h-full -rotate-90">
                           <circle cx="50" cy="50" r="42" className="fill-none stroke-[var(--border)]" strokeWidth="8" />
@@ -315,28 +315,28 @@ export default function UploadPage() {
                           <span className="font-display font-extrabold text-[28px] text-1">{result.score}</span>
                         </div>
                       </div>
-                      <div>
+                      <div className="text-center sm:text-left">
                         <p className="font-medium text-[12px] uppercase tracking-widest text-3 mb-1">Clauze Score</p>
-                        <p className="font-display font-bold text-[32px] text-1 mb-1">
+                        <p className="font-display font-bold text-[28px] md:text-[32px] text-1 mb-1">
                           {result.score > 74 ? "Fair" : result.score > 39 ? "Review Needed" : "Seek Advice"}
                         </p>
-                        <p className="font-body text-[14px] text-3 italic">
+                        <p className="font-body text-[14px] text-3 italic leading-relaxed">
                           &quot;{result.summary}&quot;
                         </p>
                       </div>
                     </div>
-                    <div className="flex gap-6 mt-6 pt-6 border-t border-[var(--border)]">
+                    <div className="flex flex-wrap gap-4 md:gap-6 mt-6 pt-6 border-t border-[var(--border)] justify-center sm:justify-start">
                       <div className="flex items-center gap-2">
                         <div className="w-2 h-2 rounded-full bg-risk-red" />
-                        <span className="font-body text-[14px] text-2">{result.counts.high} High</span>
+                        <span className="font-body text-[13px] md:text-[14px] text-2">{result.counts.high} High</span>
                       </div>
                       <div className="flex items-center gap-2">
                         <div className="w-2 h-2 rounded-full bg-risk-amber" />
-                        <span className="font-body text-[14px] text-2">{result.counts.medium} Review</span>
+                        <span className="font-body text-[13px] md:text-[14px] text-2">{result.counts.medium} Review</span>
                       </div>
                       <div className="flex items-center gap-2">
                         <div className="w-2 h-2 rounded-full bg-risk-green" />
-                        <span className="font-body text-[14px] text-2">{result.counts.low} Safe</span>
+                        <span className="font-body text-[13px] md:text-[14px] text-2">{result.counts.low} Safe</span>
                       </div>
                     </div>
                   </div>
@@ -346,7 +346,7 @@ export default function UploadPage() {
                 {result.clauses.map((clause, idx) => (
                   <FadeUp key={idx} delay={idx * 0.1}>
                     <div
-                      className="p-[28px] bg-card-inner border rounded-[16px] relative"
+                      className="p-6 sm:p-[28px] bg-card-inner border rounded-[16px] relative"
                       style={{ borderLeftWidth: 3, borderLeftColor: clause.risk === "high" ? "var(--risk-red)" : clause.risk === "medium" ? "var(--risk-amber)" : "var(--risk-green)" }}
                     >
                       <div className="flex justify-between items-start mb-4">
@@ -359,7 +359,7 @@ export default function UploadPage() {
                       </div>
                       <h3 className="font-display font-bold text-[18px] text-1 mb-3">{clause.name}</h3>
                       <p className="font-mono text-[12px] text-3 mb-4 line-clamp-2">&quot;{clause.excerpt}&quot;</p>
-                      <p className="font-body font-light text-[15px] text-2 mb-4">{clause.explanation}</p>
+                      <p className="font-body font-light text-[15px] text-2 mb-4 leading-relaxed">{clause.explanation}</p>
                       <div className="flex items-start gap-3 pt-4 border-t border-[var(--border)]">
                         <div className="w-1.5 h-1.5 rounded-full bg-violet mt-1.5 shrink-0" />
                         <p className="font-body font-medium text-[14px] text-1">{clause.recommendation}</p>
@@ -370,14 +370,14 @@ export default function UploadPage() {
 
                 {/* Actions */}
                 <FadeUp delay={result.clauses.length * 0.1}>
-                  <div className="flex gap-4 pt-4">
+                  <div className="flex flex-col sm:flex-row gap-4 pt-4">
                     <button
                       onClick={() => { setResult(null); setText(""); }}
-                      className="btn-secondary h-[48px]"
+                      className="btn-secondary h-[48px] w-full sm:w-auto"
                     >
                       New Scan
                     </button>
-                    <button disabled className="btn-secondary h-[48px] opacity-50 cursor-not-allowed">
+                    <button disabled className="btn-secondary h-[48px] w-full sm:w-auto opacity-50 cursor-not-allowed">
                       Download Report (Coming Soon)
                     </button>
                   </div>

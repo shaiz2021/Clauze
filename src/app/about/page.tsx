@@ -89,33 +89,33 @@ export default function AboutPage() {
           }}
         />
 
-        <section className="pt-32 pb-24 px-6 bg-s0">
-          <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-14 items-start">
+        <section className="pt-24 md:pt-32 pb-16 md:pb-24 px-5 sm:px-6 bg-s0">
+          <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 md:gap-14 items-start">
             <FadeUp>
               <div>
                 <span className="font-body font-medium text-[11px] uppercase tracking-[0.2em] text-violet mb-6 block">
                   About Clauze
                 </span>
-                <h1 className="font-display font-extrabold text-[40px] md:text-[56px] text-1 leading-[1.05] mb-8">
+                <h1 className="font-display font-extrabold text-[32px] sm:text-[40px] md:text-[56px] text-1 leading-[1.1] md:leading-[1.05] mb-6 md:mb-8">
                   Contracts are written to be signed.
-                  <br />
-                  <span className="text-violet">Clauze is built to be read.</span>
+                  <br className="hidden sm:block" />
+                  <span className="text-violet"> Clauze is built to be read.</span>
                 </h1>
                 <div className="space-y-6">
-                  <p className="font-body font-light text-[18px] text-2 leading-[1.9]">
+                  <p className="font-body font-light text-[17px] md:text-[18px] text-2 leading-[1.8] md:leading-[1.9]">
                     Most people do not avoid contracts because they do not care. They avoid them because the
                     language is dense, the risks are buried, and the cost of being wrong feels high.
                   </p>
-                  <p className="font-body font-light text-[18px] text-2 leading-[1.9]">
+                  <p className="font-body font-light text-[17px] md:text-[18px] text-2 leading-[1.8] md:leading-[1.9]">
                     Clauze helps you understand what you are agreeing to. Paste any agreement and Clauze flags the
                     clauses that deserve attention, explains them in plain English, and suggests what to ask for.
                   </p>
                 </div>
-                <div className="mt-10 flex flex-col sm:flex-row items-start gap-4">
-                  <Link href="/signup" className="btn-primary">
+                <div className="mt-10 flex flex-col sm:flex-row items-center sm:items-start gap-4">
+                  <Link href="/signup" className="btn-primary w-full sm:w-auto">
                     Sign up for free <ArrowRight size={18} />
                   </Link>
-                  <Link href="/pricing" className="btn-secondary">
+                  <Link href="/pricing" className="btn-secondary w-full sm:w-auto">
                     View pricing
                   </Link>
                 </div>
@@ -123,16 +123,16 @@ export default function AboutPage() {
             </FadeUp>
 
             <FadeUp delay={0.1}>
-              <div className="bg-card border rounded-[16px] p-[28px]">
-                <div className="flex items-start gap-4">
+              <div className="bg-card border rounded-[16px] p-5 sm:p-[28px] mt-8 md:mt-0">
+                <div className="flex flex-col sm:flex-row items-start gap-4">
                   <div className="w-11 h-11 rounded-full bg-violet/10 flex items-center justify-center shrink-0">
                     <Shield size={20} className="text-violet" />
                   </div>
                   <div>
-                    <h2 className="font-display font-bold text-[22px] text-1 mb-2">
+                    <h2 className="font-display font-bold text-[20px] md:text-[22px] text-1 mb-2">
                       Clear risk, not legal theatre
                     </h2>
-                    <p className="font-body font-light text-[16px] text-2 leading-[1.9]">
+                    <p className="font-body font-light text-[15px] md:text-[16px] text-2 leading-[1.8] md:leading-[1.9]">
                       Clauze is a reading tool. It highlights where your risk sits and what would make a clause more
                       balanced. For high-stakes agreements, pair a Clauze scan with professional legal review.
                     </p>
@@ -175,20 +175,20 @@ export default function AboutPage() {
 
         <SectionDivider />
 
-        <section className="py-[120px] px-6 bg-s1">
+        <section className="py-16 md:py-[120px] px-5 sm:px-6 bg-s1">
           <div className="max-w-6xl mx-auto">
             <FadeUp>
-              <div className="text-center mb-16">
+              <div className="text-center mb-10 md:mb-16">
                 <span className="font-body font-medium text-[11px] uppercase tracking-[0.2em] text-violet mb-4 block">
                   What We Optimise For
                 </span>
-                <h2 className="font-display font-extrabold text-[36px] md:text-[52px] text-1">
+                <h2 className="font-display font-extrabold text-[28px] sm:text-[36px] md:text-[52px] text-1 leading-tight">
                   Fast clarity, fewer surprises.
                 </h2>
               </div>
             </FadeUp>
 
-            <div className="grid md:grid-cols-3 gap-6">
+            <div className="grid md:grid-cols-3 gap-5 md:gap-6">
               {[
                 {
                   title: "Scan-level focus",
@@ -204,9 +204,9 @@ export default function AboutPage() {
                 },
               ].map((card, i) => (
                 <FadeUp key={card.title} delay={i * 0.1}>
-                  <div className="bg-card border rounded-[16px] p-[28px] card-hover">
-                    <h3 className="font-display font-bold text-[22px] text-1 mb-3">{card.title}</h3>
-                    <p className="font-body font-light text-[18px] text-2 leading-[1.85]">{card.body}</p>
+                  <div className="bg-card border rounded-[16px] p-6 sm:p-[28px] card-hover">
+                    <h3 className="font-display font-bold text-[20px] md:text-[22px] text-1 mb-3">{card.title}</h3>
+                    <p className="font-body font-light text-[16px] md:text-[18px] text-2 leading-[1.8] md:leading-[1.85]">{card.body}</p>
                   </div>
                 </FadeUp>
               ))}
@@ -216,24 +216,24 @@ export default function AboutPage() {
 
         <SectionDivider />
 
-        <section className="py-[120px] px-6 bg-s2">
+        <section className="py-16 md:py-[120px] px-5 sm:px-6 bg-s2">
           <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-start">
             <FadeUp>
-              <div>
+              <div className="text-center md:text-left">
                 <span className="font-body font-medium text-[11px] uppercase tracking-[0.2em] text-violet mb-4 block">
                   Privacy
                 </span>
-                <h2 className="font-display font-extrabold text-[36px] md:text-[52px] text-1 mb-6">
+                <h2 className="font-display font-extrabold text-[28px] sm:text-[36px] md:text-[52px] text-1 mb-6 leading-tight">
                   Designed for sensitive text.
                 </h2>
-                <p className="font-body font-light text-[18px] text-2 leading-[1.9]">
+                <p className="font-body font-light text-[17px] md:text-[18px] text-2 leading-[1.8] md:leading-[1.9]">
                   Contracts contain details that matter. Clauze is built to minimise exposure: keep the interface simple,
                   avoid unnecessary data capture, and make it clear what happens to your text.
                 </p>
               </div>
             </FadeUp>
 
-            <div className="grid gap-6">
+            <div className="grid gap-5 md:gap-6 mt-8 md:mt-0">
               {[
                 {
                   title: "No cluttered dashboards",
@@ -249,9 +249,9 @@ export default function AboutPage() {
                 },
               ].map((item, i) => (
                 <FadeUp key={item.title} delay={0.1 + i * 0.1}>
-                  <div className="bg-card border rounded-[16px] p-[28px]">
-                    <h3 className="font-display font-bold text-[22px] text-1 mb-3">{item.title}</h3>
-                    <p className="font-body font-light text-[18px] text-2 leading-[1.85]">{item.body}</p>
+                  <div className="bg-card border rounded-[16px] p-6 sm:p-[28px]">
+                    <h3 className="font-display font-bold text-[20px] md:text-[22px] text-1 mb-3">{item.title}</h3>
+                    <p className="font-body font-light text-[16px] md:text-[18px] text-2 leading-[1.8] md:leading-[1.85]">{item.body}</p>
                   </div>
                 </FadeUp>
               ))}
@@ -261,29 +261,29 @@ export default function AboutPage() {
 
         <SectionDivider />
 
-        <section className="py-[120px] px-6 bg-s0">
+        <section className="py-16 md:py-[120px] px-5 sm:px-6 bg-s0">
           <div className="max-w-3xl mx-auto">
             <FadeUp>
-              <div className="text-center mb-14">
+              <div className="text-center mb-10 md:mb-14">
                 <span className="font-body font-medium text-[11px] uppercase tracking-[0.2em] text-violet mb-4 block">
                   Next Step
                 </span>
-                <h2 className="font-serif italic text-[44px] md:text-[64px] text-1 leading-[1.05]">
+                <h2 className="font-serif italic text-[36px] sm:text-[44px] md:text-[64px] text-1 leading-[1.1] md:leading-[1.05]">
                   Read the fine print. Finally.
                 </h2>
               </div>
             </FadeUp>
 
             <FadeUp delay={0.1}>
-              <div className="bg-card border rounded-[16px] p-[28px]">
-                <p className="font-body font-light text-[18px] text-2 leading-[1.9]">
+              <div className="bg-card border rounded-[16px] p-6 sm:p-[28px] text-center sm:text-left">
+                <p className="font-body font-light text-[17px] md:text-[18px] text-2 leading-[1.8] md:leading-[1.9]">
                   Sign up for free and see what changes when your contract is explained in plain English.
                 </p>
-                <div className="mt-8 flex flex-col sm:flex-row items-start gap-4">
-                  <Link href="/upload" className="btn-primary">
+                <div className="mt-8 flex flex-col sm:flex-row items-center sm:items-start gap-4">
+                  <Link href="/upload" className="btn-primary w-full sm:w-auto">
                     Analyse My Contract <ArrowRight size={18} />
                   </Link>
-                  <Link href="/pricing" className="btn-secondary">
+                  <Link href="/pricing" className="btn-secondary w-full sm:w-auto">
                     See pricing
                   </Link>
                 </div>

@@ -57,16 +57,16 @@ export default function ExampleReportPage() {
       <Navbar />
       
       <main className="pt-[68px]">
-        <section className="pt-32 pb-24 px-6 bg-s1">
+        <section className="pt-24 md:pt-32 pb-16 md:pb-24 px-5 sm:px-6 bg-s1">
           <div className="max-w-4xl mx-auto text-center">
             <FadeUp>
               <span className="font-body font-medium text-[11px] uppercase tracking-[0.2em] text-violet mb-6 block">
                 Example report
               </span>
-              <h1 className="font-serif italic font-normal text-[44px] md:text-[64px] text-1 leading-[0.98] tracking-[-0.02em]">
+              <h1 className="font-serif italic font-normal text-[32px] sm:text-[44px] md:text-[64px] text-1 leading-[0.98] tracking-[-0.02em]">
                 Employment contract review example
               </h1>
-              <p className="font-body font-light text-[18px] md:text-[20px] text-2 leading-[1.85] mt-6 max-w-2xl mx-auto">
+              <p className="font-body font-light text-[17px] md:text-[20px] text-2 leading-[1.8] md:leading-[1.85] mt-6 max-w-2xl mx-auto">
                 This is what a Clauze scan looks like. It highlights risky clauses and explains them in plain English,
                 so you can negotiate with clarity.
               </p>
@@ -76,10 +76,10 @@ export default function ExampleReportPage() {
 
         <SectionDivider />
 
-        <section className="py-[120px] px-6 bg-s0">
+        <section className="py-16 md:py-[120px] px-5 sm:px-6 bg-s0">
           <div className="max-w-4xl mx-auto space-y-8">
             <FadeUp>
-              <div className="bg-card border border-[var(--border)] rounded-[16px] p-[28px]">
+              <div className="bg-card border border-[var(--border)] rounded-[16px] p-6 sm:p-[28px]">
                 <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
                   <div className="flex items-end gap-4">
                     <div className="font-display font-extrabold text-[72px] md:text-[96px] text-violet leading-none">
@@ -96,38 +96,38 @@ export default function ExampleReportPage() {
                   </div>
 
                   <div className="grid grid-cols-3 gap-3 w-full md:w-auto">
-                    <div className="p-4 rounded-[16px] bg-risk-red/10 border border-risk-red/20 text-center">
-                      <div className="font-display font-extrabold text-[28px] text-risk-red leading-none">
+                    <div className="p-3 sm:p-4 rounded-[16px] bg-risk-red/10 border border-risk-red/20 text-center">
+                      <div className="font-display font-extrabold text-[24px] sm:text-[28px] text-risk-red leading-none">
                         {MOCK_RESULT.risks.high}
                       </div>
-                      <div className="font-body font-medium text-[11px] uppercase tracking-[0.2em] text-risk-red mt-2">
+                      <div className="font-body font-medium text-[10px] sm:text-[11px] uppercase tracking-[0.2em] text-risk-red mt-2">
                         High
                       </div>
                     </div>
-                    <div className="p-4 rounded-[16px] bg-risk-amber/10 border border-risk-amber/20 text-center">
-                      <div className="font-display font-extrabold text-[28px] text-risk-amber leading-none">
+                    <div className="p-3 sm:p-4 rounded-[16px] bg-risk-amber/10 border border-risk-amber/20 text-center">
+                      <div className="font-display font-extrabold text-[24px] sm:text-[28px] text-risk-amber leading-none">
                         {MOCK_RESULT.risks.medium}
                       </div>
-                      <div className="font-body font-medium text-[11px] uppercase tracking-[0.2em] text-risk-amber mt-2">
+                      <div className="font-body font-medium text-[10px] sm:text-[11px] uppercase tracking-[0.2em] text-risk-amber mt-2">
                         Review
                       </div>
                     </div>
-                    <div className="p-4 rounded-[16px] bg-risk-green/10 border border-risk-green/20 text-center">
-                      <div className="font-display font-extrabold text-[28px] text-risk-green leading-none">
+                    <div className="p-3 sm:p-4 rounded-[16px] bg-risk-green/10 border border-risk-green/20 text-center">
+                      <div className="font-display font-extrabold text-[24px] sm:text-[28px] text-risk-green leading-none">
                         {MOCK_RESULT.risks.low}
                       </div>
-                      <div className="font-body font-medium text-[11px] uppercase tracking-[0.2em] text-risk-green mt-2">
+                      <div className="font-body font-medium text-[10px] sm:text-[11px] uppercase tracking-[0.2em] text-risk-green mt-2">
                         Safe
                       </div>
                     </div>
                   </div>
                 </div>
 
-                <div className="mt-10 pt-10 border-t border-[var(--border)]">
+                <div className="mt-8 md:mt-10 pt-8 md:pt-10 border-t border-[var(--border)]">
                   <h2 className="font-body font-medium text-[11px] uppercase tracking-[0.2em] text-3 mb-4">
                     Summary
                   </h2>
-                  <p className="font-body font-light text-[18px] text-2 leading-[1.9]">
+                  <p className="font-body font-light text-[17px] md:text-[18px] text-2 leading-[1.8] md:leading-[1.9]">
                     {MOCK_RESULT.summary}
                   </p>
                 </div>
@@ -143,14 +143,14 @@ export default function ExampleReportPage() {
             <div className="space-y-6">
               {MOCK_RESULT.clauses.map((clause, idx) => (
                 <FadeUp key={idx} delay={0.12 + idx * 0.06}>
-                  <div className="bg-card border border-[var(--border)] rounded-[16px] p-[28px]">
-                    <div className="flex items-start justify-between gap-4 mb-6">
+                  <div className="bg-card border border-[var(--border)] rounded-[16px] p-6 sm:p-[28px]">
+                    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
                       <div>
                         <p className="font-body font-medium text-[11px] uppercase tracking-[0.2em] text-violet">
                           {clause.tag}
                         </p>
-                        <h3 className="font-display font-bold text-[22px] text-1 mt-2">
-                          {clause.tag.replace(/_/g, " ").toLowerCase().replace(/(^\\w|\\s\\w)/g, (m) => m.toUpperCase())}
+                        <h3 className="font-display font-bold text-[20px] md:text-[22px] text-1 mt-2">
+                          {clause.tag.replace(/_/g, " ").toLowerCase().replace(/(^\w|\s\w)/g, (m) => m.toUpperCase())}
                         </h3>
                       </div>
                       <span
@@ -167,8 +167,8 @@ export default function ExampleReportPage() {
                       </span>
                     </div>
 
-                    <div className="mb-6 p-5 rounded-[12px] bg-card-inner border border-[var(--border)]">
-                      <p className="font-mono text-[13px] text-2 leading-[1.9]">
+                    <div className="mb-6 p-4 sm:p-5 rounded-[12px] bg-card-inner border border-[var(--border)]">
+                      <p className="font-mono text-[12px] sm:text-[13px] text-2 leading-[1.8] sm:leading-[1.9] break-words">
                         &quot;{clause.original}&quot;
                       </p>
                     </div>
@@ -178,10 +178,10 @@ export default function ExampleReportPage() {
                         <Info className="w-5 h-5 text-violet" />
                       </div>
                       <div>
-                        <p className="font-body font-medium text-[12px] uppercase tracking-[0.2em] text-3 mb-2">
+                        <p className="font-body font-medium text-[11px] uppercase tracking-[0.2em] text-3 mb-2">
                           Plain English
                         </p>
-                        <p className="font-body font-light text-[18px] text-2 leading-[1.85]">
+                        <p className="font-body font-light text-[17px] md:text-[18px] text-2 leading-[1.8] md:leading-[1.85]">
                           {clause.explanation}
                         </p>
                       </div>
@@ -192,12 +192,12 @@ export default function ExampleReportPage() {
             </div>
 
             <FadeUp delay={0.4}>
-              <div className="bg-card border border-[var(--border)] rounded-[16px] p-[28px]">
-                <h2 className="font-display font-bold text-[22px] text-1 mb-3 flex items-center gap-3">
+              <div className="bg-card border border-[var(--border)] rounded-[16px] p-6 sm:p-[28px]">
+                <h2 className="font-display font-bold text-[20px] md:text-[22px] text-1 mb-3 flex items-center gap-3">
                   <CheckCircle2 className="w-5 h-5 text-risk-green" />
                   Negotiation checklist
                 </h2>
-                <p className="font-body font-light text-[18px] text-2 leading-[1.85]">
+                <p className="font-body font-light text-[17px] md:text-[18px] text-2 leading-[1.8] md:leading-[1.85]">
                   These are example next steps based on the flagged clauses above. Use them as a starting point for
                   questions and edits.
                 </p>
@@ -205,18 +205,18 @@ export default function ExampleReportPage() {
                   {MOCK_RESULT.recommendations.map((rec, idx) => (
                     <div
                       key={idx}
-                      className="p-5 rounded-[12px] bg-card-inner border border-[var(--border)] text-[16px] text-2 flex gap-3 font-body font-light"
+                      className="p-4 sm:p-5 rounded-[12px] bg-card-inner border border-[var(--border)] text-[15px] sm:text-[16px] text-2 flex gap-3 font-body font-light"
                     >
-                      <div className="w-1.5 h-1.5 rounded-full bg-violet mt-2.5 shrink-0" />
+                      <div className="w-1.5 h-1.5 rounded-full bg-violet mt-2 md:mt-2.5 shrink-0" />
                       {rec}
                     </div>
                   ))}
                 </div>
                 <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
-                  <Link href="/upload" className="btn-primary">
+                  <Link href="/upload" className="btn-primary w-full sm:w-auto justify-center">
                     Analyse my contract <ArrowRight size={18} />
                   </Link>
-                  <Link href="/how-it-works" className="btn-secondary">
+                  <Link href="/how-it-works" className="btn-secondary w-full sm:w-auto justify-center">
                     How it works
                   </Link>
                 </div>

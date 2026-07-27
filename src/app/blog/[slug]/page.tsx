@@ -63,12 +63,12 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
       />
       
       <main className="pt-[68px]">
-        <section className="pt-32 pb-24 px-6 bg-s0">
+        <section className="pt-24 md:pt-32 pb-16 md:pb-24 px-5 sm:px-6 bg-s0">
           <article className="max-w-[820px] mx-auto">
           <FadeUp>
             <Link 
               href="/blog" 
-              className="inline-flex items-center gap-2 text-3 hover:text-violet transition-colors mb-10 font-body text-[14px]"
+              className="inline-flex items-center gap-2 text-3 hover:text-violet transition-colors mb-8 md:mb-10 font-body text-[14px]"
             >
               <ArrowLeft size={16} />
               Back to blog
@@ -76,21 +76,21 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
           </FadeUp>
 
           <FadeUp delay={0.1}>
-            <span className="inline-flex items-center px-3 h-8 bg-violet/10 text-violet text-[11px] font-body font-medium uppercase tracking-[0.2em] rounded-full mb-6">
+            <span className="inline-flex items-center px-3 h-7 md:h-8 bg-violet/10 text-violet text-[10px] md:text-[11px] font-body font-medium uppercase tracking-[0.2em] rounded-full mb-6">
               {post.category}
             </span>
-            <h1 className="font-display font-extrabold text-[34px] md:text-[48px] text-1 mb-6 leading-tight">
+            <h1 className="font-display font-extrabold text-[28px] sm:text-[34px] md:text-[48px] text-1 mb-6 leading-[1.15] md:leading-tight">
               {post.title}
             </h1>
-            <p className="font-body font-light text-[18px] text-2 leading-[1.9] max-w-2xl">
+            <p className="font-body font-light text-[17px] md:text-[18px] text-2 leading-[1.8] md:leading-[1.9] max-w-2xl">
               {post.excerpt}
             </p>
-            <div className="flex flex-wrap items-center gap-6 pb-4 mt-10">
-              <div className="flex items-center gap-2 text-3 text-[14px] font-body">
+            <div className="flex flex-wrap items-center gap-4 md:gap-6 pb-4 mt-8 md:mt-10">
+              <div className="flex items-center gap-2 text-3 text-[13px] md:text-[14px] font-body">
                 <Calendar size={14} />
                 {post.date}
               </div>
-              <div className="flex items-center gap-2 text-3 text-[14px] font-body">
+              <div className="flex items-center gap-2 text-3 text-[13px] md:text-[14px] font-body">
                 <Clock size={14} />
                 {post.readTime}
               </div>
@@ -99,32 +99,32 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
           </FadeUp>
 
           <FadeUp delay={0.2}>
-            <div className="prose-content mt-10">
+            <div className="prose-content mt-8 md:mt-10">
               {post.content.trim().split('\n\n').map((paragraph, index) => {
                 if (paragraph.startsWith('## ')) {
                   return (
-                    <h2 key={index} className="font-display font-extrabold text-[28px] text-1 mt-12 mb-6">
+                    <h2 key={index} className="font-display font-extrabold text-[24px] md:text-[28px] text-1 mt-10 md:mt-12 mb-5 md:mb-6">
                       {paragraph.replace('## ', '')}
                     </h2>
                   );
                 }
                 if (paragraph.startsWith('### ')) {
                   return (
-                    <h3 key={index} className="font-display font-bold text-[22px] text-1 mt-8 mb-4">
+                    <h3 key={index} className="font-display font-bold text-[20px] md:text-[22px] text-1 mt-7 md:mt-8 mb-4">
                       {paragraph.replace('### ', '')}
                     </h3>
                   );
                 }
                 if (paragraph.startsWith('> ')) {
                   return (
-                    <blockquote key={index} className="border-l-2 border-violet pl-6 py-3 my-8 bg-violet/5 rounded-r-xl">
-                      <p className="text-2 italic font-body">{paragraph.replace('> ', '')}</p>
+                    <blockquote key={index} className="border-l-2 border-violet pl-5 md:pl-6 py-3 my-6 md:my-8 bg-violet/5 rounded-r-xl">
+                      <p className="text-2 italic font-body text-[16px] md:text-[18px]">{paragraph.replace('> ', '')}</p>
                     </blockquote>
                   );
                 }
                 if (paragraph.startsWith('**') && paragraph.endsWith('**')) {
                   return (
-                    <p key={index} className="text-[18px] text-1 font-body font-medium my-6">
+                    <p key={index} className="text-[17px] md:text-[18px] text-1 font-body font-medium my-6">
                       {paragraph.replace(/\*\*/g, '')}
                     </p>
                   );
@@ -134,7 +134,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                   return (
                     <ul key={index} className="space-y-3 my-6">
                       {items.map((item, i) => (
-                        <li key={i} className="flex gap-3 text-[18px] text-2 font-body">
+                        <li key={i} className="flex gap-3 text-[17px] md:text-[18px] text-2 font-body leading-[1.7] md:leading-[1.9]">
                           <div className="w-1.5 h-1.5 rounded-full bg-violet mt-2.5 shrink-0" />
                           {item.replace(/^[0-9]+\. |[-*] /, '')}
                         </li>
@@ -143,7 +143,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                   );
                 }
                 return (
-                  <p key={index} className="text-[18px] text-2 leading-[1.9] mb-6 font-body font-light">
+                  <p key={index} className="text-[17px] md:text-[18px] text-2 leading-[1.8] md:leading-[1.9] mb-6 font-body font-light">
                     {paragraph}
                   </p>
                 );
@@ -152,16 +152,16 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
           </FadeUp>
 
           <FadeUp delay={0.3}>
-            <div className="mt-20 p-[28px] bg-card border border-[var(--border)] rounded-[16px] text-center">
-              <h3 className="text-[24px] font-display font-bold text-1 mb-4">
+            <div className="mt-16 md:mt-20 p-6 sm:p-[28px] bg-card border border-[var(--border)] rounded-[16px] text-center">
+              <h3 className="text-[20px] md:text-[24px] font-display font-bold text-1 mb-4">
                 Ready to run your own contract review?
               </h3>
-              <p className="text-2 mb-8 font-body font-light text-[18px] leading-[1.85]">
+              <p className="text-2 mb-8 font-body font-light text-[16px] md:text-[18px] leading-[1.8] md:leading-[1.85]">
                 Paste any contract and get a plain English breakdown, risk badges, and practical next steps.
               </p>
               <Link
                 href="/upload"
-                className="btn-primary inline-flex"
+                className="btn-primary inline-flex w-full sm:w-auto justify-center"
               >
                 Analyse a contract
               </Link>
@@ -172,8 +172,8 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
 
         <SectionDivider />
 
-        <section className="py-[120px] px-6 bg-s1">
-          <div className="max-w-5xl mx-auto grid md:grid-cols-3 gap-6">
+        <section className="py-16 md:py-[120px] px-5 sm:px-6 bg-s1">
+          <div className="max-w-5xl mx-auto grid sm:grid-cols-2 md:grid-cols-3 gap-5 md:gap-6">
             {[
               {
                 title: "NDA review",
@@ -195,11 +195,11 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
               },
             ].map((card, i) => (
               <FadeUp key={card.title} delay={i * 0.06}>
-                <div className="bg-card border rounded-[16px] p-[28px] h-full flex flex-col">
-                  <h3 className="font-display font-bold text-[22px] text-1 mb-3">{card.title}</h3>
-                  <p className="font-body font-light text-[18px] text-2 leading-[1.85] flex-1">{card.body}</p>
+                <div className="bg-card border rounded-[16px] p-6 sm:p-[28px] h-full flex flex-col">
+                  <h3 className="font-display font-bold text-[18px] md:text-[22px] text-1 mb-3">{card.title}</h3>
+                  <p className="font-body font-light text-[15px] md:text-[18px] text-2 leading-[1.8] md:leading-[1.85] flex-1">{card.body}</p>
                   <div className="mt-6">
-                    <Link href={card.href} className="font-display font-semibold text-[15px] text-1 hover:text-violet transition-colors">
+                    <Link href={card.href} className="font-display font-semibold text-[14px] md:text-[15px] text-1 hover:text-violet transition-colors">
                       {card.cta} <span className="text-violet">→</span>
                     </Link>
                   </div>

@@ -20,16 +20,16 @@ export default function ContactPage() {
       <Navbar />
 
       <main>
-        <section className="pt-32 pb-24 px-6 bg-s0">
+        <section className="pt-24 md:pt-32 pb-16 md:pb-24 px-5 sm:px-6 bg-s0">
           <div className="max-w-4xl mx-auto">
             <FadeUp>
               <span className="font-body font-medium text-[11px] uppercase tracking-[0.2em] text-violet mb-6 block">
                 Company
               </span>
-              <h1 className="font-display font-extrabold text-[40px] md:text-[56px] text-1 leading-[1.05]">
+              <h1 className="font-display font-extrabold text-[32px] sm:text-[40px] md:text-[56px] text-1 leading-[1.1] md:leading-[1.05]">
                 Contact
               </h1>
-              <p className="font-body font-light text-[18px] text-2 leading-[1.9] mt-6 max-w-2xl">
+              <p className="font-body font-light text-[17px] md:text-[18px] text-2 leading-[1.8] md:leading-[1.9] mt-6 max-w-2xl">
                 Contact Clauze for support, feedback, or partnerships. If you are stuck on a clause, include the clause
                 text and the contract type so we can help faster.
               </p>
@@ -39,27 +39,27 @@ export default function ContactPage() {
 
         <SectionDivider />
 
-        <section className="py-[120px] px-6 bg-s1">
-          <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-8 items-start">
+        <section className="py-16 md:py-[120px] px-5 sm:px-6 bg-s1">
+          <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-6 md:gap-8 items-start">
             <FadeUp>
-              <div className="bg-card border rounded-[16px] p-[28px]">
-                <h2 className="font-display font-bold text-[22px] text-1 mb-3">Email</h2>
-                <p className="font-body font-light text-[18px] text-2 leading-[1.9]">
+              <div className="bg-card border rounded-[16px] p-6 sm:p-[28px]">
+                <h2 className="font-display font-bold text-[20px] md:text-[22px] text-1 mb-3">Email</h2>
+                <p className="font-body font-light text-[16px] md:text-[18px] text-2 leading-[1.8] md:leading-[1.9]">
                   Use email for support, login issues, billing questions, and product feedback.
                 </p>
                 <div className="mt-6">
                   <a
-                    className="btn-primary"
+                    className="btn-primary w-full sm:w-auto justify-center"
                     href="mailto:support@clauze.xyz"
                   >
                     support@clauze.xyz <ArrowRight size={18} />
                   </a>
                 </div>
                 <div className="mt-6 space-y-2">
-                  <p className="font-body font-light text-[16px] text-3 leading-[1.8]">
+                  <p className="font-body font-light text-[14px] md:text-[16px] text-3 leading-[1.7] md:leading-[1.8]">
                     Typical response time: within 24 to 48 hours.
                   </p>
-                  <p className="font-body font-light text-[16px] text-3 leading-[1.8]">
+                  <p className="font-body font-light text-[14px] md:text-[16px] text-3 leading-[1.7] md:leading-[1.8]">
                     For sensitive contracts, remove names and addresses before sending anything by email.
                   </p>
                 </div>
@@ -67,9 +67,9 @@ export default function ContactPage() {
             </FadeUp>
 
             <FadeUp delay={0.1}>
-              <div className="bg-card border rounded-[16px] p-[28px]">
-                <h2 className="font-display font-bold text-[22px] text-1 mb-3">Common links</h2>
-                <p className="font-body font-light text-[18px] text-2 leading-[1.9] mb-6">
+              <div className="bg-card border rounded-[16px] p-6 sm:p-[28px] mt-6 md:mt-0">
+                <h2 className="font-display font-bold text-[20px] md:text-[22px] text-1 mb-3">Common links</h2>
+                <p className="font-body font-light text-[16px] md:text-[18px] text-2 leading-[1.8] md:leading-[1.9] mb-6">
                   Quick paths to the pages people use most often.
                 </p>
                 <div className="space-y-3">
@@ -83,7 +83,7 @@ export default function ContactPage() {
                     <Link
                       key={item.href}
                       href={item.href}
-                      className="block font-body text-[16px] text-2 hover:text-1 transition-colors"
+                      className="block font-body text-[15px] md:text-[16px] text-2 hover:text-1 transition-colors"
                     >
                       {item.label}
                     </Link>
@@ -96,20 +96,20 @@ export default function ContactPage() {
 
         <SectionDivider />
 
-        <section className="py-[120px] px-6 bg-s2">
+        <section className="py-16 md:py-[120px] px-5 sm:px-6 bg-s2">
           <div className="max-w-4xl mx-auto">
             <FadeUp>
-              <div className="text-center mb-16">
+              <div className="text-center mb-10 md:mb-16">
                 <span className="font-body font-medium text-[11px] uppercase tracking-[0.2em] text-violet mb-4 block">
                   What to include
                 </span>
-                <h2 className="font-display font-extrabold text-[32px] md:text-[40px] text-1">
+                <h2 className="font-display font-extrabold text-[28px] sm:text-[32px] md:text-[40px] text-1 leading-tight">
                   Get a faster answer
                 </h2>
               </div>
             </FadeUp>
 
-            <div className="grid md:grid-cols-3 gap-6 items-stretch">
+            <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-5 md:gap-6 items-stretch">
               {[
                 {
                   title: "Contract type",
@@ -125,9 +125,9 @@ export default function ContactPage() {
                 },
               ].map((card, i) => (
                 <FadeUp key={card.title} delay={i * 0.06}>
-                  <div className="bg-card border rounded-[16px] p-[28px] h-full">
-                    <h3 className="font-display font-bold text-[22px] text-1 mb-3">{card.title}</h3>
-                    <p className="font-body font-light text-[18px] text-2 leading-[1.85]">{card.body}</p>
+                  <div className="bg-card border rounded-[16px] p-6 sm:p-[28px] h-full">
+                    <h3 className="font-display font-bold text-[18px] md:text-[22px] text-1 mb-3">{card.title}</h3>
+                    <p className="font-body font-light text-[15px] md:text-[18px] text-2 leading-[1.8] md:leading-[1.85]">{card.body}</p>
                   </div>
                 </FadeUp>
               ))}

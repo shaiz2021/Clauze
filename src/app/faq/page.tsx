@@ -110,14 +110,14 @@ export default function FAQPage() {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
         />
         {/* Hero */}
-        <section className="pt-32 pb-24 px-6 bg-s1">
+        <section className="pt-24 md:pt-32 pb-16 md:pb-24 px-5 sm:px-6 bg-s1">
           <div className="max-w-4xl mx-auto text-center">
             <FadeUp>
               <span className="font-body font-medium text-[11px] uppercase tracking-[0.2em] text-violet mb-6 block">Common Questions</span>
-              <h1 className="font-display font-extrabold text-[36px] md:text-[52px] text-1 mb-6">
+              <h1 className="font-display font-extrabold text-[32px] sm:text-[40px] md:text-[52px] text-1 mb-6 leading-tight">
                 The questions people actually ask.
               </h1>
-              <p className="font-body font-light text-[20px] text-2 max-w-2xl mx-auto">
+              <p className="font-body font-light text-[17px] md:text-[20px] text-2 max-w-2xl mx-auto leading-[1.8]">
                 Everything you need to know about Clauze, grouped by topic.
               </p>
             </FadeUp>
@@ -128,10 +128,10 @@ export default function FAQPage() {
 
         {/* FAQ Sections */}
         {FAQ_SECTIONS.map((section, sectionIndex) => (
-          <section key={section.title} className={`py-[120px] px-6 ${sectionIndex % 2 === 0 ? "bg-s0" : "bg-s2"}`}>
+          <section key={section.title} className={`py-16 md:py-[120px] px-5 sm:px-6 ${sectionIndex % 2 === 0 ? "bg-s0" : "bg-s2"}`}>
             <div className="max-w-[740px] mx-auto">
               <FadeUp>
-                <h2 className="font-display font-bold text-[24px] text-1 mb-10 pb-4 border-b border-[var(--border)]">
+                <h2 className="font-display font-bold text-[22px] md:text-[24px] text-1 mb-8 md:mb-10 pb-4 border-b border-[var(--border)]">
                   {section.title}
                 </h2>
               </FadeUp>
@@ -141,23 +141,23 @@ export default function FAQPage() {
                   const id = `${sectionIndex}:${questionIndex}`;
                   return (
                     <FadeUp key={item.q} delay={questionIndex * 0.05}>
-                      <div className="border rounded-[16px] overflow-hidden">
+                      <div className="border rounded-[16px] overflow-hidden bg-card">
                         <button
                           onClick={() => setOpenFaq(openFaq === id ? null : id)}
                           aria-expanded={openFaq === id}
-                          className="w-full flex items-center justify-between p-6 text-left hover:bg-[var(--card-hover)] transition-colors"
+                          className="w-full flex items-center justify-between p-5 md:p-6 text-left hover:bg-[var(--card-hover)] transition-colors"
                         >
                           <span className={cn(
-                            "font-display font-bold text-[18px] transition-colors pr-4",
+                            "font-display font-bold text-[16px] md:text-[18px] transition-colors pr-4 leading-snug",
                             openFaq === id ? "text-violet" : "text-1"
                           )}>
                             {item.q}
                           </span>
                           <div className={cn(
-                            "w-8 h-8 rounded-full border flex items-center justify-center transition-all shrink-0",
+                            "w-7 h-7 md:w-8 md:h-8 rounded-full border flex items-center justify-center transition-all shrink-0",
                             openFaq === id ? "bg-violet border-violet rotate-45" : "border-[var(--border)]"
                           )}>
-                            <span className={cn("text-[18px]", openFaq === id ? "text-white" : "text-3")}>+</span>
+                            <span className={cn("text-[16px] md:text-[18px]", openFaq === id ? "text-white" : "text-3")}>+</span>
                           </div>
                         </button>
                         <div 
@@ -167,7 +167,7 @@ export default function FAQPage() {
                           )}
                         >
                           <div className="overflow-hidden">
-                            <div className="px-6 pb-6 font-body font-light text-[17px] text-2 leading-[1.8]">
+                            <div className="px-5 md:px-6 pb-5 md:pb-6 font-body font-light text-[15px] md:text-[17px] text-2 leading-[1.7] md:leading-[1.8]">
                               {item.a}
                             </div>
                           </div>
@@ -184,18 +184,18 @@ export default function FAQPage() {
         <SectionDivider />
 
         {/* Still have questions CTA */}
-        <section className="py-[120px] px-6 bg-s1">
+        <section className="py-16 md:py-[120px] px-5 sm:px-6 bg-s1">
           <div className="max-w-2xl mx-auto text-center">
             <FadeUp>
-              <h2 className="font-display font-extrabold text-[32px] text-1 mb-6">
+              <h2 className="font-display font-extrabold text-[28px] md:text-[32px] text-1 mb-6">
                 Still have questions?
               </h2>
-              <p className="font-body font-light text-[18px] text-2 mb-8">
+              <p className="font-body font-light text-[17px] md:text-[18px] text-2 mb-8 leading-[1.8]">
                 If you cannot find what you are looking for, reach out and we will get back to you.
               </p>
               <a
                 href="mailto:hello@clauze.xyz"
-                className="btn-primary inline-flex"
+                className="btn-primary inline-flex w-full sm:w-auto justify-center"
               >
                 Contact Us
               </a>

@@ -18,19 +18,19 @@ export default function CookiesPage() {
       <Navbar />
 
       <main>
-        <section className="pt-32 pb-24 px-6 bg-s0">
+        <section className="pt-24 md:pt-32 pb-16 md:pb-24 px-5 sm:px-6 bg-s0">
           <div className="max-w-3xl mx-auto">
             <FadeUp>
               <span className="font-body font-medium text-[11px] uppercase tracking-[0.2em] text-violet mb-6 block">
                 Legal
               </span>
-              <h1 className="font-display font-extrabold text-[40px] md:text-[56px] text-1 leading-[1.05]">
+              <h1 className="font-display font-extrabold text-[32px] sm:text-[40px] md:text-[56px] text-1 leading-[1.1] md:leading-[1.05]">
                 Cookie Policy
               </h1>
-              <p className="font-body font-light text-[18px] text-2 leading-[1.9] mt-6">
+              <p className="font-body font-light text-[17px] md:text-[18px] text-2 leading-[1.8] md:leading-[1.9] mt-6">
                 Cookies help Clauze run securely and remember your preferences. This page explains what we use and why.
               </p>
-              <p className="font-body font-light text-[14px] text-3 mt-4">
+              <p className="font-body font-light text-[13px] text-3 mt-4">
                 Last updated: {new Date().getFullYear()}
               </p>
             </FadeUp>
@@ -39,8 +39,8 @@ export default function CookiesPage() {
 
         <SectionDivider />
 
-        <section className="py-[120px] px-6 bg-s1">
-          <div className="max-w-3xl mx-auto space-y-10">
+        <section className="py-16 md:py-[120px] px-5 sm:px-6 bg-s1">
+          <div className="max-w-3xl mx-auto space-y-6 md:space-y-10">
             {[
               {
                 title: "Essential cookies",
@@ -64,9 +64,9 @@ export default function CookiesPage() {
               },
             ].map((item, i) => (
               <FadeUp key={item.title} delay={i * 0.05}>
-                <div className="bg-card border rounded-[16px] p-[28px]">
-                  <h2 className="font-display font-bold text-[22px] text-1 mb-3">{item.title}</h2>
-                  <p className="font-body font-light text-[18px] text-2 leading-[1.9]">{item.body}</p>
+                <div className="bg-card border rounded-[16px] p-6 sm:p-[28px]">
+                  <h2 className="font-display font-bold text-[20px] md:text-[22px] text-1 mb-3">{item.title}</h2>
+                  <p className="font-body font-light text-[16px] md:text-[18px] text-2 leading-[1.8] md:leading-[1.9]">{item.body}</p>
                 </div>
               </FadeUp>
             ))}

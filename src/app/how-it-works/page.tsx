@@ -63,14 +63,14 @@ export default function HowItWorksPage() {
 
       <main>
         {/* Hero */}
-        <section className="pt-32 pb-24 px-6 bg-s1">
+        <section className="pt-24 md:pt-32 pb-16 md:pb-24 px-5 sm:px-6 bg-s1">
           <div className="max-w-4xl mx-auto text-center">
             <FadeUp>
               <span className="font-body font-medium text-[11px] uppercase tracking-[0.2em] text-violet mb-6 block">The Process</span>
-              <h1 className="font-display font-extrabold text-[36px] md:text-[52px] text-1 mb-6">
+              <h1 className="font-display font-extrabold text-[32px] sm:text-[40px] md:text-[52px] text-1 mb-6 leading-tight">
                 Three steps. No confusion.
               </h1>
-              <p className="font-body font-light text-[20px] text-2 max-w-2xl mx-auto">
+              <p className="font-body font-light text-[17px] md:text-[20px] text-2 max-w-2xl mx-auto leading-[1.8]">
                 Clauze breaks down complex legal contracts into plain English. Here is exactly how it works.
               </p>
             </FadeUp>
@@ -81,23 +81,23 @@ export default function HowItWorksPage() {
 
         {/* Steps */}
         {STEPS.map((step, index) => (
-          <section key={step.step} className={`py-[120px] px-6 ${index % 2 === 0 ? "bg-s0" : "bg-s2"}`}>
+          <section key={step.step} className={`py-16 md:py-[120px] px-5 sm:px-6 ${index % 2 === 0 ? "bg-s0" : "bg-s2"}`}>
             <div className="max-w-4xl mx-auto">
               <FadeUp>
-                <div className="grid md:grid-cols-[1fr_2fr] gap-12 items-start">
-                  <div>
-                    <span className="font-display font-extrabold text-[96px] text-violet/10 leading-none block mb-4">{step.step}</span>
-                    <div className="text-violet mb-6">{step.icon}</div>
-                    <h2 className="font-display font-bold text-[28px] text-1 mb-4">{step.title}</h2>
+                <div className="grid md:grid-cols-[1fr_2fr] gap-8 md:gap-12 items-start">
+                  <div className="text-center md:text-left">
+                    <span className="font-display font-extrabold text-[64px] md:text-[96px] text-violet/10 leading-none block mb-2 md:mb-4">{step.step}</span>
+                    <div className="text-violet mb-4 md:mb-6 flex justify-center md:justify-start">{step.icon}</div>
+                    <h2 className="font-display font-bold text-[24px] md:text-[28px] text-1 mb-4">{step.title}</h2>
                   </div>
                   <div>
-                    <p className="font-body font-light text-[18px] text-2 leading-[1.8] mb-8">
+                    <p className="font-body font-light text-[16px] md:text-[18px] text-2 leading-[1.8] mb-8 text-center md:text-left">
                       {step.description}
                     </p>
                     <ul className="space-y-4">
                       {step.details.map((detail, i) => (
-                        <li key={i} className="flex items-start gap-4 font-body text-[16px] text-2">
-                          <div className="w-1.5 h-1.5 rounded-full bg-violet mt-2.5 shrink-0" />
+                        <li key={i} className="flex items-start gap-4 font-body text-[15px] md:text-[16px] text-2">
+                          <div className="w-1.5 h-1.5 rounded-full bg-violet mt-2 md:mt-2.5 shrink-0" />
                           {detail}
                         </li>
                       ))}
@@ -112,24 +112,24 @@ export default function HowItWorksPage() {
         <SectionDivider />
 
         {/* Contract Types */}
-        <section className="py-[120px] px-6 bg-s2">
+        <section className="py-16 md:py-[120px] px-5 sm:px-6 bg-s2">
           <div className="max-w-4xl mx-auto">
             <FadeUp>
-              <div className="text-center mb-16">
+              <div className="text-center mb-10 md:mb-16">
                 <span className="font-body font-medium text-[11px] uppercase tracking-[0.2em] text-violet mb-4 block">What Clauze Reads</span>
-                <h2 className="font-display font-extrabold text-[36px] md:text-[52px] text-1">
+                <h2 className="font-display font-extrabold text-[28px] sm:text-[36px] md:text-[52px] text-1 leading-tight">
                   Every contract type.
                 </h2>
               </div>
             </FadeUp>
 
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid sm:grid-cols-2 gap-5 md:gap-6">
               {CAPABILITIES.map((item, i) => (
                 <FadeUp key={item.title} delay={i * 0.1}>
-                  <div className="p-[28px] bg-card border rounded-[16px] card-hover">
+                  <div className="p-6 sm:p-[28px] bg-card border rounded-[16px] card-hover">
                     <div className="text-violet mb-4">{item.icon}</div>
-                    <h3 className="font-display font-bold text-[20px] text-1 mb-2">{item.title}</h3>
-                    <p className="font-body font-light text-[16px] text-2">{item.description}</p>
+                    <h3 className="font-display font-bold text-[18px] md:text-[20px] text-1 mb-2">{item.title}</h3>
+                    <p className="font-body font-light text-[15px] md:text-[16px] text-2 leading-relaxed">{item.description}</p>
                   </div>
                 </FadeUp>
               ))}
@@ -140,16 +140,16 @@ export default function HowItWorksPage() {
         <SectionDivider />
 
         {/* CTA */}
-        <section className="py-[120px] px-6 bg-s1">
+        <section className="py-16 md:py-[120px] px-5 sm:px-6 bg-s1">
           <div className="max-w-2xl mx-auto text-center">
             <FadeUp>
-              <h2 className="font-display font-extrabold text-[36px] md:text-[48px] text-1 mb-6">
+              <h2 className="font-display font-extrabold text-[28px] sm:text-[36px] md:text-[48px] text-1 mb-6 leading-tight">
                 Ready to understand your contracts?
               </h2>
-              <p className="font-body font-light text-[18px] text-2 mb-10">
+              <p className="font-body font-light text-[17px] md:text-[18px] text-2 mb-8 md:mb-10 leading-[1.8]">
                 Paste your contract text or upload a PDF. 1 scan per month included for free.
               </p>
-              <Link href="/upload" className="btn-primary inline-flex">
+              <Link href="/upload" className="btn-primary inline-flex w-full sm:w-auto justify-center">
                 Analyse My Contract <ArrowRight size={18} />
               </Link>
             </FadeUp>
