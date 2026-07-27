@@ -1,11 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Navbar } from "@/components/navbar";
 import { FadeUp } from "@/components/fade-up";
 import { Upload as UploadIcon, FileSearch, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { extractTextFromPdf } from "@/lib/pdf-utils";
+import { createSupabaseBrowserClient, isSupabaseConfigured } from "@/lib/supabase/browser";
+import { GatedSignup } from "@/components/gated-signup";
+import type { User } from "@supabase/supabase-js";
 
 type RiskLevel = "high" | "medium" | "low";
 
@@ -45,6 +48,24 @@ export default function UploadPage() {
   const [isUploading, setIsUploading] = useState(false);
   const [loadingStep, setLoadingStep] = useState(0);
   const [error, setError] = useState<string | null>(null);
+  const supabase = useMemo(() => (isSupabaseConfigured() ? createSupabaseBrowserClient() : null), []);
+  const [user, setUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    if (!supabase) return;
+
+    supabase.auth.getUser().then(({ data }) => {
+      setUser(data.user ?? null);
+    });
+
+    const { data } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null);
+    });
+
+    return () => {
+      data.subscription.unsubscribe();
+    };
+  }, [supabase]);
 
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -253,97 +274,110 @@ export default function UploadPage() {
           )}
 
           {result && (
-            <div className="space-y-6 max-w-2xl">
-              {/* Score */}
-              <FadeUp>
-                <div className="p-[28px] bg-card border border-[var(--border)] rounded-[16px]">
-                  <div className="flex items-center gap-6">
-                    <div className="relative w-[100px] h-[100px] shrink-0">
-                      <svg className="w-full h-full -rotate-90">
-                        <circle cx="50" cy="50" r="42" className="fill-none stroke-[var(--border)]" strokeWidth="8" />
-                        <circle
-                          cx="50" cy="50" r="42"
-                          className={cn(
-                            "fill-none",
-                            result.score > 74 ? "stroke-risk-green" : result.score > 39 ? "stroke-risk-amber" : "stroke-risk-red"
-                          )}
-                          strokeWidth="8"
-                          strokeLinecap="round"
-                          strokeDasharray="264"
-                          strokeDashoffset={264 - (264 * result.score) / 100}
-                        />
-                      </svg>
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <span className="font-display font-extrabold text-[28px] text-1">{result.score}</span>
+            <div className="relative">
+              {/* Blurred Results */}
+              <div className={cn(
+                "space-y-6 max-w-2xl transition-all duration-500",
+                !user && "blur-[8px] opacity-40 pointer-events-none select-none"
+              )}>
+                {/* Score */}
+                <FadeUp>
+                  <div className="p-[28px] bg-card border border-[var(--border)] rounded-[16px]">
+                    <div className="flex items-center gap-6">
+                      <div className="relative w-[100px] h-[100px] shrink-0">
+                        <svg className="w-full h-full -rotate-90">
+                          <circle cx="50" cy="50" r="42" className="fill-none stroke-[var(--border)]" strokeWidth="8" />
+                          <circle
+                            cx="50" cy="50" r="42"
+                            className={cn(
+                              "fill-none",
+                              result.score > 74 ? "stroke-risk-green" : result.score > 39 ? "stroke-risk-amber" : "stroke-risk-red"
+                            )}
+                            strokeWidth="8"
+                            strokeLinecap="round"
+                            strokeDasharray="264"
+                            strokeDashoffset={264 - (264 * result.score) / 100}
+                          />
+                        </svg>
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <span className="font-display font-extrabold text-[28px] text-1">{result.score}</span>
+                        </div>
+                      </div>
+                      <div>
+                        <p className="font-medium text-[12px] uppercase tracking-widest text-3 mb-1">Clauze Score</p>
+                        <p className="font-display font-bold text-[32px] text-1 mb-1">
+                          {result.score > 74 ? "Fair" : result.score > 39 ? "Review Needed" : "Seek Advice"}
+                        </p>
+                        <p className="font-body text-[14px] text-3 italic">
+                          &quot;{result.summary}&quot;
+                        </p>
                       </div>
                     </div>
-                    <div>
-                      <p className="font-medium text-[12px] uppercase tracking-widest text-3 mb-1">Clauze Score</p>
-                      <p className="font-display font-bold text-[32px] text-1 mb-1">
-                        {result.score > 74 ? "Fair" : result.score > 39 ? "Review Needed" : "Seek Advice"}
-                      </p>
-                      <p className="font-body text-[14px] text-3 italic">
-                        &quot;{result.summary}&quot;
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex gap-6 mt-6 pt-6 border-t border-[var(--border)]">
-                    <div className="flex items-center gap-2">
-                      <div className="w-2 h-2 rounded-full bg-risk-red" />
-                      <span className="font-body text-[14px] text-2">{result.counts.high} High</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <div className="w-2 h-2 rounded-full bg-risk-amber" />
-                      <span className="font-body text-[14px] text-2">{result.counts.medium} Review</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <div className="w-2 h-2 rounded-full bg-risk-green" />
-                      <span className="font-body text-[14px] text-2">{result.counts.low} Safe</span>
-                    </div>
-                  </div>
-                </div>
-              </FadeUp>
-
-              {/* Clauses */}
-              {result.clauses.map((clause, idx) => (
-                <FadeUp key={idx} delay={idx * 0.1}>
-                  <div
-                    className="p-[28px] bg-card-inner border rounded-[16px] relative"
-                    style={{ borderLeftWidth: 3, borderLeftColor: clause.risk === "high" ? "var(--risk-red)" : clause.risk === "medium" ? "var(--risk-amber)" : "var(--risk-green)" }}
-                  >
-                    <div className="flex justify-between items-start mb-4">
-                      <span className={cn(
-                        "px-3 py-1 rounded-full text-[10px] font-bold uppercase",
-                        clause.risk === "high" ? "bg-risk-red/15 text-risk-red" : clause.risk === "medium" ? "bg-risk-amber/15 text-risk-amber" : "bg-risk-green/15 text-risk-green"
-                      )}>
-                        {clause.risk} risk
-                      </span>
-                    </div>
-                    <h3 className="font-display font-bold text-[18px] text-1 mb-3">{clause.name}</h3>
-                    <p className="font-mono text-[12px] text-3 mb-4 line-clamp-2">&quot;{clause.excerpt}&quot;</p>
-                    <p className="font-body font-light text-[15px] text-2 mb-4">{clause.explanation}</p>
-                    <div className="flex items-start gap-3 pt-4 border-t border-[var(--border)]">
-                      <div className="w-1.5 h-1.5 rounded-full bg-violet mt-1.5 shrink-0" />
-                      <p className="font-body font-medium text-[14px] text-1">{clause.recommendation}</p>
+                    <div className="flex gap-6 mt-6 pt-6 border-t border-[var(--border)]">
+                      <div className="flex items-center gap-2">
+                        <div className="w-2 h-2 rounded-full bg-risk-red" />
+                        <span className="font-body text-[14px] text-2">{result.counts.high} High</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <div className="w-2 h-2 rounded-full bg-risk-amber" />
+                        <span className="font-body text-[14px] text-2">{result.counts.medium} Review</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <div className="w-2 h-2 rounded-full bg-risk-green" />
+                        <span className="font-body text-[14px] text-2">{result.counts.low} Safe</span>
+                      </div>
                     </div>
                   </div>
                 </FadeUp>
-              ))}
 
-              {/* Actions */}
-              <FadeUp delay={result.clauses.length * 0.1}>
-                <div className="flex gap-4 pt-4">
-                  <button
-                    onClick={() => { setResult(null); setText(""); }}
-                    className="btn-secondary h-[48px]"
-                  >
-                    New Scan
-                  </button>
-                  <button disabled className="btn-secondary h-[48px] opacity-50 cursor-not-allowed">
-                    Download Report (Coming Soon)
-                  </button>
+                {/* Clauses */}
+                {result.clauses.map((clause, idx) => (
+                  <FadeUp key={idx} delay={idx * 0.1}>
+                    <div
+                      className="p-[28px] bg-card-inner border rounded-[16px] relative"
+                      style={{ borderLeftWidth: 3, borderLeftColor: clause.risk === "high" ? "var(--risk-red)" : clause.risk === "medium" ? "var(--risk-amber)" : "var(--risk-green)" }}
+                    >
+                      <div className="flex justify-between items-start mb-4">
+                        <span className={cn(
+                          "px-3 py-1 rounded-full text-[10px] font-bold uppercase",
+                          clause.risk === "high" ? "bg-risk-red/15 text-risk-red" : clause.risk === "medium" ? "bg-risk-amber/15 text-risk-amber" : "bg-risk-green/15 text-risk-green"
+                        )}>
+                          {clause.risk} risk
+                        </span>
+                      </div>
+                      <h3 className="font-display font-bold text-[18px] text-1 mb-3">{clause.name}</h3>
+                      <p className="font-mono text-[12px] text-3 mb-4 line-clamp-2">&quot;{clause.excerpt}&quot;</p>
+                      <p className="font-body font-light text-[15px] text-2 mb-4">{clause.explanation}</p>
+                      <div className="flex items-start gap-3 pt-4 border-t border-[var(--border)]">
+                        <div className="w-1.5 h-1.5 rounded-full bg-violet mt-1.5 shrink-0" />
+                        <p className="font-body font-medium text-[14px] text-1">{clause.recommendation}</p>
+                      </div>
+                    </div>
+                  </FadeUp>
+                ))}
+
+                {/* Actions */}
+                <FadeUp delay={result.clauses.length * 0.1}>
+                  <div className="flex gap-4 pt-4">
+                    <button
+                      onClick={() => { setResult(null); setText(""); }}
+                      className="btn-secondary h-[48px]"
+                    >
+                      New Scan
+                    </button>
+                    <button disabled className="btn-secondary h-[48px] opacity-50 cursor-not-allowed">
+                      Download Report (Coming Soon)
+                    </button>
+                  </div>
+                </FadeUp>
+              </div>
+
+              {/* Gated Modal */}
+              {!user && (
+                <div className="absolute inset-0 flex items-center justify-center p-6 z-20">
+                  <GatedSignup />
                 </div>
-              </FadeUp>
+              )}
             </div>
           )}
         </div>
