@@ -67,6 +67,18 @@ export default function UploadPage() {
     };
   }, [supabase]);
 
+  // Handle body scroll lock when gated modal is visible
+  useEffect(() => {
+    if (result && !user) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [result, user]);
+
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
@@ -374,8 +386,14 @@ export default function UploadPage() {
 
               {/* Gated Modal */}
               {!user && (
-                <div className="absolute inset-0 flex items-center justify-center p-6 z-20">
-                  <GatedSignup />
+                <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+                  {/* Backdrop */}
+                  <div className="fixed inset-0 bg-s0/60 backdrop-blur-sm" />
+                  
+                  {/* Modal Content Container */}
+                  <div className="relative w-full max-w-md my-auto animate-in fade-in zoom-in duration-300">
+                    <GatedSignup />
+                  </div>
                 </div>
               )}
             </div>

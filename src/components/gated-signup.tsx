@@ -68,8 +68,8 @@ export function GatedSignup() {
   };
 
   return (
-    <div className="bg-card border border-[var(--border)] rounded-[24px] p-8 md:p-10 max-w-md w-full shadow-[0_20px_50px_rgba(0,0,0,0.1)] relative z-10">
-      <div className="text-center mb-8">
+    <div className="bg-card border border-[var(--border)] rounded-[24px] p-6 sm:p-8 md:p-10 w-full shadow-[0_20px_50px_rgba(0,0,0,0.15)] relative z-10 mx-auto max-w-[90vw] sm:max-w-md">
+      <div className="text-center mb-6 sm:mb-8">
         <h2 className="font-display font-bold text-[28px] text-1 mb-3">
           {mode === "signup" ? "See Your Results" : "Welcome Back"}
         </h2>
