@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import { createSupabaseBrowserClient, isSupabaseConfigured } from "@/lib/supabase/browser";
+import { siteUrl } from "@/lib/site-url";
 import { AuthShell } from "@/components/auth-shell";
 
 export default function ForgotPasswordPage() {
@@ -23,7 +24,7 @@ export default function ForgotPasswordPage() {
     setError(null);
     setSuccess(null);
 
-    const redirectTo = `${window.location.origin}/auth/callback?next=/reset-password`;
+    const redirectTo = `${siteUrl}/auth/callback?next=/reset-password`;
     const { error: resetError } = await supabase.auth.resetPasswordForEmail(email, {
       redirectTo,
     });

@@ -2,16 +2,16 @@
 
 import { useMemo, useState } from "react";
 import { createSupabaseBrowserClient, isSupabaseConfigured } from "@/lib/supabase/browser";
+import { siteUrl } from "@/lib/site-url";
 import { ArrowRight, Loader2 } from "lucide-react";
 
-export function GatedSignup() {
+export function GatedSignup({ onAuthSuccess }: { onAuthSuccess?: (user: any) => void }) {
   const supabase = useMemo(() => (isSupabaseConfigured() ? createSupabaseBrowserClient() : null), []);
   const [mode, setMode] = useState<"signup" | "signin">("signup");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [success, setSuccess] = useState<string | null>(null);
 
   const handleAuth = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -21,7 +21,6 @@ export function GatedSignup() {
     }
     setIsSubmitting(true);
     setError(null);
-    setSuccess(null);
 
     if (mode === "signup") {
       if (password.length < 8) {
@@ -30,27 +29,33 @@ export function GatedSignup() {
         return;
       }
 
-      const { error: signUpError } = await supabase.auth.signUp({
+      const { data, error: signUpError } = await supabase.auth.signUp({
         email,
         password,
         options: {
-          emailRedirectTo: `${window.location.origin}/auth/callback?next=/upload`,
+          emailRedirectTo: `${siteUrl}/auth/callback?next=/upload`,
         },
       });
 
       if (signUpError) {
         setError(signUpError.message);
       } else {
-        setSuccess("Check your email to verify your account!");
+        // Even if email confirmation is required, Supabase returns a user object.
+        // We pass this up to allow immediate access in the UI.
+        if (data.user) {
+          onAuthSuccess?.(data.user);
+        }
       }
     } else {
-      const { error: signInError } = await supabase.auth.signInWithPassword({
+      const { data, error: signInError } = await supabase.auth.signInWithPassword({
         email,
         password,
       });
 
       if (signInError) {
         setError(signInError.message);
+      } else if (data.user) {
+        onAuthSuccess?.(data.user);
       }
     }
 
@@ -60,7 +65,7 @@ export function GatedSignup() {
   const signInWithGoogle = async () => {
     if (!supabase) return;
     setIsSubmitting(true);
-    const redirectTo = `${window.location.origin}/auth/callback?next=/upload`;
+    const redirectTo = `${siteUrl}/auth/callback?next=/upload`;
     await supabase.auth.signInWithOAuth({
       provider: "google",
       options: { redirectTo },
@@ -126,12 +131,6 @@ export function GatedSignup() {
           {error && (
             <div className="bg-risk-red/10 border border-risk-red/20 rounded-[12px] p-4 text-center">
               <p className="font-body text-[14px] text-risk-red">{error}</p>
-            </div>
-          )}
-
-          {success && (
-            <div className="bg-risk-green/10 border border-risk-green/20 rounded-[12px] p-4 text-center">
-              <p className="font-body text-[14px] text-risk-green">{success}</p>
             </div>
           )}
 

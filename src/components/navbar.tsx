@@ -151,7 +151,7 @@ export function Navbar() {
               href="/upload"
               className="hidden lg:flex h-[38px] items-center px-5 bg-violet text-white font-display font-semibold rounded-[8px] hover:bg-violet-light transition-colors"
             >
-              {user ? "Go to App" : "Sign up free"}
+              {user ? "Scan for free" : "Scan for free"}
             </Link>
             <button
               className="lg:hidden text-2"

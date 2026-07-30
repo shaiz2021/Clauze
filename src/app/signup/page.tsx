@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { createSupabaseBrowserClient, isSupabaseConfigured } from "@/lib/supabase/browser";
+import { siteUrl } from "@/lib/site-url";
 import { AuthShell } from "@/components/auth-shell";
 import { ArrowRight } from "lucide-react";
 
@@ -40,7 +41,7 @@ export default function SignupPage() {
       return;
     }
 
-    const emailRedirectTo = `${window.location.origin}/auth/callback?next=/dashboard`;
+    const emailRedirectTo = `${siteUrl}/auth/callback?next=/dashboard`;
     const { error: signUpError } = await supabase.auth.signUp({
       email,
       password,
@@ -67,7 +68,7 @@ export default function SignupPage() {
     setIsSubmitting(true);
     setError(null);
     setSuccess(null);
-    const redirectTo = `${window.location.origin}/auth/callback?next=/dashboard`;
+    const redirectTo = `${siteUrl}/auth/callback?next=/dashboard`;
     const { error: oauthError } = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: { redirectTo },

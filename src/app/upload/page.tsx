@@ -2,12 +2,14 @@
 
 import { useState, useEffect, useMemo } from "react";
 import { Navbar } from "@/components/navbar";
+import { Footer } from "@/components/footer";
 import { FadeUp } from "@/components/fade-up";
 import { Upload as UploadIcon, FileSearch, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { extractTextFromPdf } from "@/lib/pdf-utils";
 import { createSupabaseBrowserClient, isSupabaseConfigured } from "@/lib/supabase/browser";
 import { GatedSignup } from "@/components/gated-signup";
+import { LimitExceededModal } from "@/components/limit-exceeded-modal";
 import type { User } from "@supabase/supabase-js";
 
 type RiskLevel = "high" | "medium" | "low";
@@ -50,6 +52,11 @@ export default function UploadPage() {
   const [error, setError] = useState<string | null>(null);
   const supabase = useMemo(() => (isSupabaseConfigured() ? createSupabaseBrowserClient() : null), []);
   const [user, setUser] = useState<User | null>(null);
+  const [manualUser, setManualUser] = useState<User | null>(null);
+  const [showLimitModal, setShowLimitModal] = useState(false);
+  const [usage, setUsage] = useState<{ plan: string; count: number; limit: number } | null>(null);
+
+  const activeUser = user || manualUser;
 
   useEffect(() => {
     if (!supabase) return;
@@ -67,9 +74,21 @@ export default function UploadPage() {
     };
   }, [supabase]);
 
+  // Fetch usage when user changes
+  useEffect(() => {
+    if (activeUser) {
+      fetch("/api/usage")
+        .then((res) => res.json())
+        .then((data) => setUsage(data))
+        .catch((err) => console.error("Error fetching usage:", err));
+    } else {
+      setUsage(null);
+    }
+  }, [activeUser]);
+
   // Handle body scroll lock when gated modal is visible
   useEffect(() => {
-    if (result && !user) {
+    if (result && !activeUser) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "unset";
@@ -77,7 +96,7 @@ export default function UploadPage() {
     return () => {
       document.body.style.overflow = "unset";
     };
-  }, [result, user]);
+  }, [result, activeUser]);
 
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -132,6 +151,13 @@ export default function UploadPage() {
 
   const handleAnalyze = async () => {
     if (!text) return;
+
+    // Check usage limits for logged in users
+    if (activeUser && usage && usage.plan === "Free" && usage.count >= usage.limit) {
+      setShowLimitModal(true);
+      return;
+    }
+
     setIsAnalyzing(true);
     setResult(null);
     setError(null);
@@ -158,6 +184,18 @@ export default function UploadPage() {
         throw new Error(message);
       }
       setResult(data);
+
+      // Increment usage for logged in users
+      if (activeUser) {
+        fetch("/api/usage", { method: "POST" })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.success) {
+              setUsage(prev => prev ? { ...prev, count: prev.count + 1 } : null);
+            }
+          })
+          .catch((err) => console.error("Error incrementing usage:", err));
+      }
     } catch (error) {
       const message = error instanceof Error ? error.message : "Something went wrong during analysis.";
       console.error(error);
@@ -290,7 +328,7 @@ export default function UploadPage() {
               {/* Blurred Results */}
               <div className={cn(
                 "space-y-6 max-w-2xl transition-all duration-500",
-                !user && "blur-[8px] opacity-40 pointer-events-none select-none"
+                !activeUser && "blur-[8px] opacity-40 pointer-events-none select-none"
               )}>
                 {/* Score */}
                 <FadeUp>
@@ -372,7 +410,7 @@ export default function UploadPage() {
                 <FadeUp delay={result.clauses.length * 0.1}>
                   <div className="flex flex-col sm:flex-row gap-4 pt-4">
                     <button
-                      onClick={() => { setResult(null); setText(""); }}
+                      onClick={() => { setResult(null); setText(""); setManualUser(null); }}
                       className="btn-secondary h-[48px] w-full sm:w-auto"
                     >
                       New Scan
@@ -385,14 +423,14 @@ export default function UploadPage() {
               </div>
 
               {/* Gated Modal */}
-              {!user && (
+              {!activeUser && (
                 <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
                   {/* Backdrop */}
                   <div className="fixed inset-0 bg-s0/60 backdrop-blur-sm" />
                   
                   {/* Modal Content Container */}
                   <div className="relative w-full max-w-md my-auto animate-in fade-in zoom-in duration-300">
-                    <GatedSignup />
+                    <GatedSignup onAuthSuccess={(u) => setManualUser(u)} />
                   </div>
                 </div>
               )}
@@ -400,6 +438,12 @@ export default function UploadPage() {
           )}
         </div>
       </main>
+
+      {showLimitModal && (
+        <LimitExceededModal onClose={() => setShowLimitModal(false)} />
+      )}
+
+      <Footer />
     </div>
   );
 }

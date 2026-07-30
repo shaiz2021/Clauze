@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { createSupabaseBrowserClient, isSupabaseConfigured } from "@/lib/supabase/browser";
+import { siteUrl } from "@/lib/site-url";
 import { AuthShell } from "@/components/auth-shell";
 import { ArrowRight } from "lucide-react";
 
@@ -47,7 +48,7 @@ export default function LoginPage() {
     }
     setIsSubmitting(true);
     setError(null);
-    const redirectTo = `${window.location.origin}/auth/callback?next=/dashboard`;
+    const redirectTo = `${siteUrl}/auth/callback?next=/dashboard`;
     const { error: oauthError } = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: { redirectTo },
