@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, Suspense } from "react";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { FadeUp } from "@/components/fade-up";
@@ -461,7 +461,9 @@ export default function UploadPage() {
                   
                   {/* Modal Content Container */}
                   <div className="relative w-full max-w-md my-auto animate-in fade-in zoom-in duration-300">
-                    <GatedSignup onAuthSuccess={(u) => setManualUser(u)} />
+                    <Suspense fallback={<div className="bg-card border border-[var(--border)] rounded-[24px] p-10 flex items-center justify-center"><div className="w-8 h-8 border-2 border-violet border-t-transparent rounded-full animate-spin" /></div>}>
+                      <GatedSignup onAuthSuccess={(u) => setManualUser(u)} />
+                    </Suspense>
                   </div>
                 </div>
               )}
