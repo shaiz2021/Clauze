@@ -56,6 +56,37 @@ export default function UploadPage() {
   const [showLimitModal, setShowLimitModal] = useState(false);
   const [usage, setUsage] = useState<{ plan: string; count: number; limit: number } | null>(null);
 
+  // Persistence logic for anonymous scans
+  useEffect(() => {
+    const savedText = sessionStorage.getItem("clauze_scan_text");
+    const savedType = sessionStorage.getItem("clauze_scan_type");
+    const savedResult = sessionStorage.getItem("clauze_scan_result");
+
+    if (savedText) setText(savedText);
+    if (savedType) setContractType(savedType);
+    if (savedResult) {
+      try {
+        setResult(JSON.parse(savedResult));
+      } catch (e) {
+        console.error("Error parsing saved scan result", e);
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    if (text) sessionStorage.setItem("clauze_scan_text", text);
+    else sessionStorage.removeItem("clauze_scan_text");
+  }, [text]);
+
+  useEffect(() => {
+    sessionStorage.setItem("clauze_scan_type", contractType);
+  }, [contractType]);
+
+  useEffect(() => {
+    if (result) sessionStorage.setItem("clauze_scan_result", JSON.stringify(result));
+    else sessionStorage.removeItem("clauze_scan_result");
+  }, [result]);
+
   const activeUser = user || manualUser;
 
   useEffect(() => {

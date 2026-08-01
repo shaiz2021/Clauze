@@ -1,20 +1,51 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { createSupabaseBrowserClient, isSupabaseConfigured } from "@/lib/supabase/browser";
 import { siteUrl } from "@/lib/site-url";
 import { AuthShell } from "@/components/auth-shell";
 import { ArrowRight } from "lucide-react";
 
+const LinkedInIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+    <rect width="4" height="12" x="2" y="9" />
+    <circle cx="4" cy="4" r="2" />
+  </svg>
+);
+
 export default function LoginPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const supabase = useMemo(() => (isSupabaseConfigured() ? createSupabaseBrowserClient() : null), []);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const errorParam = searchParams.get("error");
+    const errorDesc = searchParams.get("error_description");
+    if (errorParam) {
+      if (errorDesc?.includes("Email not provided")) {
+        setError("LinkedIn did not provide an email address. Please ensure your email is public on LinkedIn or sign up with email.");
+      } else {
+        setError(errorDesc || "An error occurred during authentication.");
+      }
+    }
+  }, [searchParams]);
 
   const signInWithEmail = async () => {
     if (!supabase) {
@@ -59,6 +90,26 @@ export default function LoginPage() {
     }
   };
 
+  const signInWithLinkedIn = async () => {
+    if (!supabase) {
+      setError(
+        "Supabase is not configured. Add NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY."
+      );
+      return;
+    }
+    setIsSubmitting(true);
+    setError(null);
+    const redirectTo = `${siteUrl}/auth/callback?next=/dashboard`;
+    const { error: oauthError } = await supabase.auth.signInWithOAuth({
+      provider: "linkedin_oidc",
+      options: { redirectTo },
+    });
+    if (oauthError) {
+      setError(oauthError.message);
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <AuthShell
       eyebrow="Account"
@@ -76,9 +127,14 @@ export default function LoginPage() {
       }
     >
       <div className="space-y-4">
-        <button onClick={signInWithGoogle} className="btn-secondary w-full" disabled={isSubmitting}>
-          Continue with Google <ArrowRight size={16} />
-        </button>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <button onClick={signInWithGoogle} className="btn-secondary w-full flex items-center justify-center gap-2 text-[14px]" disabled={isSubmitting}>
+            Google <ArrowRight size={14} />
+          </button>
+          <button onClick={signInWithLinkedIn} className="btn-secondary w-full flex items-center justify-center gap-2 text-[14px]" disabled={isSubmitting}>
+            LinkedIn <LinkedInIcon />
+          </button>
+        </div>
 
         <div className="flex items-center gap-4">
           <div className="flex-1 h-px bg-[var(--border)]" />
