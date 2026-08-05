@@ -102,7 +102,7 @@ export default function RemoteEmployeesPage() {
                   Protecting your career and rights
                 </h2>
                 <p className="font-body font-light text-[17px] md:text-[18px] text-2 max-w-2xl mx-auto leading-[1.8]">
-                  Remote employment contracts often include standard "corporate" language that can be highly restrictive for individuals. Clauze flags these three key areas.
+                  Remote employment contracts often include standard &quot;corporate&quot; language that can be highly restrictive for individuals. Clauze flags these three key areas.
                 </p>
               </div>
             </FadeUp>
@@ -176,7 +176,7 @@ export default function RemoteEmployeesPage() {
               </h2>
               <div className="space-y-8 font-body font-light text-[16px] md:text-[18px] text-2 leading-[1.8]">
                 <p>
-                  Clauze is built on the belief that individuals should have the same access to intelligent contract analysis as the companies that hire them. Our production-ready AI tools are designed to provide a fast, objective "second look" at your employment terms.
+                  Clauze is built on the belief that individuals should have the same access to intelligent contract analysis as the companies that hire them. Our production-ready AI tools are designed to provide a fast, objective &quot;second look&quot; at your employment terms.
                 </p>
                 <div className="bg-s1 border rounded-[16px] p-8 space-y-4">
                   <h4 className="font-display font-bold text-1">Key remote job offer red flags we scan for:</h4>

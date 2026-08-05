@@ -81,7 +81,7 @@ export default function StartupsPage() {
               </h2>
               <div className="space-y-6 font-body font-light text-[16px] md:text-[18px] text-2 leading-[1.8]">
                 <p>
-                  In the early stages of a startup, every partnership, vendor, and potential hire is a critical milestone. But these milestones often come with a heavy legal burden. Waiting days for a lawyer to review a "standard" NDA or a SaaS vendor agreement can kill momentum and burn through your limited seed capital.
+                  In the early stages of a startup, every partnership, vendor, and potential hire is a critical milestone. But these milestones often come with a heavy legal burden. Waiting days for a lawyer to review a &quot;standard&quot; NDA or a SaaS vendor agreement can kill momentum and burn through your limited seed capital.
                 </p>
                 <p>
                   Clauze is the startup contract review tool built to eliminate these bottlenecks. We provide a first-pass analysis that surfaces the risks that actually matter to founders, allowing you to move fast while staying protected.
@@ -133,7 +133,7 @@ export default function StartupsPage() {
                   </div>
                   <h3 className="font-display font-bold text-[20px] text-1 mb-4">Preserving Legal Budget</h3>
                   <p className="font-body font-light text-[15px] text-2 leading-[1.8] mb-6 flex-grow">
-                    Spending $500 an hour on "routine" vendor review is a waste of capital for early-stage teams.
+                    Spending $500 an hour on &quot;routine&quot; vendor review is a waste of capital for early-stage teams.
                   </p>
                   <div className="bg-card-inner border rounded-[12px] p-4 mt-auto">
                     <p className="font-body font-medium text-[12px] uppercase tracking-[0.1em] text-violet mb-2">How Clauze helps</p>
@@ -183,12 +183,12 @@ export default function StartupsPage() {
                   <ul className="list-disc pl-5 space-y-2">
                     <li><strong>Liability and Indemnity:</strong> Flagging unlimited liability traps in vendor and partner agreements.</li>
                     <li><strong>IP Protection:</strong> Ensuring your core IP remains yours, even when working with third-party contractors.</li>
-                    <li><strong>Auto-Renewal Detection:</strong> Spotting the "hidden" 90-day cancellation windows that lock you into unwanted subscriptions.</li>
-                    <li><strong>Exit Readiness:</strong> Helping you keep your "contract hygiene" clean for future due diligence and acquisitions.</li>
+                    <li><strong>Auto-Renewal Detection:</strong> Spotting the &quot;hidden&quot; 90-day cancellation windows that lock you into unwanted subscriptions.</li>
+                    <li><strong>Exit Readiness:</strong> Helping you keep your &quot;contract hygiene&quot; clean for future due diligence and acquisitions.</li>
                   </ul>
                 </div>
                 <p>
-                  By integrating Clauze into your operational workflow, you can decentralize the "first look" at contracts within your team. Empower your Ops or Product leads to run initial scans, escalating only the high-risk items to legal. This creates a more efficient, scalable organization that can seize opportunities without being held back by paperwork.
+                  By integrating Clauze into your operational workflow, you can decentralize the &quot;first look&quot; at contracts within your team. Empower your Ops or Product leads to run initial scans, escalating only the high-risk items to legal. This creates a more efficient, scalable organization that can seize opportunities without being held back by paperwork.
                 </p>
               </div>
             </FadeUp>

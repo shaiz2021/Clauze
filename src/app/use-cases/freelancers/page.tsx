@@ -84,7 +84,7 @@ export default function FreelancersPage() {
                   As a freelancer, your time is your most valuable asset. But every new client project comes with a dense legal agreement that can hide risks to your income and your future career. Whether you are working through platforms like Upwork and Freelancer or signing direct client agreements, manual review is slow, expensive, and prone to error.
                 </p>
                 <p>
-                  Clauze provides a production-ready AI contract checker designed specifically for the unique needs of independent contractors. We help you spot the "hidden costs" of a project before you commit your time.
+                  Clauze provides a production-ready AI contract checker designed specifically for the unique needs of independent contractors. We help you spot the &quot;hidden costs&quot; of a project before you commit your time.
                 </p>
               </div>
             </FadeUp>
@@ -115,7 +115,7 @@ export default function FreelancersPage() {
                   </div>
                   <h3 className="font-display font-bold text-[20px] text-1 mb-4">Eliminating Scope Creep</h3>
                   <p className="font-body font-light text-[15px] text-2 leading-[1.8] mb-6 flex-grow">
-                    Vague "Services" definitions and "unlimited revisions" can turn a profitable project into a loss.
+                    Vague &quot;Services&quot; definitions and &quot;unlimited revisions&quot; can turn a profitable project into a loss.
                   </p>
                   <div className="bg-card-inner border rounded-[12px] p-4 mt-auto">
                     <p className="font-body font-medium text-[12px] uppercase tracking-[0.1em] text-violet mb-2">How Clauze helps</p>
@@ -133,7 +133,7 @@ export default function FreelancersPage() {
                   </div>
                   <h3 className="font-display font-bold text-[20px] text-1 mb-4">Fixing Unfair Payment Terms</h3>
                   <p className="font-body font-light text-[15px] text-2 leading-[1.8] mb-6 flex-grow">
-                    Net-90 delays and "pay-when-paid" clauses are zero-interest loans for your clients at your expense.
+                    Net-90 delays and &quot;pay-when-paid&quot; clauses are zero-interest loans for your clients at your expense.
                   </p>
                   <div className="bg-card-inner border rounded-[12px] p-4 mt-auto">
                     <p className="font-body font-medium text-[12px] uppercase tracking-[0.1em] text-violet mb-2">How Clauze helps</p>
@@ -181,14 +181,14 @@ export default function FreelancersPage() {
                 <div className="bg-s1 border rounded-[16px] p-8 space-y-4">
                   <h4 className="font-display font-bold text-1">What we check in every freelance contract:</h4>
                   <ul className="list-disc pl-5 space-y-2">
-                    <li><strong>Liability Caps:</strong> Ensuring you aren't personally responsible for client losses beyond your fee.</li>
+                    <li><strong>Liability Caps:</strong> Ensuring you aren&apos;t personally responsible for client losses beyond your fee.</li>
                     <li><strong>IP Assignment:</strong> Protecting your right to reuse your own tools, templates, and libraries.</li>
-                    <li><strong>Termination Rights:</strong> Spotting "kill fees" and ensuring you get paid for work in progress if a project ends early.</li>
+                    <li><strong>Termination Rights:</strong> Spotting &quot;kill fees&quot; and ensuring you get paid for work in progress if a project ends early.</li>
                     <li><strong>Governing Law:</strong> Flagging clauses that force you to defend yourself in distant jurisdictions.</li>
                   </ul>
                 </div>
                 <p>
-                  Our AI doesn't just summarize; it analyzes. By leveraging specialized models trained on thousands of real-world contracts, Clauze provides a level of depth that general-purpose AI tools simply cannot match. It understands the nuances of the "freelancer-client" relationship and highlights the specific patterns that create risk for independent creators.
+                  Our AI doesn&apos;t just summarize; it analyzes. By leveraging specialized models trained on thousands of real-world contracts, Clauze provides a level of depth that general-purpose AI tools simply cannot match. It understands the nuances of the &quot;freelancer-client&quot; relationship and highlights the specific patterns that create risk for independent creators.
                 </p>
               </div>
             </FadeUp>
