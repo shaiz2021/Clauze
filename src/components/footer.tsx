@@ -23,7 +23,7 @@ export function Footer() {
         </div>
 
         {/* Columns */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 py-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-12 py-12">
           {/* Product */}
           <div>
             <h4 className="font-display font-bold text-[13px] uppercase tracking-widest text-3 mb-6">
@@ -50,9 +50,28 @@ export function Footer() {
                   FAQ
                 </Link>
               </li>
+            </ul>
+          </div>
+
+          {/* Use Cases */}
+          <div>
+            <h4 className="font-display font-bold text-[13px] uppercase tracking-widest text-3 mb-6">
+              Use Cases
+            </h4>
+            <ul className="space-y-4">
               <li>
-                <Link href="/upload" className="font-body text-[16px] text-2 hover:text-1 transition-colors">
-                  Sign up free
+                <Link href="/use-cases/freelancers" className="font-body text-[16px] text-2 hover:text-1 transition-colors">
+                  Freelancers
+                </Link>
+              </li>
+              <li>
+                <Link href="/use-cases/startups" className="font-body text-[16px] text-2 hover:text-1 transition-colors">
+                  Startups
+                </Link>
+              </li>
+              <li>
+                <Link href="/use-cases/remote-employees" className="font-body text-[16px] text-2 hover:text-1 transition-colors">
+                  Remote Employees
                 </Link>
               </li>
             </ul>

@@ -31,6 +31,36 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
   const post = BLOG_POSTS[params.slug];
   if (!post) notFound();
 
+  const renderTextWithLinks = (text: string) => {
+    const parts = text.split(/(\[.*?\]\(.*?\))/g);
+    return parts.map((part, i) => {
+      const match = part.match(/\[(.*?)\]\((.*?)\)/);
+      if (match) {
+        const [_, linkText, url] = match;
+        const isInternal = url.startsWith("/") || url.startsWith("#");
+        if (isInternal) {
+          return (
+            <Link key={i} href={url} className="text-violet hover:text-violet/80 transition-colors underline underline-offset-4">
+              {linkText}
+            </Link>
+          );
+        }
+        return (
+          <a
+            key={i}
+            href={url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-violet hover:text-violet/80 transition-colors underline underline-offset-4"
+          >
+            {linkText}
+          </a>
+        );
+      }
+      return part;
+    });
+  };
+
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -104,28 +134,28 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                 if (paragraph.startsWith('## ')) {
                   return (
                     <h2 key={index} className="font-display font-extrabold text-[24px] md:text-[28px] text-1 mt-10 md:mt-12 mb-5 md:mb-6">
-                      {paragraph.replace('## ', '')}
+                      {renderTextWithLinks(paragraph.replace('## ', ''))}
                     </h2>
                   );
                 }
                 if (paragraph.startsWith('### ')) {
                   return (
                     <h3 key={index} className="font-display font-bold text-[20px] md:text-[22px] text-1 mt-7 md:mt-8 mb-4">
-                      {paragraph.replace('### ', '')}
+                      {renderTextWithLinks(paragraph.replace('### ', ''))}
                     </h3>
                   );
                 }
                 if (paragraph.startsWith('> ')) {
                   return (
                     <blockquote key={index} className="border-l-2 border-violet pl-5 md:pl-6 py-3 my-6 md:my-8 bg-violet/5 rounded-r-xl">
-                      <p className="text-2 italic font-body text-[16px] md:text-[18px]">{paragraph.replace('> ', '')}</p>
+                      <p className="text-2 italic font-body text-[16px] md:text-[18px]">{renderTextWithLinks(paragraph.replace('> ', ''))}</p>
                     </blockquote>
                   );
                 }
                 if (paragraph.startsWith('**') && paragraph.endsWith('**')) {
                   return (
                     <p key={index} className="text-[17px] md:text-[18px] text-1 font-body font-medium my-6">
-                      {paragraph.replace(/\*\*/g, '')}
+                      {renderTextWithLinks(paragraph.replace(/\*\*/g, ''))}
                     </p>
                   );
                 }
@@ -136,7 +166,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                       {items.map((item, i) => (
                         <li key={i} className="flex gap-3 text-[17px] md:text-[18px] text-2 font-body leading-[1.7] md:leading-[1.9]">
                           <div className="w-1.5 h-1.5 rounded-full bg-violet mt-2.5 shrink-0" />
-                          {item.replace(/^[0-9]+\. |[-*] /, '')}
+                          {renderTextWithLinks(item.replace(/^[0-9]+\. |[-*] /, ''))}
                         </li>
                       ))}
                     </ul>
@@ -144,7 +174,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                 }
                 return (
                   <p key={index} className="text-[17px] md:text-[18px] text-2 leading-[1.8] md:leading-[1.9] mb-6 font-body font-light">
-                    {paragraph}
+                    {renderTextWithLinks(paragraph)}
                   </p>
                 );
               })}

@@ -14,7 +14,7 @@ const BLOG_POSTS_LIST = Object.entries(BLOG_POSTS).map(([slug, post]) => ({
   ...post,
 }));
 
-const CATEGORIES = ["All", "NDAs", "Freelance", "Employment", "Legal Basics"];
+const CATEGORIES = ["All", "NDAs", "Freelance", "Employment", "SaaS Terms", "Legal Basics"];
 
 export default function BlogPage() {
   const [activeCategory, setActiveCategory] = useState("All");

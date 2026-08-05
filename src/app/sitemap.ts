@@ -16,6 +16,9 @@ const PUBLIC_ROUTES = [
   "/privacy",
   "/terms",
   "/upload",
+  "/use-cases/freelancers",
+  "/use-cases/startups",
+  "/use-cases/remote-employees",
 ];
 
 const toLastModified = (value: string) => {
