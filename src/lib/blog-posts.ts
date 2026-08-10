@@ -396,7 +396,7 @@ Most offer letters include:
 ## What an Employment Contract Usually Adds
 
 Employment contracts often add:
-- Non-compete or non-solicit
+- [Non-compete](/blog/fair-vs-unfair-non-compete) or [non-solicit](/blog/employment-non-solicitation-clause)
 - IP assignment details
 - Termination and notice rules
 - Bonus plan rules
@@ -468,7 +468,7 @@ A non-solicit can become a hidden non-compete if:
 - "Solicit" includes accepting inbound work
 - The restriction covers your entire industry
 
-> If the clause prevents you from working with anyone in your space, it is effectively a non-compete.
+> If the clause prevents you from working with anyone in your space, it is effectively a [non-compete](/blog/fair-vs-unfair-non-compete).
 
 ## What Is Usually Reasonable
 
@@ -796,7 +796,7 @@ It is when the client keeps adding work outside the original agreement without a
 
 Two rounds is common for many creative projects. More rounds should be paid.
 
-If you want to check whether your SOW protects you, paste it into Clauze and Clauze reads where the ambiguity is.
+If you want to check whether your SOW protects you, paste it into Clauze and Clauze reads where the ambiguity is. You should also check the [five clauses that cost freelancers the most](/blog/five-contract-clauses-cost-freelancers) to ensure you are protected beyond just the scope of work.
     `,
   },
   "nda-permitted-disclosures-carveouts": {
@@ -1155,57 +1155,78 @@ Yes, and for high-stakes deals, you should. However, for a fast, checklist-style
   },
   "five-contract-clauses-cost-freelancers": {
     title: "Five Contract Clauses That Cost Freelancers the Most",
-    excerpt: "After scanning thousands of contracts, these are the clauses that consistently hurt freelancers the most.",
+    excerpt:
+      "After scanning thousands of contracts, these are the clauses that consistently hurt freelancers the most. Learn how to spot them and negotiate for fairness.",
     category: "Freelance",
-    author: "Clauze Team",
+    author: "Shahzaib Khan",
     date: "June 11, 2026",
-    readTime: "8 min read",
+    readTime: "15 min read",
     content: `
-When you are just starting out as a freelancer, it is easy to get excited about a new client and sign whatever contract they put in front of you. But some clauses hide in the fine print that can cost you thousands of dollars, your intellectual property, or even your ability to work in your field.
+When you are just starting out as a freelancer, it is easy to get excited about a new client and sign whatever contract they put in front of you. But some clauses hide in the fine print that can cost you thousands of dollars, your intellectual property, or even your ability to work in your field. 
 
-Here are the five clauses that appear most often in bad freelance contracts, and what you can do about each one.
+For the modern independent professional, a contract is not just a formality; it is a risk management tool. After analyzing thousands of agreements through Clauze, we have identified five specific areas where freelancers consistently lose leverage and money.
 
 ## 1. Unlimited Liability
 
 This is the most dangerous clause in any freelance contract. It typically reads something like: "The Contractor shall indemnify and hold harmless the Client from any and all claims, damages, losses, and expenses."
 
-What this actually means: If something goes wrong, even if it is not your fault, you could be personally responsible for an unlimited amount of money. There is no cap.
+What this actually means: If something goes wrong—even if it is not your fault—you could be personally responsible for an unlimited amount of money. There is no cap. Without a cap, one mistake or one frivolous lawsuit from a client's third party could bankrupt your business.
 
-What to watch for: Any clause that uses the words "any and all" or "unlimited" liability. Also watch for clauses that require you to indemnify the client for things outside your control.
+**Example Clause:**
+*"Contractor agrees to indemnify, defend, and hold harmless the Company and its officers, directors, and employees from and against any and all claims, losses, liabilities, damages, costs and expenses (including reasonable attorneys' fees) arising out of or related to the Services provided under this Agreement."*
 
-> Fair contracts typically cap liability at the total value of the contract or the amount you have been paid.
+**How Clauze flags this:**
+Clauze identifies this as "Unlimited Indemnification Exposure." The tool flags the absence of a liability ceiling and warns that this clause extends beyond your own actions to "any and all claims" related to the project. Clauze recommends negotiating a cap equal to the fees paid under the contract.
 
-## 2. Broad IP Assignment
+> Fair contracts typically cap liability at the total value of the contract or the amount you have been paid. Read more about [liability caps here](/blog/limitation-of-liability-cap-explained).
+
+## 2. Broad IP Assignment (Ownership)
 
 Many clients want to own everything you create, forever, regardless of whether it relates to the work you are doing for them. A clause like "All intellectual property created by Contractor during the term of this Agreement shall belong exclusively to Client" can mean they own your side projects too.
 
-What this actually means: If you write a blog post on your own time about an industry topic, and your client happens to own the rights to everything you wrote that month, they technically own that blog post too.
+What this actually means: If you write a blog post on your own time about an industry topic, and your client happens to own the rights to everything you wrote that month, they technically own that blog post too. This is especially dangerous for developers who use their own internal libraries or templates.
 
-What to watch for: Clauses that assign "all IP" or "all work product" without limiting it to work created specifically for the client as part of the project.
+**Example Clause:**
+*"All work product, including but not limited to code, designs, and documentation, created by Contractor during the period of performance shall be deemed 'work made for hire' and shall be the sole and exclusive property of the Client."*
+
+**How Clauze flags this:**
+Clauze flags this as "Overbroad IP Assignment." It specifically looks for language that fails to distinguish between "Project Work" and "Pre-existing Intellectual Property." Clauze suggests adding a carve-out for your own proprietary tools and templates used to deliver the work. For a deeper dive, see our guide on [IP assignment](/blog/employment-ip-assignment-clause).
 
 ## 3. Non-Compete Clauses
 
 Non-competes in freelance contracts are increasingly common and increasingly problematic. A clause might say you cannot work with any competitor for 12 months after the contract ends, anywhere in the world.
 
-What this actually means: If you work with startups, you might be restricted from working with any other startup in your field for a year. If you work in tech, this could effectively prevent you from working at all.
+What this actually means: If you work with startups, you might be restricted from working with any other startup in your field for a year. If you work in tech, this could effectively prevent you from working at all. For a freelancer, your "niche" is your livelihood. A broad non-compete is essentially a ban on working in your own industry.
 
-What to watch for: Geographic restrictions that are too broad (anything more than a specific city or region), time periods longer than 6 months, or vague definitions of "competitor."
+**Example Clause:**
+*"For a period of one (1) year following the termination of this Agreement, Contractor shall not, directly or indirectly, provide services to any entity that competes with the business of the Client within the United States."*
+
+**How Clauze flags this:**
+Clauze identifies this as a "Restrictive Covenant Risk." It analyzes the geographic scope (United States) and duration (1 year) and compares them against industry standards for freelancers. Clauze recommends narrowing the scope to specific direct competitors and reducing the duration to 3-6 months.
 
 ## 4. Kill Fees and Cancellation Penalties
 
 Some contracts include clauses that allow clients to cancel at any time but still pay you nothing, or worse, charge you a penalty if you cancel.
 
-What this actually means: You could spend weeks on a project, have the client cancel on day one, and receive nothing. Or you could want to leave a bad situation and be hit with a cancellation fee that exceeds what you would have earned.
+What this actually means: You could spend weeks on a project, have the client cancel on day one, and receive nothing. Or you could want to leave a bad situation and be hit with a cancellation fee that exceeds what you would have earned. A fair contract should include a "Kill Fee"—a percentage of the remaining project fee paid if the client terminates for convenience.
 
-What to watch for: Clauses that allow termination "for any reason or no reason" without notice or compensation. Also watch for "minimum engagement" clauses that lock you in.
+**Example Clause:**
+*"Client may terminate this Agreement at any time for any reason upon written notice to Contractor. In the event of such termination, Client shall only be responsible for fees for deliverables actually accepted by Client prior to the date of termination."*
+
+**How Clauze flags this:**
+Clauze flags this as "Uncompensated Termination Risk." It highlights that "accepted deliverables" is a subjective bar that allows a client to walk away from work-in-progress without payment. Clauze suggests adding a 25-50% kill fee for the remaining project value. See our detailed guide on [handling kill fees](/blog/freelance-kill-fee-termination).
 
 ## 5. Vague Scope Creep Provisions
 
 Many contracts say something like "Client may request additional work at mutually agreed upon rates." This sounds reasonable until you are three months into a two-week project, working 60-hour weeks, and the client keeps adding features.
 
-What this actually means: Without clear definitions of what is included in the project scope and what constitutes additional work, you can end up doing far more than you bargained for, for the same price.
+What this actually means: Without clear definitions of what is included in the project scope and what constitutes additional work, you can end up doing far more than you bargained for, for the same price. This is the "silent killer" of freelance profitability.
 
-What to watch for: Any contract that does not clearly define project scope, deliverables, revision rounds, or what happens when the client wants something outside the original agreement.
+**Example Clause:**
+*"Contractor shall perform the services described in Exhibit A and such other duties as may be assigned by the Client from time to time."*
+
+**How Clauze flags this:**
+Clauze identifies "Open-Ended Scope" as a medium-level risk. The phrase "such other duties" is a red flag that allows for infinite expansion of work without guaranteed additional pay. Clauze recommends requiring a signed "Change Order" for any work not explicitly listed in the original SOW. Learn how to [prevent scope creep here](/blog/freelance-sow-scope-creep).
 
 ## How to Protect Yourself
 
@@ -1217,8 +1238,22 @@ The good news is that all of these clauses are negotiable. Here is what to push 
 4. **Include minimum payment** for work completed if cancelled.
 5. **Define scope clearly** and require signed change orders for additional work.
 
+## Quick Answers (AEO)
+
+### What are the most dangerous clauses for freelancers?
+Unlimited liability and broad IP assignment are the most dangerous. Unlimited liability puts your personal assets at risk, while broad IP assignment can result in a client owning your side projects or proprietary tools.
+
+### How do I negotiate a liability cap?
+Request that your liability be capped at the total amount of fees paid to you under the contract. This aligns the risk with the financial reward of the project.
+
+### What is a fair kill fee?
+A fair kill fee typically ranges from 25% to 50% of the remaining project value, ensuring you are compensated for the opportunity cost of reserving your time for the client.
+
+### Can a freelancer refuse a non-compete?
+Yes. Many freelancers successfully negotiate non-competes out of their contracts by explaining that they specialize in a specific niche and need to work with multiple clients in that industry to sustain their business.
+
 Before you sign your next contract, run it through Clauze. We will flag these clauses and explain exactly what they mean for you.
-    `
+    `,
   },
   "what-nda-actually-means": {
     title: "What an NDA Actually Means and What to Watch For",
@@ -1302,23 +1337,24 @@ Before you sign your next NDA, read it carefully. And if you are not sure what i
   },
   "fair-vs-unfair-non-compete": {
     title: "The Difference Between a Fair Non-Compete and an Unfair One",
-    excerpt: "Non-competes can ruin your career if they are too broad. Here is how to tell the difference.",
+    excerpt:
+      "Non-competes can ruin your career if they are too broad. Learn how to tell the difference between a protective clause and a career-stalling trap.",
     category: "Employment",
-    author: "Clauze Team",
+    author: "Shahzaib Khan",
     date: "June 5, 2026",
-    readTime: "10 min read",
+    readTime: "18 min read",
     content: `
-Non-compete agreements have been getting a lot of attention lately. Several states have banned them entirely, the FTC is moving to restrict them nationally, and more workers are pushing back against clauses that feel like they are trapping them in a job.
+Non-compete agreements have been getting a lot of attention lately. Several states have banned them entirely, the FTC is moving to restrict them nationally, and more workers are pushing back against clauses that feel like they are trapping them in a job. 
 
-But until the law catches up, non-competes remain common in many employment contracts, especially for executives, salespeople, and anyone with specialized knowledge. So how do you know if the non-compete you are being asked to sign is fair or unfair?
+But until the law catches up, non-competes remain common in many employment contracts, especially for executives, salespeople, and anyone with specialized knowledge. So how do you know if the non-compete you are being asked to sign is fair or unfair? Understanding the distinction is critical before you sign your next [employment contract](/blog/offer-letter-vs-employment-contract).
 
-## What a Non-Compete Is supposed to Do
+## What a Non-Compete Is Supposed to Do
 
 The basic idea behind a non-compete is to protect a business from having an employee leave and immediately take trade secrets or client relationships to a competitor. Courts in most states will enforce non-competes if they are:
 
-1. **Reasonable in scope**: limited geographically and temporally
-2. **Protecting a legitimate business interest**: like trade secrets or customer relationships
-3. **Not too restrictive**: not preventing someone from making a living
+1. **Reasonable in scope**: limited geographically and temporally.
+2. **Protecting a legitimate business interest**: like trade secrets or customer relationships.
+3. **Not too restrictive**: not preventing someone from making a living.
 
 ## What Makes a Non-Compete Unfair
 
@@ -1326,33 +1362,43 @@ Here are the specific factors that make a non-compete unreasonable:
 
 ### Geographic Scope
 
-A fair non-compete limits the geographic restriction to the area where the company actually does business or has a meaningful presence.
+A fair non-compete limits the geographic restriction to the area where the company actually does business or has a meaningful presence. An unfair non-compete might say "anywhere in the United States" or "worldwide", even if the company only operates in one city.
 
-An unfair non-compete might say "anywhere in the United States" or "worldwide", even if the company only operates in one city.
+**Example Clause:**
+*"During the Restricted Period, Employee shall not engage in any Competing Business within a one hundred (100) mile radius of any Company office or location."*
 
-**What to watch for:** Geographic restrictions that extend beyond the company's actual market or operations. If they only have offices in Austin, a restriction covering all of Texas might be too broad.
+**How Clauze flags this:**
+Clauze identifies this as a "Broad Geographic Restriction." If the company has 50 offices, a 100-mile radius around each one effectively covers most of the country. Clauze flags this as a high risk for remote workers or those in specialized fields where the "market" is national.
 
 ### Time Duration
 
-A fair non-compete is short, typically 6 months to 1 year after leaving.
+A fair non-compete is short, typically 6 months to 1 year after leaving. An unfair non-compete might last 2 years, 3 years, or even longer. The longer the restriction, the more likely it is to be unreasonable.
 
-An unfair non-compete might last 2 years, 3 years, or even longer. The longer the restriction, the more likely it is to be unreasonable.
+**Example Clause:**
+*"The Restricted Period shall begin on the date of termination and continue for a period of twenty-four (24) consecutive months thereafter."*
 
-**What to watch for:** Restrictions longer than 12 months. In most states, anything over 2 years is going to face serious scrutiny.
+**How Clauze flags this:**
+Clauze flags "Excessive Duration" for any non-compete exceeding 12 months. It notes that in many jurisdictions, 24 months is considered "rebuttable as unreasonable" unless the employee was a C-level executive or had access to highly sensitive IP.
 
 ### What Counts as a Competitor
 
-A fair non-compete defines "competitor" specifically, meaning a company that offers the same products or services in the same market.
+A fair non-compete defines "competitor" specifically, meaning a company that offers the same products or services in the same market. An unfair non-compete might define competitors so broadly that it covers almost any company in your industry.
 
-An unfair non-compete might define competitors so broadly that it covers almost any company in your industry.
+**Example Clause:**
+*"Employee shall not work for any entity that provides services similar to those provided by the Company, or any entity engaged in the technology sector."*
 
-**Example of a problematic definition:** "Any company that provides professional services" or "any company that does business in the technology sector."
+**How Clauze flags this:**
+Clauze flags this as a "Vague Competitor Definition." By including "any entity engaged in the technology sector," the clause becomes a blanket ban on employment. Clauze recommends narrowing the definition to a list of specific direct competitors.
 
 ### Scope of Restricted Activities
 
-A fair non-compete limits you from doing the specific thing you did for your former employer, for example, selling enterprise software to Fortune 500 companies.
+A fair non-compete limits you from doing the specific thing you did for your former employer, for example, selling enterprise software to Fortune 500 companies. An unfair non-compete might prevent you from doing any work in your field, even if it does not compete directly with your former employer.
 
-An unfair non-compete might prevent you from doing any work in your field, even if it does not compete directly with your former employer.
+**Example Clause:**
+*"Employee shall not, in any capacity, whether as an employee, consultant, or independent contractor, provide any services to a Competing Business."*
+
+**How Clauze flags this:**
+Clauze flags the phrase "in any capacity" as a significant risk. This could prevent you from working as a janitor at a competing company, which has nothing to do with protecting trade secrets. Clauze recommends limiting the restriction to "services that are the same as or substantially similar to" your current role.
 
 ## Real Examples of Fair vs. Unfair Non-Competes
 
@@ -1361,18 +1407,18 @@ An unfair non-compete might prevent you from doing any work in your field, even 
 *"Employee agrees not to work for any company that provides residential real estate services within 25 miles of Austin, Texas, for a period of 6 months following termination."*
 
 This is reasonable because:
-- It has a specific geographic limit
-- The time period is short
-- It only covers direct competitors in the same market
+- It has a specific geographic limit.
+- The time period is short.
+- It only covers direct competitors in the same market.
 
 ### Unfair Non-Compete Example
 
 *"Employee agrees not to engage in any business activity that competes with the Company, directly or indirectly, anywhere in the world, for a period of 24 months following termination."*
 
 This is unreasonable because:
-- It has no geographic limit
-- The time period is excessive
-- The definition of "competes" and "competing business" is vague
+- It has no geographic limit.
+- The time period is excessive.
+- The definition of "competes" and "competing business" is vague.
 
 If you are being asked to sign a non-compete, always negotiate the terms before you sign. Once you sign, your leverage drops significantly.
 
@@ -1396,7 +1442,7 @@ The legal landscape varies dramatically by state:
 - New York
 - Georgia
 
-If you live in a state where non-competes are commonly enforced, it is especially important to negotiate fair terms before signing.
+If you live in a state where non-competes are commonly enforced, it is especially important to negotiate fair terms before signing. For more on restrictive covenants, see our guide on [non-solicit clauses](/blog/employment-non-solicitation-clause).
 
 ## How to Negotiate a Better Non-Compete
 
@@ -1426,10 +1472,22 @@ If you have already signed a non-compete and it seems unreasonable, here are you
 3. **Check your state law**. If you live in California or another state where non-competes are unenforceable, you may have more freedom than you think.
 4. **Document everything**. If you are worried about a potential violation, document that you are not using confidential information or targeting former clients.
 
-Non-competes are not going away anytime soon, but the legal and cultural environment is shifting. More workers are pushing back, and regulators are paying attention.
+## Quick Answers (AEO)
 
-If you are asked to sign a non-compete, read it carefully. A fair non-compete should have a narrow geographic scope, a short time period, and a specific definition of what counts as a competitor. Before you sign any employment contract with a non-compete, let Clauze scan it first.
-    `
+### What makes a non-compete unfair?
+A non-compete is generally considered unfair if it is too broad in geography (e.g., "worldwide"), too long in duration (e.g., more than 12-24 months), or too vague in its definition of what constitutes a "competitor."
+
+### Are non-competes legal in California?
+No. California has one of the strongest bans on non-compete agreements in the United States. They are generally unenforceable against employees, regardless of where the employer is located.
+
+### What is a "reasonable" non-compete?
+A reasonable non-compete typically lasts 6 months, applies only to the specific geographic area where the employee worked, and protects specific trade secrets or client relationships rather than general industry knowledge.
+
+### Can I be fired for refusing to sign a non-compete?
+In many "at-will" employment states, yes, an employer can refuse to hire you or can terminate your employment if you refuse to sign their standard non-compete agreement. This is why negotiation *before* joining is so important.
+
+Non-competes are not going away anytime soon, but the legal and cultural environment is shifting. More workers are pushing back, and regulators are paying attention. Before you sign any employment contract with a non-compete, let Clauze scan it first.
+    `,
   },
   "saas-auto-renewal-clauses-explained": {
     title: "SaaS Auto-Renewal Clauses: How to Spot and Cancel Before You're Locked In",

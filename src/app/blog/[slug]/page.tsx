@@ -10,18 +10,22 @@ import { AuthorBio } from "@/components/author-bio";
 import Script from "next/script";
 
 import { BLOG_POSTS } from "@/lib/blog-posts";
+import { siteUrl } from "@/lib/site-url";
+
 export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
   const post = BLOG_POSTS[params.slug];
   if (!post) return { title: "Post not found | Clauze" };
 
+  const canonicalUrl = `${siteUrl}/blog/${params.slug}`;
+
   return {
     title: `${post.title} | Clauze`,
     description: post.excerpt,
-    alternates: { canonical: `/blog/${params.slug}` },
+    alternates: { canonical: canonicalUrl },
     openGraph: {
       title: `${post.title} | Clauze`,
       description: post.excerpt,
-      url: `/blog/${params.slug}`,
+      url: canonicalUrl,
       type: "article",
     },
   };
