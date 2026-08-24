@@ -19,7 +19,7 @@ const PLANS = [
     name: "Free",
     price: "$0",
     period: "month",
-    description: "Essential tools for occasional contract review. Paste your text and get a risk summary.",
+    description: "Start with a free AI contract review. Paste your text and get a risk summary in seconds.",
     features: [
       { name: "1 scan per month", included: true },
       { name: "Paste-text only", included: true },
@@ -106,7 +106,7 @@ export default function PricingPage() {
           <div className="max-w-5xl mx-auto">
             <FadeUp delay={0.1}>
               <p className="font-body font-light text-[15px] md:text-[16px] text-3 text-center mb-10 md:mb-16 leading-[1.8]">
-                Start with a Free scan today or upgrade for PDF uploads, exports, and unlimited access.
+                Get a free AI contract review today or upgrade for PDF uploads, exports, and unlimited contract analysis.
               </p>
             </FadeUp>
 

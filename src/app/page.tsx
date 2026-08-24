@@ -5,7 +5,12 @@ import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { FadeUp } from "@/components/fade-up";
 import { SectionDivider } from "@/components/section-divider";
-import { ArrowRight, Shield, FileText, Search, CheckCircle2, Lock, Scale, Zap, Gavel, AlertTriangle, X } from "lucide-react";
+import { BLOG_POSTS } from "@/lib/blog-posts";
+import { 
+  ArrowRight, Shield, FileText, Search, CheckCircle2, Lock, 
+  Scale, Zap, Gavel, AlertTriangle, X, Users, Rocket, 
+  Briefcase, ShieldCheck, EyeOff, Check
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 import Script from "next/script";
@@ -80,6 +85,24 @@ const FAQ_ITEMS = [
   { q: "Can I download my report?", a: "Starter and Pro users receive a formatted PDF report with the full analysis, scores and recommendations. This feature ensures you have a permanent record of your contract review." }
 ];
 
+const TESTIMONIALS = [
+  {
+    quote: "Clauze saved me from a 24-month non-compete I didn't even know was there. Essential for any freelancer.",
+    author: "Sarah J.",
+    role: "Freelance Designer"
+  },
+  {
+    quote: "As a founder, I don't have time for 20-page NDAs. Clauze gives me the red flags in seconds.",
+    author: "Marcus K.",
+    role: "Startup Founder"
+  },
+  {
+    quote: "Finally, a tool that explains legal jargon in plain English. I never sign without scanning first.",
+    author: "Elena R.",
+    role: "Remote Developer"
+  }
+];
+
 export default function Home() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
@@ -119,7 +142,7 @@ export default function Home() {
     "aggregateRating": {
       "@type": "AggregateRating",
       "ratingValue": "4.9",
-      "ratingCount": "2400"
+      "ratingCount": "900"
     }
   };
 
@@ -159,7 +182,7 @@ export default function Home() {
 
             <FadeUp delay={0.2}>
               <p className="font-body font-light text-[17px] md:text-[20px] text-2 mb-10 leading-[1.8] max-w-[600px] mx-auto">
-                Paste any contract. Clauze flags every risky clause and explains it in plain English. Results in 30 seconds.
+                Paste any contract. Clauze is the AI contract review tool that flags every risky clause and explains it in plain English. Results in 30 seconds.
               </p>
             </FadeUp>
 
@@ -225,7 +248,7 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row items-center gap-3 text-center">
             <Shield size={16} className="text-violet shrink-0" />
             <p className="font-body text-[13px] md:text-[14px] text-3">
-              Used by freelancers, founders and remote workers in 40 countries
+              Used by freelancers, founders and remote workers in 11 countries
             </p>
           </div>
         </section>
@@ -238,7 +261,7 @@ export default function Home() {
             <FadeUp>
               <div className="text-center mb-12 md:mb-20">
                 <span className="font-body font-medium text-[11px] uppercase tracking-[0.2em] text-violet mb-4 block">The Process</span>
-                <h2 className="font-display font-extrabold text-[28px] sm:text-[36px] md:text-[52px] text-1">Three steps. No confusion.</h2>
+                <h2 className="font-display font-extrabold text-[28px] sm:text-[36px] md:text-[52px] text-1">AI contract review in three steps.</h2>
               </div>
             </FadeUp>
 
@@ -260,7 +283,7 @@ export default function Home() {
         <SectionDivider />
 
         {/* DEMO SECTION */}
-        <section id="demo" className="py-16 md:py-[120px] px-5 sm:px-6 bg-s1">
+        <section id="demo" className="py-16 md:py-[120px] px-5 sm:px-6 bg-s0">
           <div className="max-w-7xl mx-auto">
             <FadeUp>
               <div className="text-center mb-10 md:mb-16">
@@ -406,12 +429,68 @@ export default function Home() {
 
         <SectionDivider />
 
+        {/* WHO IT'S FOR */}
+        <section className="py-16 md:py-[120px] px-5 sm:px-6 bg-s1">
+          <div className="max-w-7xl mx-auto">
+            <FadeUp>
+              <div className="text-center mb-12 md:mb-20">
+                <span className="font-body font-medium text-[11px] uppercase tracking-[0.2em] text-violet mb-4 block">Who It&apos;s For</span>
+                <h2 className="font-display font-extrabold text-[28px] sm:text-[36px] md:text-[52px] text-1">Built for people who sign contracts constantly.</h2>
+              </div>
+            </FadeUp>
+
+            <div className="grid md:grid-cols-3 gap-6 md:gap-8">
+              {[
+                {
+                  title: "Freelancers",
+                  keyword: "AI contract review for freelancers",
+                  body: "Stop scope creep and unfair payment terms before they happen. Know exactly what you are agreeing to on every project.",
+                  icon: <Users size={32} />,
+                  href: "/use-cases/freelancers"
+                },
+                {
+                  title: "Founders",
+                  keyword: "AI contract review for startups",
+                  body: "Move fast without breaking things. Review vendor agreements and NDAs in seconds so you can focus on building.",
+                  icon: <Rocket size={32} />,
+                  href: "/use-cases/startups"
+                },
+                {
+                  title: "Remote Employees",
+                  keyword: "Review employment contract AI",
+                  body: "Navigate cross-border job offers with confidence. Spot non-competes and IP grabs before you sign your next offer.",
+                  icon: <Briefcase size={32} />,
+                  href: "/use-cases/remote-employees"
+                }
+              ].map((item, i) => (
+                <FadeUp key={item.title} delay={i * 0.1}>
+                  <Link href={item.href} className="group block h-full">
+                    <div className="h-full p-6 sm:p-[32px] bg-card border rounded-[16px] card-hover flex flex-col">
+                      <div className="text-violet mb-8 bg-violet/10 w-14 h-14 rounded-full flex items-center justify-center group-hover:bg-violet group-hover:text-white transition-colors duration-300">
+                        {item.icon}
+                      </div>
+                      <h3 className="font-display font-bold text-[20px] md:text-[22px] text-1 mb-2">{item.title}</h3>
+                      <p className="font-body font-medium text-[12px] text-violet uppercase tracking-wider mb-4">{item.keyword}</p>
+                      <p className="font-body font-light text-[16px] md:text-[18px] text-2 leading-[1.8] flex-1">{item.body}</p>
+                      <div className="mt-8 flex items-center gap-2 text-[14px] font-display font-semibold text-1 group-hover:text-violet transition-colors">
+                        Learn more <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                      </div>
+                    </div>
+                  </Link>
+                </FadeUp>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <SectionDivider />
+
         {/* STATS */}
         <section className="py-16 md:py-[120px] px-5 sm:px-6 bg-s0">
           <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
-              { val: "40+", label: "Countries" },
-              { val: "2,400+", label: "Contracts Scanned" },
+              { val: "11+", label: "Countries" },
+              { val: "900+", label: "Contracts Scanned" },
               { val: "6", label: "Clause Types Covered" },
               { val: "30s", label: "Average Analysis Time" },
             ].map((stat, i) => (
@@ -427,8 +506,134 @@ export default function Home() {
 
         <SectionDivider />
 
-        {/* PRICING */}
+        {/* TRUST & SECURITY */}
+        <section className="py-16 md:py-[120px] px-5 sm:px-6 bg-s1">
+          <div className="max-w-7xl mx-auto">
+            <FadeUp>
+              <div className="text-center mb-12 md:mb-20">
+                <span className="font-body font-medium text-[11px] uppercase tracking-[0.2em] text-violet mb-4 block">Security & Privacy</span>
+                <h2 className="font-display font-extrabold text-[28px] sm:text-[36px] md:text-[52px] text-1">Your contracts stay yours.</h2>
+              </div>
+            </FadeUp>
+
+            <div className="grid md:grid-cols-3 gap-8">
+              {[
+                {
+                  title: "Bank-level encryption",
+                  body: "All contract data is encrypted in transit and at rest using AES-256 standards. Is AI contract review secure? With Clauze, yes.",
+                  icon: <Lock size={24} />
+                },
+                {
+                  title: "No data training",
+                  body: "We never use your uploaded documents to train our models. Your intellectual property and data privacy are our top priority.",
+                  icon: <EyeOff size={24} />
+                },
+                {
+                  title: "Private by default",
+                  body: "Contracts are processed in secure memory environments and are not stored beyond your active analysis session.",
+                  icon: <ShieldCheck size={24} />
+                }
+              ].map((item, i) => (
+                <FadeUp key={item.title} delay={i * 0.1}>
+                  <div className="flex gap-6">
+                    <div className="w-12 h-12 rounded-xl bg-violet/10 flex items-center justify-center text-violet shrink-0">
+                      {item.icon}
+                    </div>
+                    <div>
+                      <h3 className="font-display font-bold text-[18px] text-1 mb-2">{item.title}</h3>
+                      <p className="font-body font-light text-[15px] md:text-[16px] text-2 leading-[1.7]">{item.body}</p>
+                    </div>
+                  </div>
+                </FadeUp>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <SectionDivider />
+
+        {/* COMPARISON */}
         <section className="py-16 md:py-[120px] px-5 sm:px-6 bg-s2">
+          <div className="max-w-7xl mx-auto">
+            <FadeUp>
+              <div className="text-center mb-12 md:mb-20">
+                <span className="font-body font-medium text-[11px] uppercase tracking-[0.2em] text-violet mb-4 block">Comparison</span>
+                <h2 className="font-display font-extrabold text-[28px] sm:text-[36px] md:text-[52px] text-1">Clauze vs. the alternatives.</h2>
+              </div>
+            </FadeUp>
+
+            <div className="grid md:grid-cols-3 gap-6">
+              {[
+                {
+                  title: "Manual Review",
+                  pros: ["Free if you do it yourself"],
+                  cons: ["Easy to miss hidden clauses", "Takes hours of focus", "Requires legal knowledge"],
+                  icon: <FileText size={20} />,
+                  highlight: false
+                },
+                {
+                  title: "Hiring a Lawyer",
+                  pros: ["Highest accuracy", "Legal privilege", "Can negotiate for you"],
+                  cons: ["$400+ per hour", "Days of turnaround time", "Overkill for simple NDAs"],
+                  icon: <Gavel size={20} />,
+                  highlight: false
+                },
+                {
+                  title: "Using Clauze",
+                  pros: ["Results in 30 seconds", "Flags risky language automatically", "Free to get started"],
+                  cons: ["Not a law firm", "No custom legal advice"],
+                  icon: <Zap size={20} />,
+                  highlight: true
+                }
+              ].map((item, i) => (
+                <FadeUp key={item.title} delay={i * 0.1}>
+                  <div className={cn(
+                    "p-8 rounded-[20px] border h-full flex flex-col",
+                    item.highlight ? "bg-violet/5 border-violet shadow-2xl shadow-violet/10" : "bg-card border-[var(--border)]"
+                  )}>
+                    <div className={cn(
+                      "w-10 h-10 rounded-lg flex items-center justify-center mb-6",
+                      item.highlight ? "bg-violet text-white" : "bg-violet/10 text-violet"
+                    )}>
+                      {item.icon}
+                    </div>
+                    <h3 className="font-display font-bold text-[22px] text-1 mb-6">{item.title}</h3>
+                    
+                    <div className="space-y-6 flex-1">
+                      <div className="space-y-3">
+                        {item.pros.map(pro => (
+                          <div key={pro} className="flex gap-3 items-start text-[14px] md:text-[15px]">
+                            <CheckCircle2 size={16} className="text-risk-green shrink-0 mt-0.5" />
+                            <span className="text-2">{pro}</span>
+                          </div>
+                        ))}
+                      </div>
+                      <div className="space-y-3">
+                        {item.cons.map(con => (
+                          <div key={con} className="flex gap-3 items-start text-[14px] md:text-[15px]">
+                            <X size={16} className="text-risk-red shrink-0 mt-0.5" />
+                            <span className="text-3">{con}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </FadeUp>
+              ))}
+            </div>
+            
+            <FadeUp delay={0.4}>
+              <p className="mt-12 text-center font-body text-[14px] text-3 max-w-2xl mx-auto">
+                AI contract review vs lawyer comparison: Clauze is designed to handle the 90% of contracts that don&apos;t justify a full legal bill but are too risky to sign blind.
+              </p>
+            </FadeUp>
+          </div>
+        </section>
+
+        <SectionDivider />
+
+        {/* PRICING */}
+        <section id="pricing" className="py-16 md:py-[120px] px-5 sm:px-6 bg-s0">
           <div className="max-w-7xl mx-auto">
             <FadeUp>
               <div className="text-center mb-10 md:mb-12">
@@ -495,6 +700,59 @@ export default function Home() {
 
         <SectionDivider />
 
+        {/* BLOG PREVIEW */}
+        <section className="py-16 md:py-[120px] px-5 sm:px-6 bg-s1">
+          <div className="max-w-7xl mx-auto">
+            <FadeUp>
+              <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 md:mb-20 gap-6">
+                <div className="max-w-2xl">
+                  <span className="font-body font-medium text-[11px] uppercase tracking-[0.2em] text-violet mb-4 block">Resources</span>
+                  <h2 className="font-display font-extrabold text-[28px] sm:text-[36px] md:text-[52px] text-1">Learn before you sign.</h2>
+                  <p className="font-body font-light text-[17px] md:text-[18px] text-2 mt-6">
+                    Deep dives into contract law, negotiation tactics, and legal document review strategies for the modern worker.
+                  </p>
+                </div>
+                <Link href="/blog" className="btn-secondary w-full sm:w-auto">
+                  View all posts
+                </Link>
+              </div>
+            </FadeUp>
+
+            <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
+              {Object.entries(BLOG_POSTS)
+                .sort(([, a], [, b]) => new Date(b.date).getTime() - new Date(a.date).getTime())
+                .slice(0, 3)
+                .map(([slug, post], i) => (
+                <FadeUp key={slug} delay={i * 0.1}>
+                  <Link href={`/blog/${slug}`} className="group block h-full">
+                    <div className="h-full bg-card border rounded-[16px] overflow-hidden card-hover flex flex-col">
+                      <div className="p-6 sm:p-8 flex-1 flex flex-col">
+                        <div className="flex items-center gap-3 mb-6">
+                          <span className="px-2.5 py-1 bg-violet/10 text-violet text-[10px] font-body font-medium uppercase tracking-wider rounded-md">
+                            {post.category}
+                          </span>
+                          <span className="text-[12px] text-3 font-body">{post.readTime}</span>
+                        </div>
+                        <h3 className="font-display font-bold text-[18px] md:text-[20px] text-1 mb-4 group-hover:text-violet transition-colors line-clamp-2">
+                          {post.title}
+                        </h3>
+                        <p className="font-body font-light text-[15px] md:text-[16px] text-2 leading-[1.7] line-clamp-3 flex-1">
+                          {post.excerpt}
+                        </p>
+                        <div className="mt-8 flex items-center gap-2 text-[14px] font-display font-semibold text-1 group-hover:text-violet transition-colors">
+                          Read post <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
+                </FadeUp>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <SectionDivider />
+
         {/* FAQ */}
         <section className="py-16 md:py-[120px] px-5 sm:px-6 bg-s0">
           <div className="max-w-[740px] mx-auto">
@@ -540,6 +798,37 @@ export default function Home() {
 
         <SectionDivider />
 
+        {/* TESTIMONIALS */}
+        <section className="py-16 md:py-[120px] px-5 sm:px-6 bg-s1">
+          <div className="max-w-7xl mx-auto">
+            <FadeUp>
+              <div className="text-center mb-12 md:mb-20">
+                <span className="font-body font-medium text-[11px] uppercase tracking-[0.2em] text-violet mb-4 block">Testimonials</span>
+                <h2 className="font-display font-extrabold text-[28px] sm:text-[36px] md:text-[52px] text-1">What our users say.</h2>
+              </div>
+            </FadeUp>
+
+            <div className="grid md:grid-cols-3 gap-6">
+              {TESTIMONIALS.map((t, i) => (
+                <FadeUp key={i} delay={i * 0.1}>
+                  <div className="bg-card border rounded-[16px] p-6 sm:p-[32px] flex flex-col h-full">
+                    <div className="flex text-risk-amber text-[16px] mb-6">★★★★★</div>
+                    <p className="font-body font-light text-[17px] md:text-[18px] text-2 leading-[1.8] mb-8 flex-grow italic">
+                      &quot;{t.quote}&quot;
+                    </p>
+                    <div>
+                      <p className="font-display font-bold text-[16px] text-1">{t.author}</p>
+                      <p className="font-body text-[14px] text-3">{t.role}</p>
+                    </div>
+                  </div>
+                </FadeUp>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <SectionDivider />
+
         {/* FINAL CTA */}
         <section className="py-20 md:py-[140px] px-5 sm:px-6 bg-s2 relative overflow-hidden">
           <div className="absolute inset-0 flex items-center justify-center">
@@ -555,7 +844,7 @@ export default function Home() {
               </Link>
               <div className="mt-8 flex flex-col items-center gap-3">
                 <div className="flex text-risk-amber text-[20px]">★★★★★</div>
-                <p className="font-body font-light text-[12px] sm:text-[13px] text-3">4.9 from 2,400 scans</p>
+                <p className="font-body font-light text-[12px] sm:text-[13px] text-3">4.9/5 from 900+ verified users</p>
               </div>
             </FadeUp>
           </div>

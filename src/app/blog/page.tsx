@@ -9,10 +9,12 @@ import { SectionDivider } from "@/components/section-divider";
 import { ArrowUpRight } from "lucide-react";
 import { BLOG_POSTS } from "@/lib/blog-posts";
 
-const BLOG_POSTS_LIST = Object.entries(BLOG_POSTS).map(([slug, post]) => ({
-  slug,
-  ...post,
-}));
+const BLOG_POSTS_LIST = Object.entries(BLOG_POSTS)
+  .map(([slug, post]) => ({
+    slug,
+    ...post,
+  }))
+  .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
 const CATEGORIES = ["All", "NDAs", "Freelance", "Employment", "SaaS Terms", "Legal Basics"];
 

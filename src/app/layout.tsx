@@ -27,9 +27,9 @@ const dmSans = DM_Sans({
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "Clauze | Contract Reader That Explains the Fine Print",
+  title: "Clauze | AI Contract Review Tool & Analysis Software",
   description:
-    "Paste any contract. Clauze flags every risky clause and explains it in plain English. 1 scan per month included for free. Results in 30 seconds.",
+    "Clauze is an AI contract review tool that flags risky clauses and explains them in plain English. Get started with free contract analysis software today.",
   verification: {
     google: "OpYCC2Qo7DOsIg_6rrhxEAMOB3_T6UkcN6lDfyijm1E",
   },

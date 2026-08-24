@@ -7,8 +7,8 @@ import { SectionDivider } from "@/components/section-divider";
 import { ArrowRight, AlertTriangle, Copyright, Briefcase, FileWarning, CreditCard, Scale, CheckCircle2, Shield, Zap } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "How AI Contract Review Works | Clauze",
-  description: "Learn how Clauze's AI contract analysis works. See what our system checks for, how risk scores are calculated, and the limits of automated review.",
+  title: "How AI Contract Review Works | Contract Analysis Software",
+  description: "Learn how Clauze's AI contract review tool and analysis software works. See what our system checks for, how risk scores are calculated, and the limits of automated review.",
   alternates: { canonical: "https://clauze.xyz/how-it-works" },
   openGraph: { title: "How AI Contract Review Works | Clauze", url: "https://clauze.xyz/how-it-works" },
 };
