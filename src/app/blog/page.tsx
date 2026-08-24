@@ -16,7 +16,7 @@ const BLOG_POSTS_LIST = Object.entries(BLOG_POSTS)
   }))
   .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
-const CATEGORIES = ["All", "NDAs", "Freelance", "Employment", "SaaS Terms", "Legal Basics"];
+const CATEGORIES = ["All", "NDAs", "Freelance", "Employment", "SaaS Terms", "Legal Basics", "Comparisons"];
 
 export default function BlogPage() {
   const [activeCategory, setActiveCategory] = useState("All");
