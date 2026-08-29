@@ -19,37 +19,60 @@ export async function POST(req: Request) {
     }
 
     const prompt = `
-      You are a contract analysis tool for Clauze (clauze.xyz). 
+      You are a specialized contract analysis tool for Clauze (clauze.xyz). 
       Return ONLY raw JSON. No markdown. No code fences. 
 
+      Structure your response exactly like this:
       {
+        "overview": {
+          "type": "Contract type or 'Not clearly stated'",
+          "parties": "List of parties or 'Not clearly stated'",
+          "userRole": "User's role (e.g. Service Provider, Client) or 'Not clearly stated'",
+          "startDate": "Start date or 'Not clearly stated'",
+          "endDate": "End date or 'Not clearly stated'",
+          "renewal": "Renewal terms or 'Not clearly stated'",
+          "payment": "Payment terms or 'Not clearly stated'",
+          "termination": "Termination terms or 'Not clearly stated'",
+          "governingLaw": "Governing law or 'Not clearly stated'"
+        },
         "score": number (0-100),
         "summary": "1-2 sentences, plain English",
-        "clauses": [{
-          "risk": "high|medium|low",
-          "name": "clause type",
-          "excerpt": "quote max 100 chars",
-          "explanation": "plain English max 55 words",
-          "recommendation": "one actionable sentence"
+        "findings": [{
+          "risk": "critical|high|medium|low",
+          "category": "Payment|Liability|Indemnification|IP|Termination|Renewal|Confidentiality|Non-compete|Unusual",
+          "name": "Brief title of the finding",
+          "whatItSays": "Simple explanation of what the contract says",
+          "evidence": "Relevant text directly from the contract. Must be accurate.",
+          "whyItMatters": "Practical effect in simple English",
+          "recommendation": "Short actionable sentence for the user to consider",
+          "suggestedWording": "Alternative wording for discussion (optional)"
         }],
-        "counts": { "high": n, "medium": n, "low": n }
+        "counts": { "critical": n, "high": n, "medium": n, "low": n }
       }
 
-      Score: 75-100 = fair, 40-74 = review needed, 0-39 = seek advice.
-      Contract type: ${type}
-      Contract text: ${text.substring(0, 30000)}
+      SCORING: 75-100 = Fair, 40-74 = Review Needed, 0-39 = Seek Advice.
+      Base the score on the severity and number of findings.
+
+      EVIDENCE RULES:
+      - Every finding MUST have evidence from the contract text.
+      - NEVER invent evidence. If not found, do not include the finding.
+      - Include section name/number if available in the evidence text.
 
       CONTENT RULES:
+      - Use a human, direct, and trustworthy voice.
+      - Avoid corporate jargon or robotic phrasing.
       - Never use words like: AI-powered, AI-driven, leverages, cutting-edge, revolutionary, game-changing.
       - Write "plain English" not "plain-English".
-      - Avoid corporate jargon or robotic phrasing.
-      - Never mention model names (Gemini, GPT, Mistral, etc.).
-      - Use a human, direct, and trustworthy voice.
+      - Never mention model names (Mistral, GPT, etc.).
+      - Keep recommendations short.
+
+      Contract type provided by user: ${type}
+      Contract text: ${text.substring(0, 30000)}
     `;
 
     const client = new Mistral({ apiKey: mistralKey });
     const result = await client.chat.complete({
-      model: "mistral-large-latest",
+      model: "mistral-small-latest",
       messages: [{ role: "user", content: prompt }],
       responseFormat: { type: "json_object" }
     });

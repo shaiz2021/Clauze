@@ -51,7 +51,12 @@ const button = (label: string, href: string) => `
   </a>`;
 
 export const emailTemplates: Record<
-  "accountCreated" | "verifyEmail" | "passwordReset" | "verificationCode",
+  | "accountCreated"
+  | "verifyEmail"
+  | "passwordReset"
+  | "verificationCode"
+  | "reminder3d"
+  | "reminder1d",
   EmailTemplate
 > = {
   accountCreated: {
@@ -113,6 +118,36 @@ export const emailTemplates: Record<
       </div>
       <p style="margin:0;font-size:13px;line-height:1.8;color:#6b6890;">
         If you did not request this code, you can ignore this email.
+      </p>
+    `),
+  },
+  reminder3d: {
+    subject: "Contract expiring in 3 days | Clauze",
+    html: base(`
+      <h1 style="margin:0 0 10px;font-size:28px;line-height:1.15;letter-spacing:-0.02em;">Contract deletion reminder.</h1>
+      <p style="margin:0 0 18px;font-size:16px;line-height:1.8;color:#3d3a60;">
+        One of your scanned contracts will be automatically deleted in 3 days for your privacy.
+      </p>
+      <div style="margin:22px 0 18px;">
+        ${button("View and save your scan →", "{{ .SiteURL }}/upload")}
+      </div>
+      <p style="margin:0;font-size:13px;line-height:1.8;color:#6b6890;">
+        Clauze deletes all contract data 7 days after upload to ensure your data remains temporary and secure.
+      </p>
+    `),
+  },
+  reminder1d: {
+    subject: "FINAL NOTICE: Contract expiring in 24 hours | Clauze",
+    html: base(`
+      <h1 style="margin:0 0 10px;font-size:28px;line-height:1.15;letter-spacing:-0.02em;">Final reminder.</h1>
+      <p style="margin:0 0 18px;font-size:16px;line-height:1.8;color:#3d3a60;">
+        Your contract scan will be permanently deleted in less than 24 hours.
+      </p>
+      <div style="margin:22px 0 18px;">
+        ${button("Download your report now →", "{{ .SiteURL }}/upload")}
+      </div>
+      <p style="margin:0;font-size:13px;line-height:1.8;color:#6b6890;">
+        Once deleted, this data cannot be recovered.
       </p>
     `),
   },

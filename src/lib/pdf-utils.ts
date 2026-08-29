@@ -2,6 +2,11 @@
 
 export const extractTextFromPdf = async (file: File): Promise<string> => {
   const pdfjsLib: any = await import("pdfjs-dist");
+  
+  // Set worker source
+  if (typeof window !== "undefined" && !pdfjsLib.GlobalWorkerOptions.workerSrc) {
+    pdfjsLib.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.mjs";
+  }
 
   const arrayBuffer = await file.arrayBuffer();
 
@@ -34,7 +39,7 @@ export const extractTextFromPdf = async (file: File): Promise<string> => {
   };
 
   const load = async () => {
-    const loadingTask = pdfjsLib.getDocument({ data: arrayBuffer, disableWorker: true });
+    const loadingTask = pdfjsLib.getDocument({ data: arrayBuffer });
     return await loadingTask.promise;
   };
 

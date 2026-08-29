@@ -4,42 +4,59 @@ import { useState, useEffect, useMemo, Suspense } from "react";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { FadeUp } from "@/components/fade-up";
-import { Upload as UploadIcon, FileSearch, Loader2 } from "lucide-react";
+import { Upload as UploadIcon, FileSearch, Loader2, Info, CheckCircle2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { extractTextFromPdf } from "@/lib/pdf-utils";
 import { createSupabaseBrowserClient, isSupabaseConfigured } from "@/lib/supabase/browser";
 import { GatedSignup } from "@/components/gated-signup";
 import { LimitExceededModal } from "@/components/limit-exceeded-modal";
+import { ContractQA } from "@/components/contract-qa";
+import { CopyButton } from "@/components/copy-button";
 import type { User } from "@supabase/supabase-js";
 
-type RiskLevel = "high" | "medium" | "low";
+type RiskLevel = "critical" | "high" | "medium" | "low";
 
-interface Clause {
+interface Finding {
   risk: RiskLevel;
+  category: string;
   name: string;
-  excerpt: string;
-  explanation: string;
+  whatItSays: string;
+  evidence: string;
+  whyItMatters: string;
   recommendation: string;
+  suggestedWording?: string;
 }
 
 interface AnalysisResult {
+  overview: {
+    type: string;
+    parties: string;
+    userRole: string;
+    startDate: string;
+    endDate: string;
+    renewal: string;
+    payment: string;
+    termination: string;
+    governingLaw: string;
+  };
   score: number;
   summary: string;
-  clauses: Clause[];
+  findings: Finding[];
   counts: {
+    critical: number;
     high: number;
     medium: number;
     low: number;
   };
 }
 
-const CONTRACT_TYPES = ["NDA", "Freelance", "Employment", "SaaS Terms", "Partnership", "Other"];
+const CONTRACT_TYPES = ["NDA", "Freelance", "Employment", "SaaS Terms", "Partnership", "Service Agreement", "Other"];
 
 const LOADING_STEPS = [
+  "Uploading your contract...",
   "Reading your contract...",
-  "Identifying clause types...",
-  "Scoring risk levels...",
-  "Preparing your report..."
+  "Reviewing important clauses...",
+  "Your contract review is ready."
 ];
 
 export default function UploadPage() {
@@ -216,8 +233,19 @@ export default function UploadPage() {
       }
       setResult(data);
 
-      // Increment usage for logged in users
-      if (activeUser) {
+      // Save to Supabase and increment usage
+      if (activeUser && supabase) {
+        // Save contract
+        const { error: dbError } = await supabase.from("contracts").insert({
+          user_id: activeUser.id,
+          contract_text: text,
+          analysis: data,
+          contract_type: contractType,
+        });
+
+        if (dbError) console.error("Error saving contract:", dbError);
+
+        // Increment usage
         fetch("/api/usage", { method: "POST" })
           .then((res) => res.json())
           .then((data) => {
@@ -358,96 +386,179 @@ export default function UploadPage() {
             <div className="relative">
               {/* Blurred Results */}
               <div className={cn(
-                "space-y-6 max-w-2xl transition-all duration-500",
-                !activeUser && "blur-[8px] opacity-40 pointer-events-none select-none"
+                "space-y-8 max-w-2xl transition-all duration-500",
+                !activeUser && "blur-[12px] opacity-40 pointer-events-none select-none"
               )}>
-                {/* Score */}
+                {/* 1. Contract Overview */}
                 <FadeUp>
-                  <div className="p-6 sm:p-[28px] bg-card border border-[var(--border)] rounded-[16px]">
-                    <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6">
-                      <div className="relative w-[100px] h-[100px] shrink-0">
-                        <svg className="w-full h-full -rotate-90">
-                          <circle cx="50" cy="50" r="42" className="fill-none stroke-[var(--border)]" strokeWidth="8" />
-                          <circle
-                            cx="50" cy="50" r="42"
-                            className={cn(
-                              "fill-none",
-                              result.score > 74 ? "stroke-risk-green" : result.score > 39 ? "stroke-risk-amber" : "stroke-risk-red"
-                            )}
-                            strokeWidth="8"
-                            strokeLinecap="round"
-                            strokeDasharray="264"
-                            strokeDashoffset={264 - (264 * result.score) / 100}
-                          />
-                        </svg>
-                        <div className="absolute inset-0 flex items-center justify-center">
-                          <span className="font-display font-extrabold text-[28px] text-1">{result.score}</span>
+                  <div className="p-6 sm:p-8 bg-card border border-[var(--border)] rounded-[20px]">
+                    <h3 className="font-display font-bold text-[20px] text-1 mb-6 flex items-center gap-2">
+                      <Info size={20} className="text-violet" />
+                      Contract Overview
+                    </h3>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-8">
+                      {[
+                        { label: "Contract Type", value: result.overview.type },
+                        { label: "Parties", value: result.overview.parties },
+                        { label: "Your Role", value: result.overview.userRole },
+                        { label: "Start Date", value: result.overview.startDate },
+                        { label: "End Date", value: result.overview.endDate },
+                        { label: "Renewal", value: result.overview.renewal },
+                        { label: "Payment Terms", value: result.overview.payment },
+                        { label: "Termination", value: result.overview.termination },
+                        { label: "Governing Law", value: result.overview.governingLaw },
+                      ].map((item) => (
+                        <div key={item.label} className="space-y-1">
+                          <p className="font-body text-[11px] uppercase tracking-wider text-3">{item.label}</p>
+                          <p className="font-body font-medium text-[14px] text-1">{item.value}</p>
                         </div>
-                      </div>
-                      <div className="text-center sm:text-left">
-                        <p className="font-medium text-[12px] uppercase tracking-widest text-3 mb-1">Clauze Score</p>
-                        <p className="font-display font-bold text-[28px] md:text-[32px] text-1 mb-1">
-                          {result.score > 74 ? "Fair" : result.score > 39 ? "Review Needed" : "Seek Advice"}
-                        </p>
-                        <p className="font-body text-[14px] text-3 italic leading-relaxed">
-                          &quot;{result.summary}&quot;
-                        </p>
-                      </div>
-                    </div>
-                    <div className="flex flex-wrap gap-4 md:gap-6 mt-6 pt-6 border-t border-[var(--border)] justify-center sm:justify-start">
-                      <div className="flex items-center gap-2">
-                        <div className="w-2 h-2 rounded-full bg-risk-red" />
-                        <span className="font-body text-[13px] md:text-[14px] text-2">{result.counts.high} High</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <div className="w-2 h-2 rounded-full bg-risk-amber" />
-                        <span className="font-body text-[13px] md:text-[14px] text-2">{result.counts.medium} Review</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <div className="w-2 h-2 rounded-full bg-risk-green" />
-                        <span className="font-body text-[13px] md:text-[14px] text-2">{result.counts.low} Safe</span>
-                      </div>
+                      ))}
                     </div>
                   </div>
                 </FadeUp>
 
-                {/* Clauses */}
-                {result.clauses.map((clause, idx) => (
-                  <FadeUp key={idx} delay={idx * 0.1}>
-                    <div
-                      className="p-6 sm:p-[28px] bg-card-inner border rounded-[16px] relative"
-                      style={{ borderLeftWidth: 3, borderLeftColor: clause.risk === "high" ? "var(--risk-red)" : clause.risk === "medium" ? "var(--risk-amber)" : "var(--risk-green)" }}
-                    >
-                      <div className="flex justify-between items-start mb-4">
-                        <span className={cn(
-                          "px-3 py-1 rounded-full text-[10px] font-bold uppercase",
-                          clause.risk === "high" ? "bg-risk-red/15 text-risk-red" : clause.risk === "medium" ? "bg-risk-amber/15 text-risk-amber" : "bg-risk-green/15 text-risk-green"
-                        )}>
-                          {clause.risk} risk
-                        </span>
+                {/* 2. Overall Risk Score */}
+                <FadeUp delay={0.1}>
+                  <div className="p-6 sm:p-8 bg-card border border-[var(--border)] rounded-[20px]">
+                    <div className="flex flex-col sm:flex-row items-center sm:items-start gap-8">
+                      <div className="relative w-32 h-32 shrink-0">
+                        <svg className="w-full h-full -rotate-90">
+                          <circle cx="64" cy="64" r="56" className="fill-none stroke-[var(--border)]" strokeWidth="12" />
+                          <circle
+                            cx="64" cy="64" r="56"
+                            className={cn(
+                              "fill-none transition-all duration-1000",
+                              result.score > 74 ? "stroke-risk-green" : result.score > 39 ? "stroke-risk-amber" : "stroke-risk-red"
+                            )}
+                            strokeWidth="12"
+                            strokeLinecap="round"
+                            strokeDasharray="351.8"
+                            strokeDashoffset={351.8 - (351.8 * result.score) / 100}
+                          />
+                        </svg>
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <span className="font-display font-extrabold text-[36px] text-1">{result.score}</span>
+                        </div>
                       </div>
-                      <h3 className="font-display font-bold text-[18px] text-1 mb-3">{clause.name}</h3>
-                      <p className="font-mono text-[12px] text-3 mb-4 line-clamp-2">&quot;{clause.excerpt}&quot;</p>
-                      <p className="font-body font-light text-[15px] text-2 mb-4 leading-relaxed">{clause.explanation}</p>
-                      <div className="flex items-start gap-3 pt-4 border-t border-[var(--border)]">
-                        <div className="w-1.5 h-1.5 rounded-full bg-violet mt-1.5 shrink-0" />
-                        <p className="font-body font-medium text-[14px] text-1">{clause.recommendation}</p>
+                      <div className="text-center sm:text-left flex-1">
+                        <p className="font-medium text-[12px] uppercase tracking-widest text-violet mb-2">Overall Clauze Score</p>
+                        <h2 className="font-display font-bold text-[32px] md:text-[36px] text-1 mb-3">
+                          {result.score > 74 ? "Low Complexity" : result.score > 39 ? "Review Recommended" : "Significant Review Needed"}
+                        </h2>
+                        <p className="font-body text-[16px] text-2 leading-relaxed italic">
+                          Clauze identified several areas that may deserve review.
+                        </p>
+                        <p className="font-body text-[15px] text-3 leading-relaxed mt-2">
+                          &quot;{result.summary}&quot;
+                        </p>
                       </div>
                     </div>
+                    
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8 pt-8 border-t border-[var(--border)]">
+                      {[
+                        { label: "Critical", count: result.counts.critical, color: "bg-risk-red" },
+                        { label: "High", count: result.counts.high, color: "bg-risk-red" },
+                        { label: "Review", count: result.counts.medium, color: "bg-risk-amber" },
+                        { label: "Safe", count: result.counts.low, color: "bg-risk-green" },
+                      ].map((stat) => (
+                        <div key={stat.label} className="text-center sm:text-left">
+                          <div className="flex items-center justify-center sm:justify-start gap-2 mb-1">
+                            <div className={cn("w-2 h-2 rounded-full", stat.color)} />
+                            <span className="font-body text-[12px] text-3 uppercase tracking-wider">{stat.label}</span>
+                          </div>
+                          <p className="font-display font-bold text-[20px] text-1">{stat.count}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </FadeUp>
+
+                {/* 3. Detailed Findings */}
+                <div className="space-y-6">
+                  <FadeUp delay={0.2}>
+                    <h3 className="font-display font-bold text-[22px] text-1 px-1">Detailed Findings</h3>
                   </FadeUp>
-                ))}
+                  
+                  {result.findings.map((finding, idx) => (
+                    <FadeUp key={idx} delay={0.2 + idx * 0.1}>
+                      <div
+                        className="p-6 sm:p-8 bg-card-inner border rounded-[20px] relative overflow-hidden group"
+                        style={{ borderLeftWidth: 4, borderLeftColor: finding.risk === "critical" || finding.risk === "high" ? "var(--risk-red)" : finding.risk === "medium" ? "var(--risk-amber)" : "var(--risk-green)" }}
+                      >
+                        <div className="flex flex-wrap justify-between items-start gap-4 mb-6">
+                          <div className="space-y-1">
+                            <span className="font-body text-[11px] uppercase tracking-[0.2em] text-violet block">{finding.category}</span>
+                            <h4 className="font-display font-bold text-[20px] text-1">{finding.name}</h4>
+                          </div>
+                          <span className={cn(
+                            "px-4 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-wider",
+                            (finding.risk === "critical" || finding.risk === "high") ? "bg-risk-red/10 text-risk-red" : finding.risk === "medium" ? "bg-risk-amber/10 text-risk-amber" : "bg-risk-green/10 text-risk-green"
+                          )}>
+                            {finding.risk} risk
+                          </span>
+                        </div>
+
+                        <div className="space-y-6">
+                          <div>
+                            <p className="font-body font-medium text-[13px] text-2 mb-2">What the contract says</p>
+                            <p className="font-body text-[15px] text-2 leading-relaxed">{finding.whatItSays}</p>
+                          </div>
+
+                          <div className="bg-s0/50 rounded-[12px] p-5 border border-[var(--border)]">
+                            <p className="font-body font-medium text-[12px] uppercase tracking-wider text-violet mb-3">Evidence</p>
+                            <p className="font-mono text-[13px] text-3 leading-relaxed italic">&quot;{finding.evidence}&quot;</p>
+                          </div>
+
+                          <div>
+                            <p className="font-body font-medium text-[13px] text-2 mb-2">Why it matters</p>
+                            <p className="font-body text-[15px] text-2 leading-relaxed">{finding.whyItMatters}</p>
+                          </div>
+
+                          <div className="pt-6 border-t border-[var(--border)] flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+                            <div className="flex items-start gap-3">
+                              <CheckCircle2 size={18} className="text-violet shrink-0 mt-0.5" />
+                              <div className="space-y-1">
+                                <p className="font-body font-medium text-[13px] text-1">What you can consider</p>
+                                <p className="font-body text-[14px] text-2">{finding.recommendation}</p>
+                              </div>
+                            </div>
+                            
+                            {finding.suggestedWording && (
+                              <div className="shrink-0">
+                                <CopyButton text={finding.suggestedWording} />
+                              </div>
+                            )}
+                          </div>
+
+                          {finding.suggestedWording && (
+                            <div className="mt-4 p-4 bg-violet/5 border border-violet/10 rounded-[12px]">
+                              <p className="font-body font-medium text-[12px] uppercase tracking-wider text-violet mb-2">Suggested Wording</p>
+                              <p className="font-body text-[14px] text-2 leading-relaxed mb-3 italic">&quot;{finding.suggestedWording}&quot;</p>
+                              <p className="font-body text-[11px] text-4">
+                                This is suggested wording for discussion and may need professional legal review.
+                              </p>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </FadeUp>
+                  ))}
+                </div>
+
+                {/* 4. Contract Q&A */}
+                <ContractQA contractText={text} />
 
                 {/* Actions */}
-                <FadeUp delay={result.clauses.length * 0.1}>
-                  <div className="flex flex-col sm:flex-row gap-4 pt-4">
+                <FadeUp delay={0.6}>
+                  <div className="flex flex-col sm:flex-row gap-4 pt-8">
                     <button
                       onClick={() => { setResult(null); setText(""); setManualUser(null); }}
-                      className="btn-secondary h-[48px] w-full sm:w-auto"
+                      className="btn-secondary h-[52px] w-full sm:w-auto px-8"
                     >
-                      New Scan
+                      Analyze Another Contract
                     </button>
-                    <button disabled className="btn-secondary h-[48px] w-full sm:w-auto opacity-50 cursor-not-allowed">
-                      Download Report (Coming Soon)
+                    <button disabled className="btn-secondary h-[52px] w-full sm:w-auto px-8 opacity-50 cursor-not-allowed flex items-center justify-center gap-2">
+                      Download PDF Report <span className="text-[11px] bg-violet/10 px-2 py-0.5 rounded text-violet font-bold">PRO</span>
                     </button>
                   </div>
                 </FadeUp>
@@ -455,12 +566,9 @@ export default function UploadPage() {
 
               {/* Gated Modal */}
               {!activeUser && (
-                <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
-                  {/* Backdrop */}
-                  <div className="fixed inset-0 bg-s0/60 backdrop-blur-sm" />
-                  
-                  {/* Modal Content Container */}
-                  <div className="relative w-full max-w-md my-auto animate-in fade-in zoom-in duration-300">
+                <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6">
+                  <div className="fixed inset-0 bg-s0/60 backdrop-blur-md" />
+                  <div className="relative w-full max-w-md my-auto animate-in fade-in zoom-in duration-500">
                     <Suspense fallback={<div className="bg-card border border-[var(--border)] rounded-[24px] p-10 flex items-center justify-center"><div className="w-8 h-8 border-2 border-violet border-t-transparent rounded-full animate-spin" /></div>}>
                       <GatedSignup onAuthSuccess={(u) => setManualUser(u)} />
                     </Suspense>
