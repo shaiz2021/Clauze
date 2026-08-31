@@ -292,10 +292,15 @@
 
 /* Print Styles for PDF Report */
 @media print {
+  @page {
+    margin: 2cm;
+  }
+
   body {
     background: white !important;
-    color: black !important;
-    font-size: 12pt;
+    color: #0a0a16 !important;
+    font-size: 11pt;
+    line-height: 1.5;
   }
   
   .no-print, 
@@ -303,18 +308,25 @@
   footer, 
   button,
   .btn-primary,
-  .btn-secondary {
+  .btn-secondary,
+  .fixed,
+  .absolute.inset-0.bg-s0\/60 {
     display: none !important;
   }
 
   main {
     padding-top: 0 !important;
+    display: block !important;
   }
 
-  .pt-\[68px\] {
-    padding-top: 0 !important;
+  .pt-\[68px\], .p-6, .p-8, .p-12 {
+    padding: 0 !important;
   }
 
+  /* Layout adjustments */
+  .flex { display: block !important; }
+  .grid { display: block !important; }
+  
   /* Left panel upload area is hidden */
   .md\:w-\[44\%\] {
     display: none !important;
@@ -323,19 +335,82 @@
   /* Right panel results area takes full width */
   .md\:w-\[56\%\] {
     width: 100% !important;
+    max-width: 100% !important;
     padding: 0 !important;
+    margin: 0 !important;
   }
 
+  /* Typography */
+  h1, h2, h3, h4 {
+    font-family: var(--font-serif), Georgia, serif !important;
+    font-style: italic !important;
+    color: #0a0a16 !important;
+    page-break-after: avoid;
+  }
+
+  h1 { font-size: 28pt !important; margin-bottom: 20pt !important; }
+  h2 { font-size: 22pt !important; margin-top: 30pt !important; margin-bottom: 15pt !important; }
+  h3 { font-size: 18pt !important; margin-top: 20pt !important; margin-bottom: 10pt !important; }
+
+  /* Sections and Cards */
   .bg-card, .bg-card-inner {
     background: white !important;
-    border: 1px solid #eee !important;
+    border: none !important;
+    border-bottom: 1pt solid #eee !important;
+    border-radius: 0 !important;
     box-shadow: none !important;
-    break-inside: avoid;
-    margin-bottom: 20px !important;
+    padding: 20pt 0 !important;
+    margin-bottom: 0 !important;
+    page-break-inside: avoid;
   }
 
+  /* Overview Grid */
+  .grid-cols-1.sm\:grid-cols-2 {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 15pt !important;
+  }
+
+  /* Risk Score */
+  .flex-col.sm\:flex-row.items-center {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: flex-start !important;
+    gap: 30pt !important;
+  }
+
+  .w-32.h-32.shrink-0 {
+    width: 100pt !important;
+    height: 100pt !important;
+  }
+
+  /* Findings Styles */
+  .bg-card-inner[style*="border-left-width"] {
+    border-left: 4pt solid !important;
+    padding-left: 20pt !important;
+    border-bottom: 1pt solid #eee !important;
+  }
+
+  /* Evidence and Suggested Wording Boxes */
+  .bg-s0\/50, .bg-violet\/5 {
+    background: #f8f8fa !important;
+    border: 1pt solid #eee !important;
+    border-radius: 8pt !important;
+    padding: 12pt !important;
+    margin: 10pt 0 !important;
+  }
+
+  .font-mono {
+    font-family: monospace !important;
+    font-size: 10pt !important;
+    color: #444 !important;
+  }
+
+  /* Colors */
   .text-violet { color: #7b6ef6 !important; }
-  .text-1, .text-2, .text-3 { color: black !important; }
+  .text-risk-red { color: #f2546a !important; }
+  .text-risk-amber { color: #f0a429 !important; }
+  .text-risk-green { color: #36c98a !important; }
   
   .bg-risk-red { background-color: #f2546a !important; }
   .bg-risk-amber { background-color: #f0a429 !important; }
@@ -345,5 +420,13 @@
   * {
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  /* Hide Q&A from print as it's interactive */
+  .contract-qa-container {
+    display: none !important;
   }
 }

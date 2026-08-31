@@ -363,6 +363,20 @@ export default function UploadPage() {
                 "space-y-8 max-w-2xl transition-all duration-500",
                 !activeUser && "blur-[12px] opacity-40 pointer-events-none select-none"
               )}>
+                {/* Print-only Header */}
+                <div className="hidden print:block mb-10 border-b-2 border-violet pb-6">
+                  <div className="flex justify-between items-end">
+                    <div>
+                      <h1 className="font-display font-bold text-[32pt] text-violet mb-2">Clauze</h1>
+                      <p className="font-body text-[12pt] text-gray-500 uppercase tracking-widest">Contract Analysis Report</p>
+                    </div>
+                    <div className="text-right">
+                      <p className="font-body text-[10pt] text-gray-400">Generated on {new Date().toLocaleDateString()}</p>
+                      <p className="font-body text-[10pt] text-gray-400">clauze.xyz</p>
+                    </div>
+                  </div>
+                </div>
+
                 {/* 1. Contract Overview */}
                 <FadeUp>
                   <div className="p-6 sm:p-8 bg-card border border-[var(--border)] rounded-[20px]">
@@ -520,7 +534,9 @@ export default function UploadPage() {
                 </div>
 
                 {/* 4. Contract Q&A */}
-                <ContractQA contractText={text} />
+                <div className="contract-qa-container">
+                  <ContractQA contractText={text} />
+                </div>
 
                 {/* Actions */}
                 <FadeUp delay={0.6}>
