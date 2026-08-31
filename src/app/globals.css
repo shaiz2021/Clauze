@@ -289,3 +289,61 @@
 ::-webkit-scrollbar-thumb:hover {
   background: var(--text-3);
 }
+
+/* Print Styles for PDF Report */
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+    font-size: 12pt;
+  }
+  
+  .no-print, 
+  nav, 
+  footer, 
+  button,
+  .btn-primary,
+  .btn-secondary {
+    display: none !important;
+  }
+
+  main {
+    padding-top: 0 !important;
+  }
+
+  .pt-\[68px\] {
+    padding-top: 0 !important;
+  }
+
+  /* Left panel upload area is hidden */
+  .md\:w-\[44\%\] {
+    display: none !important;
+  }
+
+  /* Right panel results area takes full width */
+  .md\:w-\[56\%\] {
+    width: 100% !important;
+    padding: 0 !important;
+  }
+
+  .bg-card, .bg-card-inner {
+    background: white !important;
+    border: 1px solid #eee !important;
+    box-shadow: none !important;
+    break-inside: avoid;
+    margin-bottom: 20px !important;
+  }
+
+  .text-violet { color: #7b6ef6 !important; }
+  .text-1, .text-2, .text-3 { color: black !important; }
+  
+  .bg-risk-red { background-color: #f2546a !important; }
+  .bg-risk-amber { background-color: #f0a429 !important; }
+  .bg-risk-green { background-color: #36c98a !important; }
+
+  /* Ensure colors and backgrounds print */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}

@@ -50,8 +50,6 @@ interface AnalysisResult {
   };
 }
 
-const CONTRACT_TYPES = ["NDA", "Freelance", "Employment", "SaaS Terms", "Partnership", "Service Agreement", "Other"];
-
 const LOADING_STEPS = [
   "Uploading your contract...",
   "Reading your contract...",
@@ -63,7 +61,6 @@ export default function UploadPage() {
   const [text, setText] = useState("");
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [result, setResult] = useState<AnalysisResult | null>(null);
-  const [contractType, setContractType] = useState("NDA");
   const [isUploading, setIsUploading] = useState(false);
   const [loadingStep, setLoadingStep] = useState(0);
   const [error, setError] = useState<string | null>(null);
@@ -76,11 +73,9 @@ export default function UploadPage() {
   // Persistence logic for anonymous scans
   useEffect(() => {
     const savedText = sessionStorage.getItem("clauze_scan_text");
-    const savedType = sessionStorage.getItem("clauze_scan_type");
     const savedResult = sessionStorage.getItem("clauze_scan_result");
 
     if (savedText) setText(savedText);
-    if (savedType) setContractType(savedType);
     if (savedResult) {
       try {
         setResult(JSON.parse(savedResult));
@@ -94,10 +89,6 @@ export default function UploadPage() {
     if (text) sessionStorage.setItem("clauze_scan_text", text);
     else sessionStorage.removeItem("clauze_scan_text");
   }, [text]);
-
-  useEffect(() => {
-    sessionStorage.setItem("clauze_scan_type", contractType);
-  }, [contractType]);
 
   useEffect(() => {
     if (result) sessionStorage.setItem("clauze_scan_result", JSON.stringify(result));
@@ -220,7 +211,7 @@ export default function UploadPage() {
       const response = await fetch("/api/analyze", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ text, type: contractType }),
+        body: JSON.stringify({ text }),
       });
 
       const data = await response.json().catch(() => null);
@@ -240,7 +231,6 @@ export default function UploadPage() {
           user_id: activeUser.id,
           contract_text: text,
           analysis: data,
-          contract_type: contractType,
         });
 
         if (dbError) console.error("Error saving contract:", dbError);
@@ -271,7 +261,7 @@ export default function UploadPage() {
 
       <main className="pt-[68px] flex flex-col md:flex-row min-h-[calc(100vh-68px)]">
         {/* LEFT PANEL */}
-        <div className="w-full md:w-[44%] bg-s1 p-6 sm:p-8 md:p-12 border-b md:border-b-0 md:border-r border-[var(--border)]">
+        <div className="no-print w-full md:w-[44%] bg-s1 p-6 sm:p-8 md:p-12 border-b md:border-b-0 md:border-r border-[var(--border)]">
           <div className="max-w-xl md:ml-auto">
             <span className="font-body font-medium text-[12px] uppercase tracking-widest text-violet mb-6 block">
               Upload Your Contract
@@ -315,22 +305,6 @@ export default function UploadPage() {
                 placeholder="Paste your contract text here..."
                 className="w-full h-[180px] sm:h-[220px] bg-[var(--s0)] border border-[var(--border)] rounded-[10px] p-5 sm:p-6 font-mono text-[14px] text-2 focus:outline-none focus:border-violet transition-all resize-y"
               />
-
-              {/* Contract Type */}
-              <div>
-                <label className="font-body font-medium text-[11px] uppercase tracking-widest text-3 mb-2 block">
-                  Contract Type
-                </label>
-                <select
-                  value={contractType}
-                  onChange={(e) => setContractType(e.target.value)}
-                  className="w-full bg-[var(--s0)] border border-[var(--border)] rounded-[10px] h-11 px-4 font-body text-[14px] text-2 focus:outline-none focus:border-violet appearance-none cursor-pointer"
-                >
-                  {CONTRACT_TYPES.map((t) => (
-                    <option key={t} value={t}>{t}</option>
-                  ))}
-                </select>
-              </div>
 
               {/* Analyse Button */}
               <button
@@ -557,8 +531,11 @@ export default function UploadPage() {
                     >
                       Analyze Another Contract
                     </button>
-                    <button disabled className="btn-secondary h-[52px] w-full sm:w-auto px-8 opacity-50 cursor-not-allowed flex items-center justify-center gap-2">
-                      Download PDF Report <span className="text-[11px] bg-violet/10 px-2 py-0.5 rounded text-violet font-bold">PRO</span>
+                    <button
+                      onClick={() => window.print()}
+                      className="btn-primary h-[52px] w-full sm:w-auto px-8 flex items-center justify-center gap-2"
+                    >
+                      Download PDF Report
                     </button>
                   </div>
                 </FadeUp>

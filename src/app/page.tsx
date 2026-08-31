@@ -124,7 +124,7 @@ export default function Home() {
         "@type": "Offer",
         "price": "0",
         "priceCurrency": "USD",
-        "description": "1 scan per month, paste-text only"
+        "description": "1 scan per month, includes PDF upload + report download"
       },
       {
         "@type": "Offer",
@@ -654,11 +654,11 @@ export default function Home() {
                 <div className="p-6 sm:p-[28px] bg-card border rounded-[16px]">
                   <h3 className="font-display font-bold text-[22px] md:text-[24px] text-1 mb-2">Free</h3>
                   <div className="font-display font-bold text-[36px] md:text-[40px] text-1 mb-1">$0<span className="text-[18px] text-3 font-light">/month</span></div>
-                  <p className="font-body font-light text-[15px] md:text-[16px] text-3 mb-8 leading-[1.8]">1 scan per month. Paste text only. Essential risk summary.</p>
+                  <p className="font-body font-light text-[15px] md:text-[16px] text-3 mb-8 leading-[1.8]">Try Clauze with your first contract. No credit card required.</p>
                   <ul className="space-y-4 mb-10">
                     <li className="flex items-center gap-3 font-body text-[15px] md:text-[16px] text-2"><CheckCircle2 size={18} className="text-violet shrink-0" aria-label="Included" /> 1 scan per month</li>
-                    <li className="flex items-center gap-3 font-body text-[15px] md:text-[16px] text-2"><CheckCircle2 size={18} className="text-violet shrink-0" aria-label="Included" /> Paste-text only</li>
-                    <li className="flex items-center gap-3 font-body text-[15px] md:text-[16px] text-3"><X size={18} className="text-4 shrink-0" aria-label="Not included" /> PDF upload</li>
+                    <li className="flex items-center gap-3 font-body text-[15px] md:text-[16px] text-2"><CheckCircle2 size={18} className="text-violet shrink-0" aria-label="Included" /> PDF upload</li>
+                    <li className="flex items-center gap-3 font-body text-[15px] md:text-[16px] text-2"><CheckCircle2 size={18} className="text-violet shrink-0" aria-label="Included" /> PDF report download</li>
                   </ul>
                   <Link href="/signup" className="btn-secondary w-full justify-center">Sign up free</Link>
                 </div>

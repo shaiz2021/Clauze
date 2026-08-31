@@ -12,7 +12,7 @@ export async function POST(req: Request) {
       );
     }
 
-    const { text, type } = await req.json();
+    const { text } = await req.json();
 
     if (!text) {
       return NextResponse.json({ error: "No contract text provided" }, { status: 400 });
@@ -66,7 +66,6 @@ export async function POST(req: Request) {
       - Never mention model names (Mistral, GPT, etc.).
       - Keep recommendations short.
 
-      Contract type provided by user: ${type}
       Contract text: ${text.substring(0, 30000)}
     `;
 
