@@ -1,5 +1,6 @@
 import { Mistral } from "@mistralai/mistralai";
 import { NextResponse } from "next/server";
+import { createSupabaseServerClient } from "@/lib/supabase/server";
 
 export async function POST(req: Request) {
   try {
@@ -12,12 +13,72 @@ export async function POST(req: Request) {
       );
     }
 
+    // Verify user authentication
+    const supabase = createSupabaseServerClient();
+    const { data: { user } } = await supabase.auth.getUser();
+
+    if (!user) {
+      return NextResponse.json({ error: "Please sign in to analyze contracts." }, { status: 401 });
+    }
+
     const { text } = await req.json();
 
     if (!text) {
       return NextResponse.json({ error: "No contract text provided" }, { status: 400 });
     }
 
+    // Check scan limits (Free: 1/month, paid credits for Starter)
+    const month = new Date().toISOString().slice(0, 7);
+
+    // Get user plan
+    const { data: profile } = await supabase
+      .from("profiles")
+      .select("plan")
+      .eq("id", user.id)
+      .single();
+
+    const plan = profile?.plan || "Free";
+
+    // Check free monthly usage
+    const { data: usage } = await supabase
+      .from("scan_usage")
+      .select("id, count")
+      .eq("user_id", user.id)
+      .eq("month", month)
+      .single();
+
+    const freeUsed = usage?.count || 0;
+
+    // Check paid credits
+    const { data: paidCredits } = await supabase
+      .from("paid_credits")
+      .select("balance")
+      .eq("user_id", user.id)
+      .single();
+
+    const paidBalance = paidCredits?.balance || 0;
+
+    // Determine if user can scan
+    let canScan = false;
+    let scanType = "";
+
+    if (plan === "Free" && freeUsed < 1) {
+      canScan = true;
+      scanType = "free";
+    } else if (paidBalance > 0) {
+      canScan = true;
+      scanType = "paid";
+    }
+
+    if (!canScan) {
+      return NextResponse.json({
+        error: "no_credits",
+        message: "You've used your free scan this month. Purchase a Starter scan to continue.",
+        code: "LIMIT_EXCEEDED"
+      }, { status: 403 });
+    }
+
+    // Run the analysis
     const prompt = `
       You are a specialized contract analysis tool for Clauze (clauze.xyz). 
       Return ONLY raw JSON. No markdown. No code fences. 
@@ -99,6 +160,24 @@ export async function POST(req: Request) {
     const jsonStr = jsonMatch ? jsonMatch[0] : cleaned;
     
     const analysis = JSON.parse(jsonStr);
+
+    // Deduct the appropriate credit
+    if (scanType === "free") {
+      // Increment free usage
+      if (usage) {
+        await supabase
+          .from("scan_usage")
+          .update({ count: freeUsed + 1, updated_at: new Date().toISOString() })
+          .eq("id", usage.id);
+      } else {
+        await supabase
+          .from("scan_usage")
+          .insert({ user_id: user.id, month, count: 1 });
+      }
+    } else if (scanType === "paid") {
+      // Deduct a paid credit
+      await supabase.rpc("use_paid_credit", { p_user_id: user.id });
+    }
 
     return NextResponse.json(analysis);
   } catch (error) {

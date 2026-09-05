@@ -4,8 +4,8 @@ import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { FadeUp } from "@/components/fade-up";
 import { SectionDivider } from "@/components/section-divider";
-import { Check, X, ArrowRight } from "lucide-react";
-import { WaitlistForm } from "@/components/waitlist-form";
+import { Check, X } from "lucide-react";
+import { StarterCheckout } from "@/components/starter-checkout";
 
 export const metadata: Metadata = {
   title: "Pricing | Clauze",
@@ -50,9 +50,8 @@ const PLANS = [
       { name: "Scan history", included: false },
     ],
     cta: "Buy a Scan",
-    href: "#waitlist",
     featured: true,
-    comingSoon: true
+    comingSoon: false
   },
   {
     name: "Pro",
@@ -143,12 +142,14 @@ export default function PricingPage() {
                       ))}
                     </ul>
 
-                    {plan.comingSoon ? (
+                    {plan.name === "Starter" ? (
+                      <StarterCheckout />
+                    ) : plan.comingSoon ? (
                       <button disabled className="btn-secondary w-full opacity-50 cursor-not-allowed">
                         {plan.cta}
                       </button>
                     ) : (
-                      <Link href={plan.href} className="btn-primary w-full">
+                      <Link href={plan.href || "/signup"} className="btn-primary w-full">
                         {plan.cta}
                       </Link>
                     )}
@@ -225,15 +226,6 @@ export default function PricingPage() {
                 </table>
               </div>
             </FadeUp>
-          </div>
-        </section>
-
-        <SectionDivider />
-
-        {/* Waitlist Section */}
-        <section id="waitlist" className="py-16 md:py-[120px] bg-s0 border-y border-[var(--border)]">
-          <div className="max-w-[1400px] mx-auto px-5 sm:px-6">
-            <WaitlistForm />
           </div>
         </section>
 
