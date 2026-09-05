@@ -147,7 +147,7 @@ export default async function DashboardPage() {
                   </div>
 
                   <p className="font-body font-light text-[13px] md:text-[14px] text-3 leading-[1.7] mt-6">
-                    Tip: If a clause feels "standard" but you cannot explain it, run that section alone first.
+                    Tip: If a clause feels &ldquo;standard&rdquo; but you cannot explain it, run that section alone first.
                   </p>
                 </div>
               </FadeUp>
