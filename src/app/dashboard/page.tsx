@@ -6,7 +6,9 @@ import { Footer } from "@/components/footer";
 import { FadeUp } from "@/components/fade-up";
 import { SectionDivider } from "@/components/section-divider";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
-import { ArrowRight, BadgeCheck, CreditCard, FileText, LifeBuoy, Lock, Mail, Shield } from "lucide-react";
+import { BillingStatus } from "@/components/billing-status";
+import { BillingPortalButton } from "@/components/billing-portal-button";
+import { ArrowRight, BadgeCheck, FileText, LifeBuoy, Lock, Mail, Shield } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Dashboard | Clauze",
@@ -43,8 +45,7 @@ export default async function DashboardPage() {
                 Welcome back.
               </h1>
               <p className="font-body font-light text-[17px] md:text-[20px] text-2 leading-[1.8] md:leading-[1.85] mt-6 max-w-2xl">
-                You are signed in as <span className="text-1">{user.email}</span>. Jump back into a scan or review the
-                basics below.
+                You are signed in as <span className="text-1">{user.email}</span>. Jump back into a scan or review your billing below.
               </p>
             </FadeUp>
 
@@ -65,7 +66,17 @@ export default async function DashboardPage() {
 
         <section className="py-16 md:py-[120px] px-5 sm:px-6 bg-s1">
           <div className="max-w-6xl mx-auto space-y-6">
-            <div className="grid lg:grid-cols-3 gap-6 items-stretch">
+            {/* Billing Status Card */}
+            <FadeUp>
+              <BillingStatus />
+            </FadeUp>
+
+            {/* Billing Portal Button for non-Free users */}
+            <FadeUp delay={0.06}>
+              <BillingPortalButton />
+            </FadeUp>
+
+            <div className="grid lg:grid-cols-2 gap-6 items-stretch">
               <FadeUp>
                 <div className="bg-card border rounded-[16px] p-6 sm:p-[28px] h-full">
                   <div className="flex items-center gap-3 mb-4">
@@ -136,34 +147,13 @@ export default async function DashboardPage() {
                   </div>
 
                   <p className="font-body font-light text-[13px] md:text-[14px] text-3 leading-[1.7] mt-6">
-                    Tip: If a clause feels “standard” but you cannot explain it, run that section alone first.
+                    Tip: If a clause feels "standard" but you cannot explain it, run that section alone first.
                   </p>
-                </div>
-              </FadeUp>
-
-              <FadeUp delay={0.12}>
-                <div className="bg-card border rounded-[16px] p-6 sm:p-[28px] h-full">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-9 h-9 rounded-full border border-[var(--border)] bg-[var(--s0)] flex items-center justify-center">
-                      <CreditCard size={18} className="text-violet" />
-                    </div>
-                    <h2 className="font-display font-bold text-[20px] md:text-[22px] text-1">Plan</h2>
-                  </div>
-
-                  <p className="font-body font-light text-[17px] md:text-[18px] text-2 leading-[1.8] md:leading-[1.85]">
-                    Upgrade when you want saved scans, advanced filters, and faster review workflows.
-                  </p>
-
-                  <div className="mt-6">
-                    <Link href="/pricing" className="btn-secondary w-full justify-center">
-                      View pricing
-                    </Link>
-                  </div>
                 </div>
               </FadeUp>
             </div>
 
-            <FadeUp delay={0.18}>
+            <FadeUp delay={0.12}>
               <div className="bg-card border rounded-[16px] p-6 sm:p-[28px]">
                 <div className="flex items-center justify-between gap-4 flex-wrap">
                   <div className="flex items-center gap-3">
@@ -196,7 +186,7 @@ export default async function DashboardPage() {
             </FadeUp>
 
             <div className="grid md:grid-cols-2 gap-6 items-stretch">
-              <FadeUp delay={0.22}>
+              <FadeUp delay={0.18}>
                 <div className="bg-card border rounded-[16px] p-6 sm:p-[28px] h-full">
                   <div className="flex items-center gap-3 mb-4">
                     <div className="w-9 h-9 rounded-full border border-[var(--border)] bg-[var(--s0)] flex items-center justify-center">
@@ -215,7 +205,7 @@ export default async function DashboardPage() {
                 </div>
               </FadeUp>
 
-              <FadeUp delay={0.26}>
+              <FadeUp delay={0.22}>
                 <div className="bg-card border rounded-[16px] p-6 sm:p-[28px] h-full">
                   <div className="flex items-center gap-3 mb-4">
                     <div className="w-9 h-9 rounded-full border border-[var(--border)] bg-[var(--s0)] flex items-center justify-center">
