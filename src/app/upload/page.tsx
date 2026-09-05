@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useMemo, Suspense } from "react";
+import { useRouter } from "next/navigation";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { FadeUp } from "@/components/fade-up";
@@ -69,6 +70,23 @@ export default function UploadPage() {
   const [manualUser, setManualUser] = useState<User | null>(null);
   const [showLimitModal, setShowLimitModal] = useState(false);
   const [usage, setUsage] = useState<{ plan: string; count: number; limit: number } | null>(null);
+  const [isProcessingPayment, setIsProcessingPayment] = useState(false);
+  const router = useRouter();
+
+  // Check for payment processing status on mount
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("payment") === "processing") {
+      setIsProcessingPayment(true);
+      // Refresh usage to get updated credits
+      fetch("/api/usage")
+        .then((res) => res.json())
+        .then((data) => setUsage(data))
+        .catch((err) => console.error("Error fetching usage:", err));
+      // Clean up URL without refresh
+      router.replace("/upload");
+    }
+  }, [router]);
 
   // Persistence logic for anonymous scans
   useEffect(() => {
@@ -263,6 +281,19 @@ export default function UploadPage() {
         {/* LEFT PANEL */}
         <div className="no-print w-full md:w-[44%] bg-s1 p-6 sm:p-8 md:p-12 border-b md:border-b-0 md:border-r border-[var(--border)]">
           <div className="max-w-xl md:ml-auto">
+            {/* Payment Processing Banner */}
+            {isProcessingPayment && (
+              <div className="mb-6 p-4 bg-violet/10 border border-violet/30 rounded-[12px]">
+                <div className="flex items-center gap-3">
+                  <Loader2 className="animate-spin text-violet shrink-0" size={20} />
+                  <div>
+                    <p className="font-body font-medium text-[14px] text-violet">Payment processing...</p>
+                    <p className="font-body text-[13px] text-3">Your scan credit will be available shortly. Please wait.</p>
+                  </div>
+                </div>
+              </div>
+            )}
+
             <span className="font-body font-medium text-[12px] uppercase tracking-widest text-violet mb-6 block">
               Upload Your Contract
             </span>

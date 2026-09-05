@@ -8,18 +8,7 @@ import { ArrowRight, Loader2 } from "lucide-react";
 export function StarterCheckout() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [user, setUser] = useState<any>(null);
   const router = useRouter();
-
-  // Check auth status on mount
-  useState(() => {
-    if (isSupabaseConfigured()) {
-      const supabase = createSupabaseBrowserClient();
-      supabase.auth.getUser().then(({ data }) => {
-        setUser(data.user);
-      });
-    }
-  });
 
   const handleCheckout = async () => {
     // Check auth first
@@ -36,10 +25,18 @@ export function StarterCheckout() {
     setIsLoading(true);
     setError(null);
 
+    // Determine return path:
+    // - If user has scan text in sessionStorage, they're mid-scan → return to /upload
+    // - Otherwise → return to /dashboard
+    const hasScanContent = typeof window !== "undefined" && 
+      (sessionStorage.getItem("clauze_scan_text") || sessionStorage.getItem("clauze_scan_result"));
+    const returnTo = hasScanContent ? "/upload" : "/dashboard";
+
     try {
       const response = await fetch("/api/checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ return_to: returnTo }),
       });
 
       const data = await response.json();

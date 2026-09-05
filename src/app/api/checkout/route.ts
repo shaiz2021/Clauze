@@ -1,7 +1,23 @@
 import { NextResponse } from "next/server";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 
-export async function POST() {
+// Allowed return paths (internal only, no external URLs)
+const ALLOWED_RETURN_PATHS = ["/dashboard", "/upload", "/pricing"];
+
+function validateReturnPath(path: string | undefined): string {
+  // Default to dashboard if no path provided
+  if (!path) return "/dashboard";
+  
+  // Must start with /
+  if (!path.startsWith("/")) return "/dashboard";
+  
+  // Must be in allowed list
+  if (!ALLOWED_RETURN_PATHS.includes(path)) return "/dashboard";
+  
+  return path;
+}
+
+export async function POST(req: Request) {
   // 1. Verify user authentication (server-side, never trust client)
   const supabase = createSupabaseServerClient();
   const { data: { user } } = await supabase.auth.getUser();
@@ -10,7 +26,16 @@ export async function POST() {
     return NextResponse.json({ error: "Unauthorized. Please sign in first." }, { status: 401 });
   }
 
-  // 2. Get required environment variables
+  // 2. Parse request body and validate return path
+  let returnTo = "/dashboard";
+  try {
+    const body = await req.json();
+    returnTo = validateReturnPath(body.return_to);
+  } catch {
+    // No body provided, use default
+  }
+
+  // 3. Get required environment variables
   const apiKey = process.env.LEMONSQUEEZY_API_KEY;
   const storeId = process.env.LEMONSQUEEZY_STORE_ID;
   const variantId = process.env.LEMONSQUEEZY_STARTER_VARIANT_ID;
@@ -22,7 +47,7 @@ export async function POST() {
   }
 
   try {
-    // 3. Create Lemon Squeezy checkout
+    // 4. Create Lemon Squeezy checkout
     const response = await fetch("https://api.lemonsqueezy.com/v1/checkouts", {
       method: "POST",
       headers: {
@@ -41,7 +66,8 @@ export async function POST() {
               },
             },
             product_options: {
-              redirect_url: `${siteUrl}/upload?payment=processing`,
+              // Redirect to the validated return path after checkout
+              redirect_url: `${siteUrl}${returnTo}?payment=processing`,
             },
             checkout_options: {
               embed: false,
@@ -77,7 +103,7 @@ export async function POST() {
       );
     }
 
-    // 4. Extract checkout URL and return to client
+    // 5. Extract checkout URL and return to client
     const checkoutUrl = responseData?.data?.attributes?.url;
 
     if (!checkoutUrl) {
